@@ -10,11 +10,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/marco-ippolito/fiume"
+    "url": "git+https://github.com/marco-ippolito/fiume.git"
   },
   "bugs": {
-    "url": "https://github.com/marco-ippolito/fiume"
+    "url": "https://github.com/marco-ippolito/fiume/issues"
   },
+  "homepage": "https://marcoippolito.dev",
   "keywords": [
     "fsm",
     "finite state machine",
