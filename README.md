@@ -1,4 +1,4 @@
-# State Machine Library
+# FSM
 
 A simple and flexible state machine library for TypeScript and JavaScript, designed to manage the flow of a system through various states. This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
 
@@ -10,7 +10,7 @@ npm install @satanacchio/fsm
 
 ## Usage
 
-```javascript
+```typescript
 import { StateMachine, State, StateMachineOptions } from "@satanacchio/fsm";
 
 // Define your states
@@ -43,7 +43,7 @@ myStateMachine.start();
 
 #### Constructor
 
-```javascript
+```typescript
 new StateMachine(states: Array<State>, options?: StateMachineOptions)
 ```
 
