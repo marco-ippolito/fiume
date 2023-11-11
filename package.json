@@ -7,8 +7,8 @@
   "keywords": [],
   "scripts": {
     "prepare": "husky install",
-    "format": "biome format packages --write",
-    "lint": "biome check packages",
+    "format": "biome format src --write",
+    "lint": "biome check src",
     "test": "pnpm test"
   },
   "devDependencies": {
