@@ -14,8 +14,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - uses: pnpm/action-setup@v2
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        with:
+          version: 8
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
       - name: Test
         run: pnpm test
   automerge:
