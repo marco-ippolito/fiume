@@ -6,7 +6,11 @@
   "types": "dist/index.d.ts",
   "keywords": [],
   "main": "./dist/index.js",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
+    "prepublishOnly": "git push origin --follow-tags",
     "prepare": "husky install",
     "format": "biome format src test --write",
     "lint": "biome check src test",
@@ -33,5 +37,8 @@
     "author": true
   },
   "license": "Apache-2.0",
-  "dependencies": {}
+  "dependencies": {},
+  "exports": {
+    "./package.json": "./package.json"
+  }
 }

@@ -1,36 +1,20 @@
-name: release
+name: Publish Package to npmjs
 on:
-  workflow_dispatch:
-    inputs:
-      semver:
-        description: The semver to use
-        required: true
-        default: patch
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-  pull_request:
-    types: [closed]
-
-jobs:
   release:
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-      id-token: write
+    types: [published]
+jobs:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: nearform-actions/optic-release-automation-action@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v3
         with:
-          npm-token: >-
-            ${{ secrets[format('NPM_TOKEN_{0}', github.actor)] ||
-            secrets.NPM_TOKEN }}
-          optic-token: >-
-            ${{ secrets[format('OPTIC_TOKEN_{0}', github.actor)] ||
-            secrets.OPTIC_TOKEN }}
-          semver: ${{ github.event.inputs.semver }}
-          commit-message: 'chore: release {version}'
-          provenance: true
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
