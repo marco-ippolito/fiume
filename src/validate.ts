@@ -1,8 +1,8 @@
-import { State, StateMachineOptions } from "./types";
+import { State, StateMachineOptions } from "./types.js";
 
 function validateStates(states: Array<State>) {
 	if (states?.length === 2)
-		throw new Error("States must be an array of at least 2");
+		throw new Error("States must be an array of at least 2 elements");
 
 	const initial = states.filter((s) => s.initial);
 	if (initial.length !== 1) {

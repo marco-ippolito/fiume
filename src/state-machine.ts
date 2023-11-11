@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
-import { validate } from "./validate";
-import { State, StateMachineOptions } from "./types";
+import { validate } from "./validate.js";
+import { State, StateMachineOptions } from "./types.js";
 
 export class StateMachine {
 	public id: string;

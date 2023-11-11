@@ -9,14 +9,17 @@
     "prepare": "husky install",
     "format": "biome format src --write",
     "lint": "biome check src",
-    "test": "pnpm test"
+    "test": "pnpm test",
+    "build": "swc ./src -d dist"
   },
   "devDependencies": {
     "@biomejs/biome": "1.1.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "husky": "^8.0.2",
-    "@types/node": "^20.9.0"
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.96",
+    "@types/node": "^20.9.0",
+    "husky": "^8.0.2"
   },
   "author": {
     "name": "Marco Ippolito",
