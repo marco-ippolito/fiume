@@ -1,4 +1,4 @@
-import { State, StateMachineOptions } from "./index.js";
+import { State } from "./index.js";
 
 export class InvalidStatesError extends Error {}
 export class InvalidInitialStateError extends Error {}

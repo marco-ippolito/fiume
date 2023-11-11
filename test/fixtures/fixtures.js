@@ -1,6 +1,19 @@
 export const basicStates = [
+	{ id: "ON", final: true, onEntry: () => {}, onExit: () => {} },
 	{
-		id: "ON",
+		id: "OFF",
+		initial: true,
+		onEntry: () => {},
+		onExit: () => {},
+		transitionTo: () => "ON",
 	},
-	{ id: "OFF", initial: true },
+];
+
+export const wrongDestination = [
+	{ id: "ON", final: true },
+	{
+		id: "OFF",
+		initial: true,
+		transitionTo: () => "err",
+	},
 ];
