@@ -10,6 +10,7 @@ export type transitionToHook = (
 export type HookInput = {
 	context: unknown;
 	emitter: EventEmitter;
+	signal: AbortSignal;
 };
 
 export type OnEntryHook = (hook: HookInput) => void | Promise<void>;
@@ -43,18 +44,20 @@ export interface State {
 export class StateMachine {
 	public id: string;
 	public emitter: EventEmitter;
+	public context: unknown;
+	public controller: AbortController;
 	private _initial: State;
 	private _states: Map<string, State>;
-	private _context: unknown;
 	private _current!: State;
 
 	constructor(states: Array<State>, options?: StateMachineOptions) {
 		validateStates(states);
 		this.id = options?.id || randomUUID();
-		this._context = options?.context || {};
+		this.context = options?.context || {};
 		this.emitter = new EventEmitter();
 		this._initial = states.find((s) => s.initial) as State;
 		this._states = new Map(states.map((s) => [s.id, s]));
+		this.controller = new AbortController();
 	}
 
 	public start = async () => {
@@ -72,8 +75,9 @@ export class StateMachine {
 		if (state.onEntry) {
 			this.emitter.emit(EVENTS.STATE_ON_ENTRY, { stateId });
 			await state.onEntry({
-				context: this._context,
+				context: this.context,
 				emitter: this.emitter,
+				signal: this.controller.signal,
 			});
 		}
 
@@ -81,8 +85,9 @@ export class StateMachine {
 			this.emitter.emit(EVENTS.STATE_ON_TRANSITION, { stateId });
 
 			const destinationId = await state.transitionTo({
-				context: this._context,
+				context: this.context,
 				emitter: this.emitter,
+				signal: this.controller.signal,
 			});
 			destination = this._states.get(destinationId);
 
@@ -95,8 +100,9 @@ export class StateMachine {
 		if (state.onExit) {
 			this.emitter.emit(EVENTS.STATE_ON_EXIT, { stateId });
 			await state.onExit({
-				context: this._context,
+				context: this.context,
 				emitter: this.emitter,
+				signal: this.controller.signal,
 			});
 		}
 
