@@ -2,12 +2,23 @@
   "name": "fiume",
   "type": "module",
   "version": "0.0.2",
-  "description": "javascript state machine",
+  "description": "lightweight javascript/typescript state machine",
   "types": "dist/index.d.ts",
-  "keywords": [],
   "main": "./dist/index.js",
   "files": [
-    "dist/**"
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marco-ippolito/fiume"
+  },
+  "bugs": {
+    "url": "https://github.com/marco-ippolito/fiume"
+  },
+  "keywords": [
+    "fsm",
+    "finite state machine",
+    "state machine"
   ],
   "scripts": {
     "prepublishOnly": "git push origin --follow-tags",
@@ -35,6 +46,9 @@
     "email": "marcoippolito54@gmail.com",
     "url": "https://github.com/marco-ippolito",
     "author": true
+  },
+  "engines": {
+    "node": ">= 20.0.0"
   },
   "license": "Apache-2.0",
   "dependencies": {},
