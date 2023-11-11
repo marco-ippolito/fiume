@@ -1,12 +1,21 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.3.3/schema.json",
+	"$schema": "https://docs.rome.tools/schemas/12.1.3/schema.json",
 	"organizeImports": {
-		"enabled": true
+		"enabled": false
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true
-		}
+		},
+		"ignore": [
+			"dist"
+		]
+	},
+	"formatter": {
+		"formatWithErrors": true,
+		"ignore": [
+			"dist"
+		]
 	}
 }
