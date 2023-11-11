@@ -90,4 +90,4 @@ The library emits various events that you can subscribe to using the `emitter` p
 
 ## License
 
-This library is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it as needed. Contributions are welcome!
+This library is licensed under the [Apache 2.0 License](LICENSE). Feel free to use, modify, and distribute it as needed. Contributions are welcome!
