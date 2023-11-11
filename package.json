@@ -1,5 +1,5 @@
 {
-  "name": "fsm",
+  "name": "fiume",
   "type": "module",
   "version": "0.0.1",
   "description": "javascript state machine",
@@ -23,7 +23,8 @@
     "@types/node": "^20.9.0",
     "c8": "^8.0.1",
     "husky": "^8.0.2",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "typescript": "^5.2.2"
   },
   "author": {
     "name": "Marco Ippolito",
@@ -32,7 +33,5 @@
     "author": true
   },
   "license": "Apache-2.0",
-  "dependencies": {
-    "typescript": "^5.2.2"
-  }
+  "dependencies": {}
 }

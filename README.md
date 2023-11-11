@@ -1,17 +1,17 @@
-# FSM
+# FIUME
 
 A simple and flexible state machine library for TypeScript and JavaScript, designed to manage the flow of a system through various states. This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
 
 ## Installation
 
 ```bash
-npm install @satanacchio/fsm
+npm install fiume
 ```
 
 ## Usage
 
 ```typescript
-import { StateMachine, State, StateMachineOptions } from "@satanacchio/fsm";
+import { StateMachine, State, StateMachineOptions } from "fiume";
 
 // Define your states
 const states: Array<State> = [
