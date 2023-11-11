@@ -1,27 +1,28 @@
-import { State, StateMachineOptions } from "./types.js";
+import { State, StateMachineOptions } from "./index.js";
 
-function validateStates(states: Array<State>) {
-	if (states?.length === 2)
-		throw new Error("States must be an array of at least 2 elements");
+export class InvalidStatesError extends Error {}
+export class InvalidInitialStateError extends Error {}
+export class InvalidStateIdError extends Error {}
+
+export function validateStates(states: Array<State>) {
+	if (states?.length !== 2)
+		throw new InvalidStatesError(
+			"States must be an array of at least 2 elements",
+		);
 
 	const initial = states.filter((s) => s.initial);
 	if (initial.length !== 1) {
-		throw new Error("There must be one and only initial state");
+		throw new InvalidInitialStateError(
+			"There must be one and only initial state",
+		);
+	}
+
+	if (!states.every((s) => typeof s.id === "string")) {
+		throw new InvalidStateIdError("Ids must be of type string");
 	}
 
 	const uniqueIds = new Set(states.map((s) => s.id));
-	if (uniqueIds.size !== initial.length) {
-		throw new Error("Ids must be unique");
+	if (uniqueIds.size !== states.length) {
+		throw new InvalidStateIdError("Ids must be unique");
 	}
-}
-function validateOptions(options: StateMachineOptions | undefined) {
-	if (!options) return;
-}
-
-export function validate(
-	states: Array<State>,
-	options: StateMachineOptions | undefined,
-) {
-	validateStates(states);
-	validateOptions(options);
 }

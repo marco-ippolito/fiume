@@ -1,6 +1,26 @@
 import { randomUUID } from "crypto";
-import { validate } from "./validate.js";
-import { State, StateMachineOptions } from "./types.js";
+import { validateStates } from "./validate.js";
+
+export type StateIdentifier = string;
+export type TransitionHook = (
+	context: unknown,
+) => StateIdentifier | Promise<StateIdentifier>;
+
+export type OnEntryHook = (context: unknown) => void | Promise<void>;
+export type OnExitHook = (context: unknown) => void | Promise<void>;
+
+export type StateMachineOptions = { id: string; context: unknown };
+
+export interface State {
+	id: StateIdentifier;
+	transition: TransitionHook;
+
+	onEntry?: undefined | OnEntryHook;
+	onExit?: undefined | OnExitHook;
+
+	initial?: boolean;
+	final?: boolean;
+}
 
 export class StateMachine {
 	public id: string;
@@ -9,7 +29,7 @@ export class StateMachine {
 	private _context: unknown;
 
 	constructor(states: Array<State>, options?: StateMachineOptions) {
-		validate(states, options);
+		validateStates(states);
 		this.id = options?.id || randomUUID();
 		this._context = options?.context || {};
 		this._initial = states.find((s) => s.initial) as State;
