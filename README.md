@@ -61,9 +61,9 @@ Represents a state in the state machine.
 ```javascript
 interface State {
   id: StateIdentifier;
-  transitionTo?: transitionToHook;
-  onEntry?: undefined | OnEntryHook;
-  onExit?: undefined | OnExitHook;
+  transitionTo?: TransitionToHook;
+  onEntry?: OnEntryHook;
+  onExit?: OnExitHook;
   initial?: boolean;
   final?: boolean;
 }

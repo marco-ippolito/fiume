@@ -3,7 +3,7 @@ import { validateStates } from "./validate.js";
 import EventEmitter from "node:stream";
 
 export type StateIdentifier = string;
-export type transitionToHook = (
+export type TransitionToHook = (
 	hook: HookInput,
 ) => StateIdentifier | Promise<StateIdentifier>;
 
@@ -34,9 +34,9 @@ export type StateMachineEvents = typeof EVENTS[keyof typeof EVENTS];
 
 export interface State {
 	id: StateIdentifier;
-	transitionTo?: transitionToHook;
-	onEntry?: undefined | OnEntryHook;
-	onExit?: undefined | OnExitHook;
+	transitionTo?: TransitionToHook;
+	onEntry?: OnEntryHook;
+	onExit?: OnExitHook;
 	initial?: boolean;
 	final?: boolean;
 }
