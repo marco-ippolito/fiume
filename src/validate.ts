@@ -10,7 +10,11 @@ export function validateStates(states: Array<State>) {
 			"States must be an array of at least 2 elements",
 		);
 
-	const initial = states.filter((s) => s.initial);
+	let initial: Array<State> = states.filter((s) => s.initial);
+	initial =
+		initial.length === 0
+			? states.filter((s) => s.initial == null && !s.final)
+			: initial;
 	if (initial.length !== 1) {
 		throw new InvalidInitialStateError(
 			"There must be one and only initial state",

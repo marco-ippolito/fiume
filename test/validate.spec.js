@@ -42,4 +42,12 @@ test("validates states correctly", () => {
 			]),
 		InvalidStateIdError,
 	);
+	assert.throws(
+		() => validateStates([{ initial: false }, { final: true }]),
+		InvalidInitialStateError,
+	);
+	assert.doesNotThrow(
+		() => validateStates([{ id: "A" }, { id: "B", final: true }]),
+		InvalidInitialStateError,
+	);
 });

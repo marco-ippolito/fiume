@@ -9,6 +9,16 @@ export const basicStates = [
 	},
 ];
 
+export const basicStatesWithoutInitialDeclared = [
+	{ id: "ON", final: true, onEntry: () => {}, onExit: () => {} },
+	{
+		id: "OFF",
+		onEntry: () => {},
+		onExit: () => {},
+		transitionTo: () => "ON",
+	},
+];
+
 export const wrongDestination = [
 	{ id: "ON", final: true },
 	{

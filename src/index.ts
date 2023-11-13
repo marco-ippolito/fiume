@@ -55,7 +55,10 @@ export class StateMachine {
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || {};
 		this.emitter = new EventEmitter();
-		this._initial = states.find((s) => s.initial) as State;
+		const initial: State | undefined = states.find((s) => s.initial);
+		this._initial = (
+			!initial ? states.find((s) => s.initial == null && !s.final) : initial
+		) as State;
 		this._states = new Map(states.map((s) => [s.id, s]));
 		this.controller = new AbortController();
 	}
