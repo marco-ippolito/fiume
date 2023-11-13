@@ -137,15 +137,15 @@ interface State {
   final?: boolean;
 }
 
-export type HookInput = {
+type HookInput = {
 	context: unknown;
 	emitter: EventEmitter;
 	signal: AbortSignal;
 };
 
-export type TransitionToHook = (hook: HookInput) => StateIdentifier | Promise<StateIdentifier>;
-export type OnEntryHook = (hook: HookInput) => void | Promise<void>;
-export type OnExitHook = (hook: HookInput) => void | Promise<void>;
+type TransitionToHook = (hook: HookInput) => StateIdentifier | Promise<StateIdentifier>;
+type OnEntryHook = (hook: HookInput) => void | Promise<void>;
+type OnExitHook = (hook: HookInput) => void | Promise<void>;
 ```
 
 - `id`: (required) Unique identifier for the state.
