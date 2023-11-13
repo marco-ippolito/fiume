@@ -1,9 +1,10 @@
 # FIUME
 
-A simple and flexible state machine library for Node.js, designed to manage the flow of a system through various states.
+A simple and flexible state machine library writte in Typescript for **Node.js**, designed to manage the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
-**Fiume**, does not require you to hardcode your state transitions, instead you can write the transition logic inside `transitionTo` function.
-You can communicate with to the outside with a built-in `EventEmitter` that you can use to listen to external events or emit your own.
+
+**Fiume**, does not require you to hardcode state transitions, instead you can write the transition logic inside `transitionTo` function.
+You can communicate to the outside with a built-in `EventEmitter` that you can use to listen to external events or emit your own.
 
 ## Installation
 
