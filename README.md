@@ -2,8 +2,8 @@
 
 A simple and flexible state machine library for Node.js, designed to manage the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
-Fiume, does not require you to hardcode your state transitions, you can write the transition logic inside the `transitionTo` function.
-It allows natively to communicate with the outside with a built-in `EventEmitter` that you can use to listen to external events or emit your own.
+**Fiume**, does not require you to hardcode your state transitions, instead you can write the transition logic inside `transitionTo` function.
+You can communicate with to the outside with a built-in `EventEmitter` that you can use to listen to external events or emit your own.
 
 ## Installation
 
@@ -19,14 +19,15 @@ import { StateMachine, State, StateMachineOptions } from "fiume";
 // simple ON OFF machine
 const states: Array<State> = [
   {
-    id: "OFF", initial: true,
+    id: "OFF", // id of the state
+    initial: true, // when started the machine will execute it as first
     transitionTo: async ({ context, emitter, signal }) => "ON", // write your transition logic here
-    onExit: async ({ context, emitter, signal }) => console.log("Exiting OFF")
+    onExit: async ({ context, emitter, signal }) => console.log("Exiting OFF") // exit hook
   },
   {
     id: "ON",
     final: true,
-    onEntry: async ({ context, emitter, signal }) => console.log("Entering ON")
+    onEntry: async ({ context, emitter, signal }) => console.log("Entering ON") // entry hook
   },
 ];
 
@@ -147,18 +148,12 @@ export type OnEntryHook = (hook: HookInput) => void | Promise<void>;
 export type OnExitHook = (hook: HookInput) => void | Promise<void>;
 ```
 
-- `id`: Unique identifier for the state.
+- `id`: (required) Unique identifier for the state.
 - `transitionTo` (optional): Function or AsyncFunction that defines the transition logic to move to another state, must return the id of the next state.
 - `onEntry` (optional): Hook called when entering the state.
 - `onExit` (optional): Hook called when exiting the state.
-- `initial`: Boolean indicating whether the state is the initial state.
+- `initial`: Boolean indicating whether the state is the initial state, there can only be one initial state.
 - `final`: Boolean indicating whether the state is a final state.
-
-`transitionTo`, `onEntry`, `onExit` take as input an object with the following properties:
-
-- `controller`: AbortController
-- `context`: User Defined Context
-- `emitter`: EventEmitter
 
 ### Events
 
