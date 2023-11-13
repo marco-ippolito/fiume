@@ -1,6 +1,9 @@
 # FIUME
 
-A simple and flexible state machine library for TypeScript and JavaScript, designed to manage the flow of a system through various states. This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
+A simple and flexible state machine library for Node.js, designed to manage the flow of a system through various states.
+This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
+Fiume, does not require you to hardcode your state transitions, you can write the transition logic inside the `transitionTo` function.
+It allows natively to communicate with the outside with a built-in `EventEmitter` that you can use to listen to external events or emit your own.
 
 ## Installation
 
@@ -13,17 +16,24 @@ npm install fiume
 ```typescript
 import { StateMachine, State, StateMachineOptions } from "fiume";
 
-// Define your states
+// simple ON OFF machine
 const states: Array<State> = [
-  { id: "state1", initial: true, onEntry: async () => console.log("Entering state1") },
-  { id: "state2", transitionTo: async () => "state3" },
-  { id: "state3", onExit: async () => console.log("Exiting state3"), final: true },
+  {
+    id: "OFF", initial: true,
+    transitionTo: async ({ context, emitter, signal }) => "ON", // write your transition logic here
+    onExit: async ({ context, emitter, signal }) => console.log("Exiting OFF")
+  },
+  {
+    id: "ON",
+    final: true,
+    onEntry: async ({ context, emitter, signal }) => console.log("Entering ON")
+  },
 ];
 
 // Define optional state machine options
 const options: StateMachineOptions = {
   id: "my-state-machine",
-  context: { someData: "initial data" },
+  context: { someData: "initial data" }, // define your own context
 };
 
 // Create a state machine instance
@@ -54,11 +64,69 @@ new StateMachine(states: Array<State>, options?: StateMachineOptions)
 
 - `start`: Initiates the state machine and triggers the execution of the initial state.
 
+#### Public properties
+
+- `emitter` EventEmitter: you can use the eventemitter to listen to state machine generated events (transitions, started, ended, hooks etc...), or to emit events that you can listen in your hooks.
+
+  Example:
+
+```typescript
+const states: Array<State> = [
+  {
+    id: "OFF", initial: true,
+    transitionTo: async ({ context, emitter, signal }) => {
+      await once(emitter, 'button-press'); // await custom event
+      return 'ON'
+    },
+  },
+  ///...
+];
+const myStateMachine = new StateMachine(states, options);
+myStateMachine.emitter.on("started", ({ stateId }) => console.log(`StateMachine started in ${stateId}`)); // listen to machine generated events
+myStateMachine.emitter.emit('button-press', {}); // emit custom event
+```
+
+- `controller` AbortController: you can listen to the abort signal inside hooks.
+
+  The `AbortSignal` is always passed inside hooks:
+
+```typescript
+const states: Array<State> = [
+  {
+    id: "OFF", initial: true,
+    transitionTo: async ({ context, emitter, signal }) => {
+      await fetch('my-website', { signal });
+      return 'ON'
+    },
+  },
+  ///...
+];
+```
+
+- `context`: User defined context.
+  `context` is always passed inside hooks:
+
+```typescript
+const states: Array<State> = [
+  {
+    id: "state-0", initial: true,
+    transitionTo: async ({ context, emitter, signal }) => {
+      if(context.a === 10){ // use context to pass data to other
+        return 'state-1'
+      } else {
+        return 'state-2'
+      }
+    },
+  },
+  ///...
+];
+```
+
 ### State
 
 Represents a state in the state machine.
 
-```javascript
+```typescript
 interface State {
   id: StateIdentifier;
   transitionTo?: TransitionToHook;
@@ -67,14 +135,30 @@ interface State {
   initial?: boolean;
   final?: boolean;
 }
+
+export type HookInput = {
+	context: unknown;
+	emitter: EventEmitter;
+	signal: AbortSignal;
+};
+
+export type TransitionToHook = (hook: HookInput) => StateIdentifier | Promise<StateIdentifier>;
+export type OnEntryHook = (hook: HookInput) => void | Promise<void>;
+export type OnExitHook = (hook: HookInput) => void | Promise<void>;
 ```
 
 - `id`: Unique identifier for the state.
-- `transitionTo`: Function that defines the transition logic to move to another state.
+- `transitionTo` (optional): Function or AsyncFunction that defines the transition logic to move to another state, must return the id of the next state.
 - `onEntry` (optional): Hook called when entering the state.
 - `onExit` (optional): Hook called when exiting the state.
 - `initial`: Boolean indicating whether the state is the initial state.
 - `final`: Boolean indicating whether the state is a final state.
+
+`transitionTo`, `onEntry`, `onExit` take as input an object with the following properties:
+
+- `controller`: AbortController
+- `context`: User Defined Context
+- `emitter`: EventEmitter
 
 ### Events
 
