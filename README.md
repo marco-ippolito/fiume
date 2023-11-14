@@ -94,7 +94,7 @@ const states: Array<State> = [
     id: "state-0", initial: true,
     autoTransition: true,
     transitionTo: async ({ context, signal }) => {
-      if(context.a === 10){ // use context to pass data to other
+      if(context.foo === 'bar'){ // use context to pass data to other states
         return 'state-1'
       } else {
         return 'state-2'
