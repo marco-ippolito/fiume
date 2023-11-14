@@ -67,6 +67,10 @@ StateMachine.from(states: Array<State>, options?: StateMachineOptions)
 
 #### Public properties
 
+- `id` string: The id of the machine, if not supplied in the constructor, will be a randomUUID.
+
+- `current` State: The current state of the machine
+
 - `controller` AbortController: you can listen to the abort signal inside hooks.
   The `AbortSignal` is always passed inside hooks:
 
@@ -101,8 +105,6 @@ const states: Array<State> = [
   ///...
 ];
 ```
-
-- `current` State: The current state of the machine
 
 ### State
 

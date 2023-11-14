@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { validateStates } from "./validate.js";
 
-const PREVENT_COSTRUCTOR_INSTANCE = Symbol();
+const PREVENT_COSTRUCTOR_INSTANCE = Symbol("prevent-constructor");
 
 export type StateIdentifier = string;
 export type TransitionToHook = (
@@ -64,9 +64,10 @@ export class StateMachine {
 		}
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || {};
+		this.controller = new AbortController();
+
 		this._initial = states.find((s) => s.initial) as State;
 		this._states = new Map(states.map((s) => [s.id, s]));
-		this.controller = new AbortController();
 	}
 
 	public send = async (event: unknown) => {
@@ -93,7 +94,6 @@ export class StateMachine {
 
 	private enter = async (state: State) => {
 		this.current = state;
-		const { id: stateId } = state;
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
@@ -108,7 +108,6 @@ export class StateMachine {
 
 	private executeState = async (state: State, event?: unknown) => {
 		this.current = state;
-		const { id: stateId } = state;
 		let destination;
 
 		if (state.transitionTo) {
