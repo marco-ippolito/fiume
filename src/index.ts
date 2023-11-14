@@ -18,7 +18,7 @@ export type OnFinalHook = (hook: HookInput) => void | Promise<void>;
 export type OnEntryHook = (hook: HookInput) => void | Promise<void>;
 export type OnExitHook = (hook: HookInput) => void | Promise<void>;
 
-export type StateMachineOptions = { id: string; context: unknown };
+export type StateMachineOptions = { id?: string; context?: unknown };
 
 export class InvalidTransition extends Error {}
 export class InvalidConstructor extends Error {}
@@ -29,14 +29,14 @@ export type TransitionEvent = (
 
 export interface State {
 	id: StateIdentifier;
-	transitionGuard?: TransitionEvent;
 	autoTransition?: boolean;
+	initial?: boolean;
+	final?: boolean;
+	transitionGuard?: TransitionEvent;
 	transitionTo?: TransitionToHook;
 	onEntry?: OnEntryHook;
 	onExit?: OnExitHook;
 	onFinal?: OnFinalHook;
-	initial?: boolean;
-	final?: boolean;
 }
 
 export class StateMachine {

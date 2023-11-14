@@ -19,8 +19,10 @@ jobs:
           run_install: |
             - recursive: true
               args: [--frozen-lockfile, --strict-peer-dependencies]
-      - name: Test
+      - name: Test and coverage
         run: pnpm coverage
+      - name: Test type
+        run: pnpm run test:typescript
   automerge:
     needs: test
     runs-on: ubuntu-latest

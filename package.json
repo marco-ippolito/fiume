@@ -30,7 +30,8 @@
     "test": "node --test",
     "prebuild": "rimraf dist",
     "build": "tsc -d",
-    "coverage": "c8 --100 pnpm test"
+    "coverage": "c8 --100 pnpm test",
+    "test:typescript": "tsd"
   },
   "devDependencies": {
     "@biomejs/biome": "1.3.3",
@@ -40,6 +41,7 @@
     "c8": "^8.0.1",
     "husky": "^8.0.2",
     "rimraf": "^5.0.5",
+    "tsd": "^0.29.0",
     "typescript": "^5.2.2"
   },
   "author": {
@@ -52,7 +54,6 @@
     "node": ">= 20.0.0"
   },
   "license": "Apache-2.0",
-  "dependencies": {},
   "exports": {
     ".": [
       {
@@ -61,5 +62,8 @@
       "./dist/index.js"
     ],
     "./package.json": "./package.json"
+  },
+  "tsd": {
+    "directory": "test/types"
   }
 }

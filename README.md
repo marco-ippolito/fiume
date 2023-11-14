@@ -1,10 +1,9 @@
 # FIUME
 
-A simple and flexible state machine library written in Typescript, compatible with all JS runtimes, designed to manage the flow of a system through various states.
+A zero-dependencies, simple and flexible state machine library written in Typescript, compatible with all JS runtimes, designed to manage the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
 Unlike other libraries, **Fiume**, does not require you to hardcode state transitions, instead you can write the transition logic inside `transitionTo` function.
 You can also access directly the reference of your machine and manipulate its public properties.
-
 
 ## Installation
 
@@ -112,21 +111,21 @@ Represents a state in the state machine.
 
 ```typescript
 interface State {
-	id: StateIdentifier;
-	transitionGuard?: TransitionEvent;
-	autoTransition?: boolean;
-	transitionTo?: TransitionToHook;
-	onEntry?: OnEntryHook;
-	onExit?: OnExitHook;
-	onFinal?: OnFinalHook;
-	initial?: boolean;
-	final?: boolean;
+ id: StateIdentifier;
+ transitionGuard?: TransitionEvent;
+ autoTransition?: boolean;
+ transitionTo?: TransitionToHook;
+ onEntry?: OnEntryHook;
+ onExit?: OnExitHook;
+ onFinal?: OnFinalHook;
+ initial?: boolean;
+ final?: boolean;
 }
 
 type HookInput = {
-	context: unknown;
-	signal: AbortSignal;
-	event?: unknown;
+ context: unknown;
+ signal: AbortSignal;
+ event?: unknown;
 };
 
 type TransitionEvent = (hookInput: HookInput) => boolean | Promise<boolean>;
