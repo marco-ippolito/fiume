@@ -3,6 +3,7 @@ import { State } from "./index.js";
 export class InvalidStatesError extends Error {}
 export class InvalidInitialStateError extends Error {}
 export class InvalidStateIdError extends Error {}
+export class InvalidTransitionCondition extends Error {}
 
 export function validateStates(states: Array<State>) {
 	if (states?.length !== 2)
@@ -24,5 +25,23 @@ export function validateStates(states: Array<State>) {
 	const uniqueIds = new Set(states.map((s) => s.id));
 	if (uniqueIds.size !== states.length) {
 		throw new InvalidStateIdError("Ids must be unique");
+	}
+
+	if (!states.every((s) => s.final || s.autoTransition || s.transitionGuard)) {
+		throw new InvalidTransitionCondition(
+			"State must have valid transition condition (autoTransition or transitionGuard) if not final",
+		);
+	}
+
+	if (states.some((s) => s.autoTransition && s.transitionGuard)) {
+		throw new InvalidTransitionCondition(
+			"State with autoTransition cannot have property transitionGuard",
+		);
+	}
+
+	if (states.some((s) => !s.final && s.onFinal)) {
+		throw new InvalidTransitionCondition(
+			"State that are not final cannot have property onFinal",
+		);
 	}
 }

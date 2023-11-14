@@ -3,6 +3,7 @@ import {
 	InvalidStatesError,
 	InvalidInitialStateError,
 	InvalidStateIdError,
+	InvalidTransitionCondition,
 } from "../dist/validate.js";
 import test from "node:test";
 import assert from "node:assert";
@@ -34,12 +35,54 @@ test("validates states correctly", () => {
 		() => validateStates([{ initial: true, id: "A" }, { initial: false }]),
 		InvalidStateIdError,
 	);
-	assert.doesNotThrow(
+	assert.throws(
 		() =>
 			validateStates([
 				{ initial: true, id: "A" },
 				{ initial: false, id: "B" },
 			]),
-		InvalidStateIdError,
+		InvalidTransitionCondition,
+	);
+	assert.doesNotThrow(() =>
+		validateStates([
+			{ initial: true, id: "A", autoTransition: true },
+			{ initial: false, id: "B", autoTransition: true },
+		]),
+	);
+	assert.doesNotThrow(() =>
+		validateStates([
+			{ initial: true, id: "A", transitionGuard: true },
+			{ initial: false, id: "B", autoTransition: true },
+		]),
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					initial: true,
+					id: "A",
+					transitionTo: () => "B",
+					autoTransition: true,
+					transitionGuard: () => {},
+				},
+				{ final: true, id: "B" },
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					initial: true,
+					id: "A",
+					autoTransition: true,
+					transitionTo: () => "B",
+					onFinal: () => {},
+				},
+				{ final: true, id: "B" },
+			]),
+		InvalidTransitionCondition,
 	);
 });

@@ -1,38 +1,87 @@
-import { StateMachine, EVENTS, InvalidDestionation } from "../dist/index.js";
-import test from "node:test";
 import assert from "node:assert";
-import { basicStates, wrongDestination } from "./fixtures/fixtures.js";
+import test from "node:test";
+import {
+	InvalidTransition,
+	StateMachine,
+	InvalidConstructor,
+} from "../dist/index.js";
+import { InvalidTransitionCondition } from "../dist/validate.js";
+import * as fixtures from "./fixtures/fixtures.js";
 
 test("state machine constructor", async () => {
 	const id = "foo";
-	const machineWithId = new StateMachine(basicStates, { id });
+	const machineWithId = StateMachine.from(fixtures.basicStates, { id });
 	assert.deepStrictEqual(machineWithId.id, id);
 
-	const machine = new StateMachine(basicStates);
+	const machine = StateMachine.from(fixtures.basicStates);
 	assert.ok(machine.id);
 	assert.ok(typeof machine.id === "string");
-	machine.emitter.on(EVENTS.STARTED, (e) =>
-		assert.deepStrictEqual(e, { stateId: "OFF" }),
-	);
-
-	machine.emitter.on(EVENTS.STATE_ON_TRANSITION, (e) =>
-		assert.deepStrictEqual(e, { stateId: "OFF" }),
-	);
-
-	machine.emitter.on(EVENTS.STATE_TRANSITIONED, (e) =>
-		assert.deepStrictEqual(e, { stateId: "OFF", destinationId: "ON" }),
-	);
-	machine.emitter.on(EVENTS.STATE_ON_FINAL, (e) =>
-		assert.deepStrictEqual(e, { stateId: "ON" }),
-	);
-
-	machine.emitter.on(EVENTS.ENDED, (e) =>
-		assert.deepStrictEqual(e, { stateId: "ON" }),
-	);
 	await assert.doesNotReject(machine.start());
 });
 
 test("state machine wrong destination", async () => {
-	const machine = new StateMachine(wrongDestination);
-	await assert.rejects(machine.start(), InvalidDestionation);
+	const machine = StateMachine.from(fixtures.wrongDestination);
+	await assert.rejects(machine.start(), InvalidTransition);
+});
+
+test("missing auto transition", () => {
+	assert.throws(
+		() => StateMachine.from(fixtures.missingAutoTransition),
+		InvalidTransitionCondition,
+	);
+});
+
+test("autoTransition", async () => {
+	const machine = StateMachine.from(fixtures.autoTransition);
+	await machine.start();
+	assert.deepStrictEqual(machine.current.id, "ON");
+});
+
+test("invalidate constructor", () => {
+	assert.throws(
+		() => new StateMachine(fixtures.missingAutoTransition),
+		InvalidConstructor,
+	);
+});
+
+test("autoTransition", async () => {
+	const machine = StateMachine.from(fixtures.autoTransition);
+	await machine.start();
+	assert.deepStrictEqual(machine.current.id, "ON");
+});
+
+test("simpleTransitionGuard", async () => {
+	const machine = StateMachine.from(fixtures.simpleTransitionGuard);
+	await machine.start();
+	assert.deepStrictEqual(machine.current.id, "OFF");
+	const res = await machine.send();
+	assert.deepStrictEqual(res, undefined);
+	assert.deepStrictEqual(machine.current.id, "OFF");
+	await machine.send("foo");
+	assert.deepStrictEqual(machine.current.id, "ON");
+});
+
+test("onEntryContextChange", async () => {
+	const machine = StateMachine.from(fixtures.onEntryContextChange, {
+		context: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.context.a, 10);
+});
+
+test("onExitContextChange", async () => {
+	const machine = StateMachine.from(fixtures.onExitContextChange, {
+		context: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.context.a, 10);
+});
+
+test("onFinalContextChange", async () => {
+	const machine = StateMachine.from(fixtures.onFinalContextChange, {
+		context: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.current.id, "ON");
+	assert.deepStrictEqual(machine.context.a, 10);
 });

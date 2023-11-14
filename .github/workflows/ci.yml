@@ -20,7 +20,7 @@ jobs:
             - recursive: true
               args: [--frozen-lockfile, --strict-peer-dependencies]
       - name: Test
-        run: pnpm test
+        run: pnpm coverage
   automerge:
     needs: test
     runs-on: ubuntu-latest
