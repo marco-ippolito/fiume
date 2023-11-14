@@ -142,7 +142,7 @@ type OnFinalHook = (hook: HookInput) => void | Promise<void>;
 - `onFinal` (optional): Hook called when execution has ended in final state.
 - `initial` (optional): Boolean indicating whether the state is the initial state, there can only be one initial state.
 - `final` (optional): Boolean indicating whether the state is a final state.
-- `transitionGuard` (optional): Function or AsyncFunction takes as input a user event and defined whether or not transition to the next state
+- `transitionGuard` (optional): Function or AsyncFunction takes as input a user event and defines whether or not transition to the next state
 
 ## License
 
