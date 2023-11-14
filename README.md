@@ -1,10 +1,10 @@
 # FIUME
 
-A simple and flexible state machine library writte in Typescript for **Node.js**, designed to manage the flow of a system through various states.
+A simple and flexible state machine library written in Typescript, compatible with all JS runtimes, designed to manage the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
+Unlike other libraries, **Fiume**, does not require you to hardcode state transitions, instead you can write the transition logic inside `transitionTo` function.
+You can also access directly the reference of your machine and manipulate its public properties.
 
-**Fiume**, does not require you to hardcode state transitions, instead you can write the transition logic inside `transitionTo` function.
-You can communicate to the outside with a built-in `EventEmitter` that you can use to listen to external events or emit your own.
 
 ## Installation
 
@@ -23,14 +23,14 @@ const states: Array<State> = [
     id: "OFF", // id of the state
     initial: true, // when started the machine will execute it as first
     autoTransition: true, // tells the machine not to wait for an external event to transition to next state
-    transitionTo: async ({ context, emitter, signal }) => "ON", // write your transition logic here
-    onExit: async ({ context, emitter, signal }) => console.log("Exiting OFF") // exit hook
+    transitionTo: async ({ context, signal }) => "ON", // write your transition logic here
+    onExit: async ({ context, signal }) => console.log("Exiting OFF") // exit hook
   },
   {
     id: "ON",
     final: true,
-    onFinal: async ({ context, emitter, signal }) => console.log("Exiting machine"), // entry hook
-    onEntry: async ({ context, emitter, signal }) => console.log("Entering ON") // entry hook
+    onFinal: async ({ context, signal }) => console.log("Exiting machine"), // entry hook
+    onEntry: async ({ context, signal }) => console.log("Entering ON") // entry hook
   },
 ];
 
@@ -43,12 +43,8 @@ const options: StateMachineOptions = {
 // Create a state machine instance
 const myStateMachine = StateMachine.from(states, options);
 
-// Subscribe to state machine events
-myStateMachine.emitter.on("started", ({ stateId }) => console.log(`StateMachine started in ${stateId}`));
-myStateMachine.emitter.on("ended", ({ stateId }) => console.log(`StateMachine ended in ${stateId}`));
-
 // Start the state machine
-myStateMachine.start();
+await myStateMachine.start();
 ```
 
 ## API
@@ -67,39 +63,18 @@ StateMachine.from(states: Array<State>, options?: StateMachineOptions)
 #### Methods
 
 - `start`: Initiates the state machine and triggers the execution of the initial state.
-- `send`: Send events to states that are not `autoTransition`. If current state  has `autoTransition: false`, `send` is required to move to next state.
+- `send`: Send events to states that are not `autoTransition`. If current state has `autoTransition: false`, calling the `send` function is required to move to next state.
 
 #### Public properties
 
-- `emitter` EventEmitter: you can use the eventemitter to listen to state machine generated events (transitions, started, ended, hooks etc...), or to emit events that you can listen in your hooks.
-
-  Example:
-
-```typescript
-const states: Array<State> = [
-  {
-    id: "OFF", initial: true,
-    transitionTo: async ({ context, emitter, signal }) => {
-      // custom logic
-      return 'ON'
-    },
-  },
-  ///...
-];
-const myStateMachine = StateMachine.from(states, options);
-myStateMachine.emitter.on("started", ({ stateId }) => console.log(`StateMachine started in ${stateId}`)); // listen to machine generated events
-myStateMachine.emitter.emit('button-press', {}); // emit custom event
-```
-
 - `controller` AbortController: you can listen to the abort signal inside hooks.
-
   The `AbortSignal` is always passed inside hooks:
 
 ```typescript
 const states: Array<State> = [
   {
     id: "OFF", initial: true,
-    transitionTo: async ({ context, emitter, signal }) => {
+    transitionTo: async ({ context, signal }) => {
       await fetch('my-website', { signal });
       return 'ON'
     },
@@ -108,15 +83,14 @@ const states: Array<State> = [
 ];
 ```
 
-- `context`: User defined context.
-  `context` is always passed inside hooks:
+- `context` unknown: User defined context, it's always passed inside hooks:
 
 ```typescript
 const states: Array<State> = [
   {
     id: "state-0", initial: true,
     autoTransition: true,
-    transitionTo: async ({ context, emitter, signal }) => {
+    transitionTo: async ({ context, signal }) => {
       if(context.a === 10){ // use context to pass data to other
         return 'state-1'
       } else {
@@ -128,7 +102,7 @@ const states: Array<State> = [
 ];
 ```
 
-- `current`: The current state of the machine
+- `current` State: The current state of the machine
 
 ### State
 
@@ -149,7 +123,6 @@ interface State {
 
 type HookInput = {
 	context: unknown;
-	emitter: EventEmitter;
 	signal: AbortSignal;
 	event?: unknown;
 };
@@ -163,24 +136,13 @@ type OnFinalHook = (hook: HookInput) => void | Promise<void>;
 
 - `id`: (required) Unique identifier for the state.
 - `transitionTo` (optional): Function or AsyncFunction that defines the transition logic to move to another state, must return the id of the next state.
-- `autoTransition` (optional Boolean): if `true` the machine will transition to the next state without waiting for an event. If set to `true` is not possibile to use `transitionGuard`.
+- `autoTransition` (optional): Boolean, if `true` the machine will transition to the next state without waiting for an event. If set to `true` is not possibile to use `transitionGuard`.
 - `onEntry` (optional): Hook called when entering the state.
 - `onExit` (optional): Hook called when exiting the state.
 - `onFinal` (optional): Hook called when execution has ended in final state.
-- `initial`: Boolean indicating whether the state is the initial state, there can only be one initial state.
-- `final`: Boolean indicating whether the state is a final state.
+- `initial` (optional): Boolean indicating whether the state is the initial state, there can only be one initial state.
+- `final` (optional): Boolean indicating whether the state is a final state.
 - `transitionGuard` (optional): Function or AsyncFunction takes as input a user event and defined whether or not transition to the next state
-
-### Events
-
-The library emits various events that you can subscribe to using the `emitter` property.
-
-- `started`: Triggered when the state machine is started.
-- `ended`: Triggered when entering a final state.
-- `state:onEntry`: Triggered when entering a state.
-- `state:onTransition`: Triggered when transitioning from one state to another.
-- `state:transitioned`: Triggered after a successful state transition.
-- `state:onExit`: Triggered when exiting a state.
 
 ## License
 
