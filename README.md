@@ -33,11 +33,11 @@ const machine = StateMachine.from(states);
 
 // Start the state machine
 await machine.start();
-machine.getCurrentStateId(); // OFF
+machine.currentStateId; // OFF
 await machine.send('button clicked'); // the send will trigger the transition
-machine.getCurrentStateId(); // ON
+machine.currentStateId; // ON
 await machine.send('button clicked again');
-machine.getCurrentStateId(); // OFF
+machine.currentStateId; // OFF
 
 ```
 
@@ -61,7 +61,7 @@ const states: Array<State> = [
 
 const machine = StateMachine.from(states);
 await machine.start();
-machine.getCurrentStateId(); // ON
+machine.currentStateId; // ON
 
 ```
 
@@ -91,9 +91,9 @@ type MyEvent = { eventName: string, eventValue: number }
 const machine = StateMachine.from<MyContext, MyEvent>(states, {context: { foo: 'foo', bar: 'bar' }});
 
 machine.send({ eventName: 'foo', eventValue: 1 });
-machine.getCurrentStateId(); // ON
+machine.currentStateId; // ON
 machine.send({ eventName: 'foo', eventValue: 2 });
-machine.getCurrentStateId(); // OFF
+machine.currentStateId; // OFF
 
 ```
 
@@ -118,8 +118,6 @@ const machine = StateMachine.from(states, options);
 
 - `send`: Send events to states that are not `autoTransition`. If current state has `autoTransition: false`, calling the `send` function is required to move to next state.
 
-- `getCurrentStateId` string: The id of current state of the machine.
-
 #### Public properties
 
 - `id` string: The id of the machine, if not supplied in the constructor, will be a randomUUID.
@@ -140,6 +138,8 @@ const states: Array<State> = [
   ///...
 ];
 ```
+
+- `currentStateId` string: The id of current state of the machine.
 
 - `context` unknown: User defined context, it's always passed inside hooks:
 
@@ -165,7 +165,7 @@ const states: Array<State> = [
 Represents a state in the state machine.
 
 ```typescript
-interface State<TContext = void, TEvent = void> {
+interface State<TContext = unknown, TEvent = unknown> {
  id: StateIdentifier;
  autoTransition?: boolean;
  initial?: boolean;

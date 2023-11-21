@@ -4,27 +4,27 @@ import { validateStates } from "./validate.js";
 const PREVENT_COSTRUCTOR_INSTANCE = Symbol("prevent-constructor");
 
 export type StateIdentifier = string;
-export type TransitionToHook<TContext = void, TEvent = void> = (
+export type TransitionToHook<TContext = unknown, TEvent = unknown> = (
 	hook: HookInput<TContext, TEvent>,
 ) => StateIdentifier | Promise<StateIdentifier>;
 
-export type HookInput<TContext = void, TEvent = void> = {
+export type HookInput<TContext = unknown, TEvent = unknown> = {
 	context: TContext;
 	signal: AbortSignal;
 	event?: TEvent;
 };
 
-export type OnFinalHook<TContext = void> = (
+export type OnFinalHook<TContext = unknown> = (
 	hook: HookInput<TContext, unknown>,
-) => void | Promise<void>;
-export type OnEntryHook<TContext = void, TEvent = void> = (
+) => unknown | Promise<unknown>;
+export type OnEntryHook<TContext = unknown, TEvent = unknown> = (
 	hook: HookInput<TContext, TEvent>,
-) => void | Promise<void>;
-export type OnExitHook<TContext = void, TEvent = void> = (
+) => unknown | Promise<unknown>;
+export type OnExitHook<TContext = unknown, TEvent = unknown> = (
 	hook: HookInput<TContext, TEvent>,
-) => void | Promise<void>;
+) => unknown | Promise<unknown>;
 
-export type StateMachineOptions<TContext = void> = {
+export type StateMachineOptions<TContext = unknown> = {
 	id?: string;
 	context?: TContext;
 };
@@ -32,11 +32,11 @@ export type StateMachineOptions<TContext = void> = {
 export class InvalidTransition extends Error {}
 export class InvalidConstructor extends Error {}
 
-export type TransitionEvent<TContext = void, TEvent = void> = (
+export type TransitionEvent<TContext = unknown, TEvent = unknown> = (
 	hookInput: HookInput<TContext, TEvent>,
 ) => boolean | Promise<boolean>;
 
-export interface State<TContext = void, TEvent = void> {
+export interface State<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
 	autoTransition?: boolean;
 	initial?: boolean;
@@ -48,7 +48,7 @@ export interface State<TContext = void, TEvent = void> {
 	onFinal?: OnFinalHook<TContext>;
 }
 
-export class StateMachine<TContext = void, TEvent = void> {
+export class StateMachine<TContext = unknown, TEvent = unknown> {
 	public id: string;
 	public context: TContext;
 	public controller: AbortController;
@@ -103,7 +103,7 @@ export class StateMachine<TContext = void, TEvent = void> {
 		await this.enter(this._initial);
 	}
 
-	public getCurrentStateId() {
+	public get currentStateId() {
 		return this._current.id;
 	}
 
