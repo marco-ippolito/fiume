@@ -75,7 +75,7 @@ const states: Array<State> = [
     initial: true,
     transitionTo: await ({ context, signal, event }) => Promise.resolve("ON"),
     onEntry: ({ context, signal }) => console.log('onEntry hook triggered'),
-    onExit: async ({ context, signal }) => { await logAsync(context)},
+    onExit: async ({ context, signal }) => { await logAsync(context) },
   },
   {
     id: "ON",
