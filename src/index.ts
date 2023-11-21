@@ -52,7 +52,7 @@ export class StateMachine<TContext = void, TEvent = void> {
 	public id: string;
 	public context: TContext;
 	public controller: AbortController;
-	private current!: State<TContext, TEvent>;
+	private _current!: State<TContext, TEvent>;
 	private _initial: State<TContext, TEvent>;
 	private _states: Map<string, State<TContext, TEvent>>;
 
@@ -90,13 +90,13 @@ export class StateMachine<TContext = void, TEvent = void> {
 		};
 
 		if (
-			this.current.transitionGuard &&
-			!(await this.current.transitionGuard(hookInput))
+			this._current.transitionGuard &&
+			!(await this._current.transitionGuard(hookInput))
 		) {
 			return;
 		}
 
-		await this.executeState(this.current, event);
+		await this.executeState(this._current, event);
 	}
 
 	public async start() {
@@ -104,11 +104,11 @@ export class StateMachine<TContext = void, TEvent = void> {
 	}
 
 	public getCurrentStateId() {
-		return this.current.id;
+		return this._current.id;
 	}
 
 	private async enter(state: State<TContext, TEvent>) {
-		this.current = state;
+		this._current = state;
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
@@ -117,12 +117,12 @@ export class StateMachine<TContext = void, TEvent = void> {
 		}
 
 		if (state.autoTransition || state.final) {
-			return this.executeState(this.current);
+			return this.executeState(this._current);
 		}
 	}
 
 	private async executeState(state: State<TContext, TEvent>, event?: TEvent) {
-		this.current = state;
+		this._current = state;
 		let destination;
 
 		if (state.transitionTo) {
