@@ -6,7 +6,9 @@ exports[`App > correctly render initial state 1`] = `
   <strong>
     OFF
   </strong>
-  <button>
+  <button
+    type="button"
+  >
     Next state
   </button>
 </DocumentFragment>
@@ -18,7 +20,9 @@ exports[`App > correctly render next state 1`] = `
   <strong>
     ON
   </strong>
-  <button>
+  <button
+    type="button"
+  >
     Next state
   </button>
 </DocumentFragment>
