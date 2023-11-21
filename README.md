@@ -80,7 +80,7 @@ const states: Array<State> = [
   {
     id: "ON",
     transitionTo: () => "OFF",
-    onEntry: async ({ context, signal }) => { await fetch('http://example.org', { signal })},
+    onEntry: async ({ context, signal }) => { await fetch('http://example.org', { signal }) },
     onExit: () => {},
   },
 ];
