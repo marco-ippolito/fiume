@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App > correctly render initial state 1`] = `
+<DocumentFragment>
+  The current state ID is: 
+  <strong>
+    OFF
+  </strong>
+  <button>
+    Next state
+  </button>
+</DocumentFragment>
+`;
+
+exports[`App > correctly render next state 1`] = `
+<DocumentFragment>
+  The current state ID is: 
+  <strong>
+    ON
+  </strong>
+  <button>
+    Next state
+  </button>
+</DocumentFragment>
+`;
