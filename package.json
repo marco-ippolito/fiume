@@ -31,7 +31,8 @@
     "prebuild": "rimraf dist",
     "build": "tsc -d",
     "coverage": "c8 --100 pnpm test",
-    "test:typescript": "tsd"
+    "test:typescript": "tsd",
+    "test:react": "pnpm test -r"
   },
   "devDependencies": {
     "@biomejs/biome": "1.3.3",
