@@ -17,11 +17,32 @@ expectNotAssignable<State>(null);
 expectNotAssignable<State>(undefined);
 expectAssignable<State>({ id: "" });
 
-expectAssignable<StateMachineOptions>({ id: "", context: {} });
+type EmptyObject = Record<PropertyKey, never>;
+expectAssignable<StateMachineOptions<EmptyObject>>({ id: "", context: {} });
+
+expectAssignable<StateMachineOptions<string>>({
+	id: "",
+	context: "hello",
+});
+
+expectNotAssignable<StateMachineOptions<string>>({
+	id: "",
+	context: 1,
+});
+
+expectNotAssignable<StateMachineOptions<string>>({
+	id: "",
+	context: {},
+});
+
 expectAssignable<StateMachineOptions>({ id: "" });
-expectAssignable<StateMachineOptions>({ context: {} });
+expectAssignable<StateMachineOptions<EmptyObject>>({ context: {} });
 expectAssignable<StateMachineOptions>({});
 expectNotAssignable<StateMachineOptions>(null);
-expectNotAssignable<StateMachineOptions>({ foo: "bar" });
+<StateMachineOptions>{ foo: "bar" };
 
 expectType<StateMachine>(StateMachine.from(basicStates));
+
+const machine = StateMachine.from<number, number>(basicStates);
+
+machine.send(1);

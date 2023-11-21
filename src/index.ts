@@ -4,57 +4,69 @@ import { validateStates } from "./validate.js";
 const PREVENT_COSTRUCTOR_INSTANCE = Symbol("prevent-constructor");
 
 export type StateIdentifier = string;
-export type TransitionToHook = (
-	hook: HookInput,
+export type TransitionToHook<TContext = unknown, TEvent = unknown> = (
+	hook: HookInput<TContext, TEvent>,
 ) => StateIdentifier | Promise<StateIdentifier>;
 
-export type HookInput = {
-	context: unknown;
+export type HookInput<TContext = unknown, TEvent = unknown> = {
+	context: TContext;
 	signal: AbortSignal;
-	event?: unknown;
+	event?: TEvent;
 };
 
-export type OnFinalHook = (hook: HookInput) => void | Promise<void>;
-export type OnEntryHook = (hook: HookInput) => void | Promise<void>;
-export type OnExitHook = (hook: HookInput) => void | Promise<void>;
+export type OnFinalHook<TContext = unknown> = (
+	hook: HookInput<TContext, unknown>,
+) => unknown | Promise<unknown>;
+export type OnEntryHook<TContext = unknown, TEvent = unknown> = (
+	hook: HookInput<TContext, TEvent>,
+) => unknown | Promise<unknown>;
+export type OnExitHook<TContext = unknown, TEvent = unknown> = (
+	hook: HookInput<TContext, TEvent>,
+) => unknown | Promise<unknown>;
 
-export type StateMachineOptions = { id?: string; context?: unknown };
+export type StateMachineOptions<TContext = unknown> = {
+	id?: string;
+	context?: TContext;
+};
 
 export class InvalidTransition extends Error {}
 export class InvalidConstructor extends Error {}
 
-export type TransitionEvent = (
-	hookInput: HookInput,
+export type TransitionEvent<TContext = unknown, TEvent = unknown> = (
+	hookInput: HookInput<TContext, TEvent>,
 ) => boolean | Promise<boolean>;
 
-export interface State {
+export interface State<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
 	autoTransition?: boolean;
 	initial?: boolean;
 	final?: boolean;
-	transitionGuard?: TransitionEvent;
-	transitionTo?: TransitionToHook;
-	onEntry?: OnEntryHook;
-	onExit?: OnExitHook;
-	onFinal?: OnFinalHook;
+	transitionGuard?: TransitionEvent<TContext, TEvent>;
+	transitionTo?: TransitionToHook<TContext, TEvent>;
+	onEntry?: OnEntryHook<TContext, TEvent>;
+	onExit?: OnExitHook<TContext, TEvent>;
+	onFinal?: OnFinalHook<TContext>;
 }
 
-export class StateMachine {
+export class StateMachine<TContext = unknown, TEvent = unknown> {
 	public id: string;
-	public context: unknown;
+	public context: TContext;
 	public controller: AbortController;
-	private current!: State;
-	private _initial: State;
-	private _states: Map<string, State>;
+	private _current!: State<TContext, TEvent>;
+	private _initial: State<TContext, TEvent>;
+	private _states: Map<string, State<TContext, TEvent>>;
 
-	static from(states: Array<State>, options?: StateMachineOptions) {
+	static from<TContext, TEvent>(
+		states: Array<State<TContext, TEvent>>,
+		options?: StateMachineOptions<TContext>,
+	) {
 		validateStates(states);
 		return new StateMachine(states, options, PREVENT_COSTRUCTOR_INSTANCE);
 	}
 
 	private constructor(
-		states: Array<State>,
-		options?: StateMachineOptions,
+		states: Array<State<TContext, TEvent>>,
+		options?: StateMachineOptions<TContext>,
 		symbol?: symbol,
 	) {
 		if (symbol !== PREVENT_COSTRUCTOR_INSTANCE) {
@@ -63,14 +75,14 @@ export class StateMachine {
 			);
 		}
 		this.id = options?.id || randomUUID();
-		this.context = options?.context || {};
+		this.context = options?.context || ({} as TContext);
 		this.controller = new AbortController();
 
-		this._initial = states.find((s) => s.initial) as State;
+		this._initial = states.find((s) => s.initial) as State<TContext, TEvent>;
 		this._states = new Map(states.map((s) => [s.id, s]));
 	}
 
-	public send = async (event: unknown) => {
+	public async send(event: TEvent) {
 		const hookInput = {
 			context: this.context,
 			signal: this.controller.signal,
@@ -78,22 +90,25 @@ export class StateMachine {
 		};
 
 		if (
-			this.current.transitionGuard &&
-			!this.current.transitionGuard(hookInput)
+			this._current.transitionGuard &&
+			!(await this._current.transitionGuard(hookInput))
 		) {
 			return;
 		}
 
-		await this.executeState(this.current, event);
-	};
+		await this.executeState(this._current, event);
+	}
 
-	public start = async () => {
-		this.current = this._initial;
-		await this.enter(this.current);
-	};
+	public async start() {
+		await this.enter(this._initial);
+	}
 
-	private enter = async (state: State) => {
-		this.current = state;
+	public get currentStateId() {
+		return this._current.id;
+	}
+
+	private async enter(state: State<TContext, TEvent>) {
+		this._current = state;
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
@@ -102,12 +117,12 @@ export class StateMachine {
 		}
 
 		if (state.autoTransition || state.final) {
-			return this.executeState(this.current);
+			return this.executeState(this._current);
 		}
-	};
+	}
 
-	private executeState = async (state: State, event?: unknown) => {
-		this.current = state;
+	private async executeState(state: State<TContext, TEvent>, event?: TEvent) {
+		this._current = state;
 		let destination;
 
 		if (state.transitionTo) {
@@ -139,5 +154,5 @@ export class StateMachine {
 		if (!destination) throw new InvalidTransition("Invalid destination node");
 
 		await this.enter(destination);
-	};
+	}
 }

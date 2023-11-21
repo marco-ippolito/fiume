@@ -5,7 +5,9 @@ export class InvalidInitialStateError extends Error {}
 export class InvalidStateIdError extends Error {}
 export class InvalidTransitionCondition extends Error {}
 
-export function validateStates(states: Array<State>) {
+export function validateStates<TContext, TEvent>(
+	states: Array<State<TContext, TEvent>>,
+) {
 	if (states?.length !== 2)
 		throw new InvalidStatesError(
 			"States must be an array of at least 2 elements",
