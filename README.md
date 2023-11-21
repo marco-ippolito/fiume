@@ -14,7 +14,7 @@ npm install fiume
 ## Usage
 
 ```typescript
-import { StateMachine, State, StateMachineOptions } from "fiume";
+import { StateMachine, State } from "fiume";
 // simple ON OFF machine
 const states: Array<State> = [
   {
@@ -29,7 +29,7 @@ const states: Array<State> = [
 ];
 
 // Create a state machine instance
-const machine = Machine.from(states);
+const machine = StateMachine.from(states);
 
 // Start the state machine
 await machine.start();
@@ -44,7 +44,7 @@ machine.getCurrentStateId(); // OFF
 With autoTransition the machine will not wait for the `send` to trigger the transition to the next state:
 
 ```typescript
-import { StateMachine, State, StateMachineOptions } from "fiume";
+import { StateMachine, State } from "fiume";
 
 const states: Array<State> = [
   {
