@@ -37,8 +37,9 @@ function App() {
 	return (
 		<>
 			The current state ID is: <strong>{stateId}</strong>
-			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-			<button onClick={machine.send}>Next state</button>
+			<button type="button" onClick={machine.send.bind(machine)}>
+				Next state
+			</button>
 		</>
 	);
 }

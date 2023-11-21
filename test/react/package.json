@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "CI=1 vitest"
   },
   "dependencies": {
     "fiume": "workspace:^",
