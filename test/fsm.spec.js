@@ -34,7 +34,7 @@ test("missing auto transition", () => {
 test("autoTransition", async () => {
 	const machine = StateMachine.from(fixtures.autoTransition);
 	await machine.start();
-	assert.deepStrictEqual(machine.current.id, "ON");
+	assert.deepStrictEqual(machine.getCurrentStateId(), "ON");
 });
 
 test("invalidate constructor", () => {
@@ -47,18 +47,18 @@ test("invalidate constructor", () => {
 test("autoTransition", async () => {
 	const machine = StateMachine.from(fixtures.autoTransition);
 	await machine.start();
-	assert.deepStrictEqual(machine.current.id, "ON");
+	assert.deepStrictEqual(machine.getCurrentStateId(), "ON");
 });
 
 test("simpleTransitionGuard", async () => {
 	const machine = StateMachine.from(fixtures.simpleTransitionGuard);
 	await machine.start();
-	assert.deepStrictEqual(machine.current.id, "OFF");
+	assert.deepStrictEqual(machine.getCurrentStateId(), "OFF");
 	const res = await machine.send();
 	assert.deepStrictEqual(res, undefined);
-	assert.deepStrictEqual(machine.current.id, "OFF");
+	assert.deepStrictEqual(machine.getCurrentStateId(), "OFF");
 	await machine.send("foo");
-	assert.deepStrictEqual(machine.current.id, "ON");
+	assert.deepStrictEqual(machine.getCurrentStateId(), "ON");
 });
 
 test("onEntryContextChange", async () => {
@@ -82,6 +82,6 @@ test("onFinalContextChange", async () => {
 		context: { a: 1 },
 	});
 	await machine.start();
-	assert.deepStrictEqual(machine.current.id, "ON");
+	assert.deepStrictEqual(machine.getCurrentStateId(), "ON");
 	assert.deepStrictEqual(machine.context.a, 10);
 });
