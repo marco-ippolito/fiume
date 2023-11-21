@@ -90,9 +90,12 @@ type MyEvent = { eventName: string, eventValue: number }
 
 const machine = StateMachine.from<MyContext, MyEvent>(states, {context: { foo: 'foo', bar: 'bar' }});
 
-machine.send({ eventName: 'foo', eventValue: 1 });
+// Start the state machine
+await machine.start();
+
+await machine.send({ eventName: 'foo', eventValue: 1 });
 machine.currentStateId; // ON
-machine.send({ eventName: 'foo', eventValue: 2 });
+await machine.send({ eventName: 'foo', eventValue: 2 });
 machine.currentStateId; // OFF
 
 ```
