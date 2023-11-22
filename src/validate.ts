@@ -43,7 +43,7 @@ export function validateStates<TContext, TEvent>(
 		)
 	) {
 		throw new InvalidTransitionCondition(
-			"State must have valid transition condition (autoTransition or transitionGuard) if not final",
+			"State must have autoTransition or transitionTo if not final",
 		);
 	}
 
