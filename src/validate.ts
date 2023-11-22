@@ -29,15 +29,21 @@ export function validateStates<TContext, TEvent>(
 		throw new InvalidStateIdError("Ids must be unique");
 	}
 
-	if (!states.every((s) => s.final || s.autoTransition || s.transitionGuard)) {
-		throw new InvalidTransitionCondition(
-			"State must have valid transition condition (autoTransition or transitionGuard) if not final",
-		);
-	}
-
 	if (states.some((s) => s.autoTransition && s.transitionGuard)) {
 		throw new InvalidTransitionCondition(
 			"State with autoTransition cannot have property transitionGuard",
+		);
+	}
+
+	if (
+		states.some(
+			(s) =>
+				(!s.final && !s.transitionTo) ||
+				(s.final && (s.autoTransition || s.transitionTo || s.transitionGuard)),
+		)
+	) {
+		throw new InvalidTransitionCondition(
+			"State must have valid transition condition (autoTransition or transitionGuard) if not final",
 		);
 	}
 

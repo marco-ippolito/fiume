@@ -20,12 +20,10 @@ const states: Array<State> = [
   {
     id: "OFF", // id of the state
     initial: true, // when started the machine will execute it as first
-    transitionGuard: () => true, // guard that validate if the transition can be applied
     transitionTo: () => "ON", // return the id of the state you want to transition to
   },
   {
     id: "ON",
-    transitionGuard: () => true,
     transitionTo: () => "OFF",
   },
 ];

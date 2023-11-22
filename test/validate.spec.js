@@ -43,33 +43,6 @@ test("validates states correctly", () => {
 			]),
 		InvalidTransitionCondition,
 	);
-	assert.doesNotThrow(() =>
-		validateStates([
-			{ initial: true, id: "A", autoTransition: true },
-			{ initial: false, id: "B", autoTransition: true },
-		]),
-	);
-	assert.doesNotThrow(() =>
-		validateStates([
-			{ initial: true, id: "A", transitionGuard: true },
-			{ initial: false, id: "B", autoTransition: true },
-		]),
-	);
-
-	assert.throws(
-		() =>
-			validateStates([
-				{
-					initial: true,
-					id: "A",
-					transitionTo: () => "B",
-					autoTransition: true,
-					transitionGuard: () => {},
-				},
-				{ final: true, id: "B" },
-			]),
-		InvalidTransitionCondition,
-	);
 
 	assert.throws(
 		() =>
@@ -82,6 +55,302 @@ test("validates states correctly", () => {
 					onFinal: () => {},
 				},
 				{ final: true, id: "B" },
+			]),
+		InvalidTransitionCondition,
+	);
+
+	/**
+	 * Test all combinations of:
+	 * - final
+	 * - autoTransition
+	 * - transitionGuard
+	 * - transitionTo
+	 */
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					autoTransition: true,
+					transitionGuard: () => true,
+					transitionTo: () => "A",
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					autoTransition: true,
+					transitionGuard: () => true,
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					autoTransition: true,
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					transitionGuard: () => true,
+					transitionTo: () => "A",
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					transitionGuard: () => true,
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					final: true,
+					transitionTo: () => "A",
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.doesNotThrow(() =>
+		validateStates([
+			{
+				id: "A",
+				initial: true,
+				transitionTo: () => "B",
+			},
+			{
+				// state to validate
+				id: "B",
+				final: true,
+			},
+		]),
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					autoTransition: true,
+					transitionGuard: () => true,
+					transitionTo: () => "A",
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					autoTransition: true,
+					transitionGuard: () => true,
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.doesNotThrow(() =>
+		validateStates([
+			{
+				id: "A",
+				initial: true,
+				autoTransition: true,
+				transitionTo: () => "B",
+			},
+			{
+				// state to validate
+				id: "B",
+				autoTransition: true,
+				transitionTo: () => "A",
+			},
+		]),
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					autoTransition: true,
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.doesNotThrow(() =>
+		validateStates([
+			{
+				id: "A",
+				initial: true,
+				autoTransition: true,
+				transitionTo: () => "B",
+			},
+			{
+				// state to validate
+				id: "B",
+				transitionGuard: () => true,
+				transitionTo: () => "A",
+			},
+		]),
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					transitionGuard: () => true,
+				},
+			]),
+		InvalidTransitionCondition,
+	);
+
+	assert.doesNotThrow(() =>
+		validateStates([
+			{
+				id: "A",
+				initial: true,
+				autoTransition: true,
+				transitionTo: () => "B",
+			},
+			{
+				// state to validate
+				id: "B",
+				transitionTo: () => "B",
+			},
+		]),
+	);
+
+	assert.throws(
+		() =>
+			validateStates([
+				{
+					id: "A",
+					initial: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+				},
 			]),
 		InvalidTransitionCondition,
 	);
