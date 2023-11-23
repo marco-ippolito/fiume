@@ -15,7 +15,7 @@ expectNotAssignable<State>({});
 expectNotAssignable<State>({ id: 1 });
 expectNotAssignable<State>(null);
 expectNotAssignable<State>(undefined);
-expectAssignable<State>({ id: "" });
+expectAssignable<State>({ id: "", final: true });
 
 type EmptyObject = Record<PropertyKey, never>;
 expectAssignable<StateMachineOptions<EmptyObject>>({ id: "", context: {} });
