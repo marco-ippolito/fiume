@@ -8,7 +8,7 @@ export const basicStates = [
 	},
 ];
 
-export const missingAutoTransition = [
+export const withoutAutoTransition = [
 	{ id: "ON", final: true },
 	{
 		id: "OFF",

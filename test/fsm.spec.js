@@ -5,7 +5,6 @@ import {
 	StateMachine,
 	InvalidConstructor,
 } from "../dist/index.js";
-import { InvalidTransitionCondition } from "../dist/validate.js";
 import * as fixtures from "./fixtures/fixtures.js";
 
 test("state machine constructor", async () => {
@@ -24,11 +23,14 @@ test("state machine wrong destination", async () => {
 	await assert.rejects(machine.start(), InvalidTransition);
 });
 
-test("missing auto transition", () => {
-	assert.throws(
-		() => StateMachine.from(fixtures.missingAutoTransition),
-		InvalidTransitionCondition,
-	);
+test("without auto transition", () => {
+	assert.doesNotThrow(async () => {
+		const machine = StateMachine.from(fixtures.withoutAutoTransition);
+		await machine.start();
+		assert.deepStrictEqual(machine.currentStateId, "OFF");
+		await machine.send();
+		assert.deepStrictEqual(machine.currentStateId, "ON");
+	});
 });
 
 test("autoTransition", async () => {
