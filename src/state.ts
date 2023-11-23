@@ -23,62 +23,129 @@ export type TransitionEvent<TContext = unknown, TEvent = unknown> = (
 	hookInput: HookInput<TContext, TEvent>,
 ) => boolean | Promise<boolean>;
 
-export type GenericInitialState<TContext = unknown, TEvent = unknown> =
-	| InitialGuardState
-	| InitialAutoTransitionState;
-
-export interface InitialGuardState<TContext = unknown, TEvent = unknown> {
+export interface InitialState<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
-	initial: boolean;
-	transitionGuard?: TransitionEvent<TContext, TEvent>;
+	initial: true;
 	transitionTo: TransitionToHook<TContext, TEvent>;
-	onEntry?: OnEntryHook<TContext, TEvent>;
-	onExit?: OnExitHook<TContext, TEvent>;
+
+	autoTransition?: false;
+	transitionGuard?: TransitionEvent<TContext, TEvent>;
 }
 
-export interface InitialAutoTransitionState<
+export interface InitialWithFinalFalseState<
 	TContext = unknown,
 	TEvent = unknown,
 > {
 	id: StateIdentifier;
-	initial: boolean;
-	autoTransition: boolean;
+	initial: true;
 	transitionTo: TransitionToHook<TContext, TEvent>;
-	onEntry?: OnEntryHook<TContext, TEvent>;
-	onExit?: OnExitHook<TContext, TEvent>;
+	final: false;
+
+	autoTransition?: false;
+	transitionGuard?: TransitionEvent<TContext, TEvent>;
+}
+
+export interface InitialWithAutoTransitionState<
+	TContext = unknown,
+	TEvent = unknown,
+> {
+	id: StateIdentifier;
+	initial: true;
+	autoTransition: true;
+	transitionTo: TransitionToHook<TContext, TEvent>;
+}
+
+export interface InitialWithAutoTransitionAndFinalFalseState<
+	TContext = unknown,
+	TEvent = unknown,
+> {
+	id: StateIdentifier;
+	initial: true;
+	autoTransition: true;
+	transitionTo: TransitionToHook<TContext, TEvent>;
+	final: false;
+}
+
+export interface NonFinalState<TContext = unknown, TEvent = unknown> {
+	id: StateIdentifier;
+	transitionTo: TransitionToHook<TContext, TEvent>;
+
+	initial?: boolean;
+	autoTransition?: false;
+	transitionGuard?: TransitionEvent<TContext, TEvent>;
+}
+
+export interface NonFinalWithFinalFalseState<
+	TContext = unknown,
+	TEvent = unknown,
+> {
+	id: StateIdentifier;
+	transitionTo: TransitionToHook<TContext, TEvent>;
+	final: false;
+
+	initial?: boolean;
+	autoTransition?: false;
+	transitionGuard?: TransitionEvent<TContext, TEvent>;
+}
+
+export interface NonFinalWithAutoTransitionState<
+	TContext = unknown,
+	TEvent = unknown,
+> {
+	id: StateIdentifier;
+	autoTransition: true;
+	transitionTo: TransitionToHook<TContext, TEvent>;
+
+	initial?: boolean;
+}
+
+export interface NonFinalWithAutoTransitionAndFinalFalseState<
+	TContext = unknown,
+	TEvent = unknown,
+> {
+	id: StateIdentifier;
+	autoTransition: true;
+	transitionTo: TransitionToHook<TContext, TEvent>;
+	final: false;
+
+	initial?: boolean;
 }
 
 export interface FinalState<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
-	final: boolean;
-	onEntry?: OnEntryHook<TContext, TEvent>;
-	onExit?: OnExitHook<TContext, TEvent>;
+	final: true;
+
+	initial?: false;
 	onFinal?: OnFinalHook<TContext>;
 }
 
-export type GenericState<TContext = unknown, TEvent = unknown> =
-	| GuardState
-	| AutoTransitionState;
-
-export interface GuardState<TContext = unknown, TEvent = unknown> {
-	id: StateIdentifier;
-	transitionGuard?: TransitionEvent<TContext, TEvent>;
-	transitionTo: TransitionToHook<TContext, TEvent>;
+export interface GenericCallbackState<TContext = unknown, TEvent = unknown> {
 	onEntry?: OnEntryHook<TContext, TEvent>;
 	onExit?: OnExitHook<TContext, TEvent>;
 }
 
-export interface AutoTransitionState<TContext = unknown, TEvent = unknown> {
-	id: StateIdentifier;
-	autoTransition: boolean;
-	transitionTo: TransitionToHook<TContext, TEvent>;
-	onEntry?: OnEntryHook<TContext, TEvent>;
-	onExit?: OnExitHook<TContext, TEvent>;
-}
+export type AutoTransitionState<TContext = unknown, TEvent = unknown> =
+	| InitialWithAutoTransitionState
+	| InitialWithAutoTransitionAndFinalFalseState
+	| NonFinalWithAutoTransitionState
+	| NonFinalWithAutoTransitionAndFinalFalseState;
 
-export type State<TContext = unknown, TEvent = unknown> =
-	| InitialGuardState
-	| InitialAutoTransitionState
-	| FinalState
-	| GuardState
-	| AutoTransitionState;
+export type GuardState<TContext = unknown, TEvent = unknown> = State<
+	TContext,
+	TEvent
+> & {
+	transitionGuard: TransitionEvent<TContext, TEvent>;
+};
+
+export type State<TContext = unknown, TEvent = unknown> = GenericCallbackState &
+	(
+		| InitialState
+		| InitialWithFinalFalseState
+		| InitialWithAutoTransitionState
+		| InitialWithAutoTransitionAndFinalFalseState
+		| NonFinalState
+		| NonFinalWithFinalFalseState
+		| NonFinalWithAutoTransitionState
+		| NonFinalWithAutoTransitionAndFinalFalseState
+		| FinalState
+	);
