@@ -73,14 +73,14 @@ const states: Array<State> = [
   {
     id: "OFF",
     initial: true,
-    transitionTo: await ({ context, signal, event }) => Promise.resolve("ON"),
-    onEntry: ({ context, signal }) => console.log('onEntry hook triggered'),
-    onExit: async ({ context, signal }) => { await logAsync(context) },
+    transitionTo: await ({ context, event }) => Promise.resolve("ON"),
+    onEntry: ({ context }) => console.log('onEntry hook triggered'),
+    onExit: async ({ context }) => { await logAsync(context) },
   },
   {
     id: "ON",
     transitionTo: () => "OFF",
-    onEntry: async ({ context, signal }) => { await fetch('http://example.org', { signal }) },
+    onEntry: async ({ context }) => { await fetch('http://example.org') },
     onExit: () => {},
   },
 ];
@@ -125,23 +125,6 @@ const machine = StateMachine.from(states, options);
 
 - `id` string: The id of the machine, if not supplied in the constructor, will be a randomUUID.
 
-- `controller` AbortController: you can listen to the abort signal inside hooks.
-  The `AbortSignal` is always passed inside hooks:
-
-```typescript
-const states: Array<State> = [
-  {
-    id: "OFF", initial: true,
-    transitionTo: async ({ context, signal }) => {
-      const res = await fetch('my-website', { signal });
-      if(res.status !== 200) return 'ERROR'
-      return 'ON'
-    },
-  },
-  ///...
-];
-```
-
 - `currentStateId` string: The id of current state of the machine.
 
 - `context` unknown: User defined context, it's always passed inside hooks:
@@ -151,7 +134,7 @@ const states: Array<State> = [
   {
     id: "state-0", initial: true,
     autoTransition: true,
-    transitionTo: async ({ context, signal }) => {
+    transitionTo: async ({ context }) => {
       if(context.foo === 'bar'){ // use context to pass data to other states
         return 'state-1'
       } else {

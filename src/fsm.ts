@@ -24,7 +24,6 @@ export class InvalidConstructor extends Error {}
 export class StateMachine<TContext = unknown, TEvent = unknown> {
 	public id: string;
 	public context: TContext;
-	public controller: AbortController;
 	private _current!: State<TContext, TEvent>;
 	private _initial: GenericInitialState<TContext, TEvent>;
 	private _states: Map<string, State<TContext, TEvent>>;
@@ -49,7 +48,6 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		}
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || ({} as TContext);
-		this.controller = new AbortController();
 
 		this._initial = states.find(
 			(s) => (s as GenericInitialState).initial,
@@ -60,7 +58,6 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 	public async send(event: TEvent) {
 		const hookInput = {
 			context: this.context,
-			signal: this.controller.signal,
 			event,
 		};
 
@@ -86,7 +83,6 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
-				signal: this.controller.signal,
 			});
 		}
 		if (
@@ -106,7 +102,6 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		if (g.transitionTo) {
 			const destinationId = await g.transitionTo({
 				context: this.context,
-				signal: this.controller.signal,
 				event,
 			});
 			destination = this._states.get(destinationId);
@@ -115,7 +110,6 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		if (state.onExit) {
 			await state.onExit({
 				context: this.context,
-				signal: this.controller.signal,
 			});
 		}
 
@@ -124,7 +118,6 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 			if (f.onFinal) {
 				await f.onFinal({
 					context: this.context,
-					signal: this.controller.signal,
 				});
 			}
 			return;

@@ -2,7 +2,6 @@ export type StateIdentifier = string;
 
 export type HookInput<TContext = unknown, TEvent = unknown> = {
 	context: TContext;
-	signal: AbortSignal;
 	event?: TEvent;
 };
 
