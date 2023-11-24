@@ -52,10 +52,6 @@ export class StateMachine<
 		return this.#current.id;
 	}
 
-	public set sharedData(s: TSharedData) {
-		this.#sharedData = s;
-	}
-
 	public get sharedData() {
 		return this.#sharedData;
 	}
@@ -90,7 +86,7 @@ export class StateMachine<
 		await this.enter(this.#initial);
 	}
 
-	private async enter(state: State<TContext, TEvent>) {
+	private async enter(state: State<TContext, TEvent, TSharedData>) {
 		this.#current = state;
 		if (state.onEntry) {
 			await state.onEntry({
@@ -106,7 +102,10 @@ export class StateMachine<
 		}
 	}
 
-	private async executeState(state: State<TContext, TEvent>, event?: TEvent) {
+	private async executeState(
+		state: State<TContext, TEvent, TSharedData>,
+		event?: TEvent,
+	) {
 		this.#current = state;
 		let destination;
 

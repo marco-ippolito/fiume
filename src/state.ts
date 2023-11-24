@@ -51,10 +51,9 @@ export interface InitialState<
 > {
 	id: StateIdentifier;
 	initial: true;
-	transitionTo: TransitionToHook<TContext, TEvent>;
-
+	transitionTo: TransitionToHook<TContext, TEvent, TSharedData>;
 	autoTransition?: false;
-	transitionGuard?: TransitionEvent<TContext, TEvent>;
+	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
 }
 
 interface InitialNonFinalState<
@@ -64,7 +63,7 @@ interface InitialNonFinalState<
 > {
 	id: StateIdentifier;
 	initial: true;
-	transitionTo: TransitionToHook<TContext, TEvent>;
+	transitionTo: TransitionToHook<TContext, TEvent, TSharedData>;
 	final: false;
 
 	autoTransition?: false;
@@ -101,7 +100,6 @@ export interface TransitoryState<
 > {
 	id: StateIdentifier;
 	transitionTo: TransitionToHook<TContext, TEvent>;
-
 	initial?: boolean;
 	autoTransition?: false;
 	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
@@ -115,7 +113,6 @@ interface TransitoryNonFinalState<
 	id: StateIdentifier;
 	transitionTo: TransitionToHook<TContext, TEvent, TSharedData>;
 	final: false;
-
 	initial?: boolean;
 	autoTransition?: false;
 	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
@@ -129,7 +126,6 @@ interface TransitoryAutoTransitionState<
 	id: StateIdentifier;
 	autoTransition: true;
 	transitionTo: TransitionToHook<TContext, TEvent, TSharedData>;
-
 	initial?: boolean;
 }
 
@@ -149,7 +145,6 @@ interface TransitoryAutoTransitionNonFinalState<
 export interface FinalState<TContext = unknown, TSharedData = unknown> {
 	id: StateIdentifier;
 	final: true;
-
 	initial?: false;
 	onFinal?: OnFinalHook<TContext, TSharedData>;
 }
@@ -173,9 +168,15 @@ export type AutoTransitionState<
 	| TransitoryAutoTransitionState
 	| TransitoryAutoTransitionNonFinalState;
 
-export type GuardState<TContext = unknown, TEvent = unknown> = Extract<
-	State<TContext, TEvent>,
-	{ transitionGuard?: TransitionEvent<TContext, TEvent> }
+export type GuardState<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> = Extract<
+	State<TContext, TEvent, TSharedData>,
+	{
+		transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
+	}
 >;
 
 export type State<
