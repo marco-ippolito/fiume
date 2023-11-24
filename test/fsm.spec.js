@@ -87,3 +87,37 @@ test("onFinalContextChange", async () => {
 	assert.deepStrictEqual(machine.currentStateId, "ON");
 	assert.deepStrictEqual(machine.context.a, 10);
 });
+
+test("contextCheck in class", async () => {
+	async function test() {
+		const machine = StateMachine.from([
+			{
+				id: "ON",
+				initial: true,
+				autoTransition: true,
+				transitionTo: () => {
+					if (this.a > 0) {
+						assert.deepStrictEqual(this.a, 10);
+						return "OFF";
+					}
+				},
+			},
+			{
+				id: "OFF",
+				final: true,
+			},
+		]);
+		this.machine = machine;
+		await machine.start();
+	}
+
+	class Test {
+		a = 10;
+		machine;
+		test = test.bind(this);
+	}
+
+	const t = new Test();
+	await assert.doesNotReject(() => t.test());
+	assert.deepStrictEqual(t.machine.currentStateId, "OFF");
+});
