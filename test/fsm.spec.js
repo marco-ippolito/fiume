@@ -121,3 +121,10 @@ test("contextCheck in class", async () => {
 	await assert.doesNotReject(() => t.test());
 	assert.deepStrictEqual(t.machine.currentStateId, "OFF");
 });
+
+test("check private properties are not enumerable", async () => {
+	const machine = StateMachine.from(fixtures.basicStates);
+	await machine.start();
+	const clonedProps = structuredClone(machine);
+	assert.deepStrictEqual(Object.keys(clonedProps), ["id", "context"]);
+});
