@@ -128,3 +128,28 @@ test("check private properties are not enumerable", async () => {
 	const clonedProps = structuredClone(machine);
 	assert.deepStrictEqual(Object.keys(clonedProps), ["id", "context"]);
 });
+
+test("onEntrySharedDataChange", async () => {
+	const machine = StateMachine.from(fixtures.onEntrySharedDataChange, {
+		sharedData: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.sharedData.a, 10);
+});
+
+test("onExitSharedDataChange", async () => {
+	const machine = StateMachine.from(fixtures.onExitSharedDataChange, {
+		sharedData: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.sharedData.a, 10);
+});
+
+test("onFinalSharedDataChange", async () => {
+	const machine = StateMachine.from(fixtures.onFinalSharedDataChange, {
+		sharedData: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.currentStateId, "ON");
+	assert.deepStrictEqual(machine.sharedData.a, 10);
+});

@@ -88,3 +88,45 @@ export const onFinalContextChange = [
 		transitionTo: () => "ON",
 	},
 ];
+
+export const onEntrySharedDataChange = [
+	{ id: "ON", final: true },
+	{
+		id: "OFF",
+		initial: true,
+		autoTransition: true,
+		transitionTo: () => "ON",
+		onEntry: ({ sharedData }) => {
+			sharedData.a = 10;
+		},
+	},
+];
+
+export const onExitSharedDataChange = [
+	{ id: "ON", final: true },
+	{
+		id: "OFF",
+		initial: true,
+		autoTransition: true,
+		transitionTo: () => "ON",
+		onExit: ({ sharedData }) => {
+			sharedData.a = 10;
+		},
+	},
+];
+
+export const onFinalSharedDataChange = [
+	{
+		id: "ON",
+		final: true,
+		onFinal: ({ sharedData }) => {
+			sharedData.a = 10;
+		},
+	},
+	{
+		id: "OFF",
+		initial: true,
+		autoTransition: true,
+		transitionTo: () => "ON",
+	},
+];
