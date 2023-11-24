@@ -12,9 +12,6 @@ import {
 import { validateStates } from "./validate.js";
 
 const PREVENT_COSTRUCTOR_INSTANCE = Symbol("fiume.prevent-constructor");
-const kCurrent = Symbol("fiume.current");
-const kInitial = Symbol("fiume.initial");
-const kStates = Symbol("fiume.initial");
 
 export type StateMachineOptions<TContext = unknown> = {
 	id?: string;
@@ -27,9 +24,9 @@ export class InvalidConstructor extends Error {}
 export class StateMachine<TContext = unknown, TEvent = unknown> {
 	public id: string;
 	public context: TContext;
-	private [kCurrent]!: State<TContext, TEvent>;
-	private [kInitial]: GenericInitialState<TContext, TEvent>;
-	private [kStates]: Map<string, State<TContext, TEvent>>;
+	#current!: State<TContext, TEvent>;
+	#initial: GenericInitialState<TContext, TEvent>;
+	#states: Map<string, State<TContext, TEvent>>;
 
 	static from<TContext, TEvent>(
 		states: Array<State<TContext, TEvent>>,
@@ -52,10 +49,10 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || ({} as TContext);
 
-		this[kInitial] = states.find(
+		this.#initial = states.find(
 			(s) => (s as GenericInitialState).initial,
 		) as GenericInitialState;
-		this[kStates] = new Map(states.map((s) => [s.id, s]));
+		this.#states = new Map(states.map((s) => [s.id, s]));
 	}
 
 	public async send(event: TEvent) {
@@ -64,7 +61,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 			event,
 		};
 
-		const current = this[kCurrent] as GuardState | InitialGuardState;
+		const current = this.#current as GuardState | InitialGuardState;
 
 		if (
 			current.transitionGuard &&
@@ -73,19 +70,19 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 			return;
 		}
 
-		await this.executeState(this[kCurrent], event);
+		await this.executeState(this.#current, event);
 	}
 
 	public async start() {
-		await this.enter(this[kInitial]);
+		await this.enter(this.#initial);
 	}
 
 	public get currentStateId() {
-		return this[kCurrent].id;
+		return this.#current.id;
 	}
 
 	private async enter(state: State<TContext, TEvent>) {
-		this[kCurrent] = state;
+		this.#current = state;
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
@@ -96,12 +93,12 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 				.autoTransition ||
 			(state as FinalState).final
 		) {
-			return this.executeState(this[kCurrent]);
+			return this.executeState(this.#current);
 		}
 	}
 
 	private async executeState(state: State<TContext, TEvent>, event?: TEvent) {
-		this[kCurrent] = state;
+		this.#current = state;
 		let destination;
 
 		const g = state as GenericState | GenericInitialState;
@@ -110,7 +107,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 				context: this.context,
 				event,
 			});
-			destination = this[kStates].get(destinationId);
+			destination = this.#states.get(destinationId);
 		}
 
 		if (state.onExit) {
