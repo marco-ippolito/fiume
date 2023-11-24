@@ -3,7 +3,7 @@ import {
 	AutoTransitionState,
 	FinalState,
 	GuardState,
-	NonFinalState,
+	TransitoryState,
 	State,
 } from "./state.js";
 import { validateStates } from "./validate.js";
@@ -95,7 +95,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		this.#current = state;
 		let destination;
 
-		const g = state as NonFinalState;
+		const g = state as TransitoryState;
 		if (g.transitionTo) {
 			const destinationId = await g.transitionTo({
 				context: this.context,

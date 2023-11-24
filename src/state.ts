@@ -32,10 +32,7 @@ export interface InitialState<TContext = unknown, TEvent = unknown> {
 	transitionGuard?: TransitionEvent<TContext, TEvent>;
 }
 
-export interface InitialWithFinalFalseState<
-	TContext = unknown,
-	TEvent = unknown,
-> {
+interface InitialWithFinalFalseState<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
 	initial: true;
 	transitionTo: TransitionToHook<TContext, TEvent>;
@@ -45,17 +42,14 @@ export interface InitialWithFinalFalseState<
 	transitionGuard?: TransitionEvent<TContext, TEvent>;
 }
 
-export interface InitialWithAutoTransitionState<
-	TContext = unknown,
-	TEvent = unknown,
-> {
+interface InitialWithAutoTransitionState<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
 	initial: true;
 	autoTransition: true;
 	transitionTo: TransitionToHook<TContext, TEvent>;
 }
 
-export interface InitialWithAutoTransitionAndFinalFalseState<
+interface InitialWithAutoTransitionAndFinalFalseState<
 	TContext = unknown,
 	TEvent = unknown,
 > {
@@ -66,7 +60,7 @@ export interface InitialWithAutoTransitionAndFinalFalseState<
 	final: false;
 }
 
-export interface NonFinalState<TContext = unknown, TEvent = unknown> {
+export interface TransitoryState<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
 	transitionTo: TransitionToHook<TContext, TEvent>;
 
@@ -75,10 +69,7 @@ export interface NonFinalState<TContext = unknown, TEvent = unknown> {
 	transitionGuard?: TransitionEvent<TContext, TEvent>;
 }
 
-export interface NonFinalWithFinalFalseState<
-	TContext = unknown,
-	TEvent = unknown,
-> {
+interface TransitoryWithFinalFalseState<TContext = unknown, TEvent = unknown> {
 	id: StateIdentifier;
 	transitionTo: TransitionToHook<TContext, TEvent>;
 	final: false;
@@ -88,7 +79,7 @@ export interface NonFinalWithFinalFalseState<
 	transitionGuard?: TransitionEvent<TContext, TEvent>;
 }
 
-export interface NonFinalWithAutoTransitionState<
+interface TransitoryWithAutoTransitionState<
 	TContext = unknown,
 	TEvent = unknown,
 > {
@@ -99,7 +90,7 @@ export interface NonFinalWithAutoTransitionState<
 	initial?: boolean;
 }
 
-export interface NonFinalWithAutoTransitionAndFinalFalseState<
+interface TransitoryWithAutoTransitionAndFinalFalseState<
 	TContext = unknown,
 	TEvent = unknown,
 > {
@@ -127,8 +118,8 @@ export interface GenericCallbackState<TContext = unknown, TEvent = unknown> {
 export type AutoTransitionState<TContext = unknown, TEvent = unknown> =
 	| InitialWithAutoTransitionState
 	| InitialWithAutoTransitionAndFinalFalseState
-	| NonFinalWithAutoTransitionState
-	| NonFinalWithAutoTransitionAndFinalFalseState;
+	| TransitoryWithAutoTransitionState
+	| TransitoryWithAutoTransitionAndFinalFalseState;
 
 export type GuardState<TContext = unknown, TEvent = unknown> = State<
 	TContext,
@@ -143,9 +134,9 @@ export type State<TContext = unknown, TEvent = unknown> = GenericCallbackState &
 		| InitialWithFinalFalseState
 		| InitialWithAutoTransitionState
 		| InitialWithAutoTransitionAndFinalFalseState
-		| NonFinalState
-		| NonFinalWithFinalFalseState
-		| NonFinalWithAutoTransitionState
-		| NonFinalWithAutoTransitionAndFinalFalseState
+		| TransitoryState
+		| TransitoryWithFinalFalseState
+		| TransitoryWithAutoTransitionState
+		| TransitoryWithAutoTransitionAndFinalFalseState
 		| FinalState
 	);
