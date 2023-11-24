@@ -1,4 +1,4 @@
-import { GenericInitialState, State } from "./state.js";
+import { InitialState, State } from "./state.js";
 
 export class InvalidStatesError extends Error {}
 export class InvalidInitialStateError extends Error {}
@@ -13,7 +13,7 @@ export function validateStates<TContext, TEvent>(
 			"States must be an array of at least 2 elements",
 		);
 
-	const initial = states.filter((s) => (s as GenericInitialState).initial);
+	const initial = states.filter((s) => (s as InitialState).initial);
 	if (initial.length !== 1) {
 		throw new InvalidInitialStateError(
 			"There must be one and only initial state",

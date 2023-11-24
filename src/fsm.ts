@@ -2,11 +2,8 @@ import { randomUUID } from "crypto";
 import {
 	AutoTransitionState,
 	FinalState,
-	GenericInitialState,
-	GenericState,
 	GuardState,
-	InitialAutoTransitionState,
-	InitialGuardState,
+	TransitoryState,
 	State,
 } from "./state.js";
 import { validateStates } from "./validate.js";
@@ -25,7 +22,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 	public id: string;
 	public context: TContext;
 	#current!: State<TContext, TEvent>;
-	#initial: GenericInitialState<TContext, TEvent>;
+	#initial: State<TContext, TEvent>;
 	#states: Map<string, State<TContext, TEvent>>;
 
 	static from<TContext, TEvent>(
@@ -49,9 +46,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || ({} as TContext);
 
-		this.#initial = states.find(
-			(s) => (s as GenericInitialState).initial,
-		) as GenericInitialState;
+		this.#initial = states.find((s) => s.initial) as State;
 		this.#states = new Map(states.map((s) => [s.id, s]));
 	}
 
@@ -61,7 +56,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 			event,
 		};
 
-		const current = this.#current as GuardState | InitialGuardState;
+		const current = this.#current as GuardState;
 
 		if (
 			current.transitionGuard &&
@@ -89,9 +84,8 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 			});
 		}
 		if (
-			(state as AutoTransitionState | InitialAutoTransitionState)
-				.autoTransition ||
-			(state as FinalState).final
+			(state as FinalState).final ||
+			(state as AutoTransitionState).autoTransition
 		) {
 			return this.executeState(this.#current);
 		}
@@ -101,7 +95,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		this.#current = state;
 		let destination;
 
-		const g = state as GenericState | GenericInitialState;
+		const g = state as TransitoryState;
 		if (g.transitionTo) {
 			const destinationId = await g.transitionTo({
 				context: this.context,
