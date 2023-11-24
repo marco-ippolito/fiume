@@ -65,9 +65,12 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		};
 
 		const current = this[kCurrent] as GuardState | InitialGuardState;
-		if (current.transitionGuard) {
-			const res = await current.transitionGuard(hookInput);
-			if (!res) return;
+
+		if (
+			current.transitionGuard &&
+			!(await current.transitionGuard(hookInput))
+		) {
+			return;
 		}
 
 		await this.executeState(this[kCurrent], event);
