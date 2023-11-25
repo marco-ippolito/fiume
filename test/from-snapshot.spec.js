@@ -39,7 +39,7 @@ test("snapshot after changing context", async () => {
 	}
 });
 
-test("hydration", async () => {
+test("fromSnapshot", async () => {
 	const id = "foo";
 	const context = "bar";
 	const sharedData = "foobar";
@@ -53,16 +53,16 @@ test("hydration", async () => {
 	{
 		const snapshot = machine.createSnapshot();
 		assert.deepStrictEqual(snapshot.sharedData, undefined);
-		const hydratedMachine = StateMachine.rehydrate(
+		const fromSnapshotMachine = StateMachine.fromSnapshot(
 			snapshot,
 			fixtures.withoutAutoTransition,
 			sharedData,
 		);
-		await hydratedMachine.start();
-		assert.deepStrictEqual(id, hydratedMachine.id);
-		assert.deepStrictEqual("OFF", hydratedMachine.currentStateId);
-		assert.deepStrictEqual(context, hydratedMachine.context);
-		assert.deepStrictEqual(sharedData, hydratedMachine.sharedData);
+		await fromSnapshotMachine.start();
+		assert.deepStrictEqual(id, fromSnapshotMachine.id);
+		assert.deepStrictEqual("OFF", fromSnapshotMachine.currentStateId);
+		assert.deepStrictEqual(context, fromSnapshotMachine.context);
+		assert.deepStrictEqual(sharedData, fromSnapshotMachine.sharedData);
 	}
 
 	await machine.send();
@@ -70,15 +70,15 @@ test("hydration", async () => {
 	{
 		const snapshot = machine.createSnapshot();
 		assert.deepStrictEqual(snapshot.sharedData, undefined);
-		const hydratedMachine = StateMachine.rehydrate(
+		const fromSnapshotMachine = StateMachine.fromSnapshot(
 			snapshot,
 			fixtures.withoutAutoTransition,
 			sharedData,
 		);
-		await hydratedMachine.start();
-		assert.deepStrictEqual(id, hydratedMachine.id);
-		assert.deepStrictEqual("ON", hydratedMachine.currentStateId);
-		assert.deepStrictEqual(context, hydratedMachine.context);
-		assert.deepStrictEqual(sharedData, hydratedMachine.sharedData);
+		await fromSnapshotMachine.start();
+		assert.deepStrictEqual(id, fromSnapshotMachine.id);
+		assert.deepStrictEqual("ON", fromSnapshotMachine.currentStateId);
+		assert.deepStrictEqual(context, fromSnapshotMachine.context);
+		assert.deepStrictEqual(sharedData, fromSnapshotMachine.sharedData);
 	}
 });

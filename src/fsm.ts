@@ -80,7 +80,7 @@ export class StateMachine<
 		};
 	}
 
-	public static rehydrate<TContext, TEvent, TSharedData>(
+	public static fromSnapshot<TContext, TEvent, TSharedData>(
 		snapshot: MachineSnapshot<TContext>,
 		states: Array<State<TContext, TEvent, TSharedData>>,
 		sharedData?: TSharedData,

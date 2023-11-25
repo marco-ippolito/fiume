@@ -123,7 +123,7 @@ const machine = StateMachine.from(states, options);
 
 ```
 
-- `StateMachine.rehydrate`: static function that returns a new instance of the state machine from an existing snapshot, takes as input:
+- `StateMachine.fromSnapshot`: static function that returns a new instance of the state machine from an existing snapshot, takes as input:
   - `snapshot`: The snapshot object produced by `machine.createSnapshot()`.
   - `states`: An array of `State` objects representing the states of the state machine.
   - `sharedData` (optional): User defined object.
@@ -135,7 +135,7 @@ import { StateMachine } from "fiume";
 const machine = StateMachine.from(states, options);
 await machine.start();
 const snapshot = machine.createSnapshot();
-const rehydrateMachine = StateMachine.rehydrate(snapshot, states);
+const refromSnapshot = StateMachine.fromSnapshot(snapshot, states);
 
 ```
 
