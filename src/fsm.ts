@@ -148,7 +148,7 @@ export class StateMachine<
 			(state as FinalState).final ||
 			(state as AutoTransitionState).autoTransition
 		) {
-			return this.executeState(this.#current);
+			await this.executeState(this.#current);
 		}
 	}
 
