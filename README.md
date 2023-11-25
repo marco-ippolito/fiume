@@ -113,7 +113,6 @@ machine.currentStateId; // OFF
     - `context`: User defined context.
     > Don't add in `context` objects that cannot be copied, like database connections, sockets, emitter,    request, use `sharedData` instead!
     - `sharedData`: User defined object.
-
     > Use `sharedData` to store database connection, sockets, request/response, etc ...
 
 Example:
