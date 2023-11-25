@@ -28,8 +28,10 @@ test("without auto transition", () => {
 		const machine = StateMachine.from(fixtures.withoutAutoTransition);
 		await machine.start();
 		assert.deepStrictEqual(machine.currentStateId, "OFF");
+		assert.deepStrictEqual(machine.isFinished, false);
 		await machine.send();
 		assert.deepStrictEqual(machine.currentStateId, "ON");
+		assert.deepStrictEqual(machine.isFinished, true);
 	});
 });
 
@@ -152,4 +154,21 @@ test("onFinalSharedDataChange", async () => {
 	await machine.start();
 	assert.deepStrictEqual(machine.currentStateId, "ON");
 	assert.deepStrictEqual(machine.sharedData.a, 10);
+});
+
+test("send on final state", async () => {
+	const machine = StateMachine.from(fixtures.withoutAutoTransition);
+	await machine.start();
+	await machine.send();
+	assert.deepStrictEqual(machine.currentStateId, "ON");
+	assert.deepStrictEqual(machine.isFinished, true);
+	await assert.rejects(() => machine.send(), InvalidTransition);
+});
+
+test("assign event transitory", async () => {
+	const machine = StateMachine.from(fixtures.transitoryAssignEventToContext);
+	await machine.start();
+	await machine.send("baz");
+	assert.deepStrictEqual(machine.context.foo, "baz");
+	assert.deepStrictEqual(machine.context.bar, "baz");
 });

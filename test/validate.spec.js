@@ -4,6 +4,7 @@ import {
 	InvalidInitialStateError,
 	InvalidStateIdError,
 	InvalidTransitionCondition,
+	validateHydration,
 } from "../dist/validate.js";
 import test from "node:test";
 import assert from "node:assert";
@@ -353,5 +354,45 @@ test("validates states correctly", () => {
 				},
 			]),
 		InvalidTransitionCondition,
+	);
+
+	assert.throws(
+		() =>
+			validateHydration(
+				[
+					{
+						id: "A",
+						initial: true,
+						autoTransition: true,
+						transitionTo: () => "B",
+					},
+					{
+						// state to validate
+						id: "B",
+						transitionTo: () => "B",
+					},
+				],
+				"foo",
+			),
+		InvalidStateIdError,
+	);
+
+	assert.doesNotThrow(() =>
+		validateHydration(
+			[
+				{
+					id: "A",
+					initial: true,
+					autoTransition: true,
+					transitionTo: () => "B",
+				},
+				{
+					// state to validate
+					id: "B",
+					transitionTo: () => "B",
+				},
+			],
+			"A",
+		),
 	);
 });

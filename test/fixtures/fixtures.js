@@ -130,3 +130,19 @@ export const onFinalSharedDataChange = [
 		transitionTo: () => "ON",
 	},
 ];
+
+export const transitoryAssignEventToContext = [
+	{ id: "ON", final: true },
+	{
+		id: "OFF",
+		initial: true,
+		transitionGuard: ({ event, context }) => {
+			context.foo = event;
+			return true;
+		},
+		transitionTo: ({ event, context }) => {
+			context.bar = event;
+			return "ON";
+		},
+	},
+];

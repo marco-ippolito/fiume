@@ -1,13 +1,8 @@
 export type StateIdentifier = string;
 
-export type HookInput<
-	TContext = unknown,
-	TEvent = unknown,
-	TSharedData = unknown,
-> = {
+export type HookInput<TContext = unknown, TSharedData = unknown> = {
 	context: TContext;
 	sharedData: TSharedData;
-	event?: TEvent;
 };
 
 export type TransitionToHook<
@@ -15,7 +10,7 @@ export type TransitionToHook<
 	TEvent = unknown,
 	TSharedData = unknown,
 > = (
-	hook: HookInput<TContext, TEvent, TSharedData>,
+	hook: HookInput<TContext, TSharedData> & { event?: TEvent },
 ) => StateIdentifier | Promise<StateIdentifier>;
 
 export type OnFinalHook<TContext = unknown, TSharedData = unknown> = (
@@ -25,15 +20,10 @@ export type OnEntryHook<
 	TContext = unknown,
 	TEvent = unknown,
 	TSharedData = unknown,
-> = (
-	hook: HookInput<TContext, TEvent, TSharedData>,
-) => unknown | Promise<unknown>;
-export type OnExitHook<
-	TContext = unknown,
-	TEvent = unknown,
-	TSharedData = unknown,
-> = (
-	hook: HookInput<TContext, TEvent, TSharedData>,
+> = (hook: HookInput<TContext, TSharedData>) => unknown | Promise<unknown>;
+
+export type OnExitHook<TContext = unknown, TSharedData = unknown> = (
+	hook: HookInput<TContext, TSharedData>,
 ) => unknown | Promise<unknown>;
 
 export type TransitionEvent<
@@ -41,7 +31,7 @@ export type TransitionEvent<
 	TEvent = unknown,
 	TSharedData = unknown,
 > = (
-	hookInput: HookInput<TContext, TEvent, TSharedData>,
+	hookInput: HookInput<TContext, TSharedData> & { event?: TEvent },
 ) => boolean | Promise<boolean>;
 
 export interface InitialState<
@@ -149,13 +139,9 @@ export interface FinalState<TContext = unknown, TSharedData = unknown> {
 	onFinal?: OnFinalHook<TContext, TSharedData>;
 }
 
-export interface StateHooks<
-	TContext = unknown,
-	TEvent = unknown,
-	TSharedData = unknown,
-> {
-	onEntry?: OnEntryHook<TContext, TEvent, TSharedData>;
-	onExit?: OnExitHook<TContext, TEvent, TSharedData>;
+export interface StateHooks<TContext = unknown, TSharedData = unknown> {
+	onEntry?: OnEntryHook<TContext, TSharedData>;
+	onExit?: OnExitHook<TContext, TSharedData>;
 }
 
 export type AutoTransitionState<

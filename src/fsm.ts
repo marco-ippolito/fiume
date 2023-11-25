@@ -6,7 +6,7 @@ import {
 	TransitoryState,
 	State,
 } from "./state.js";
-import { validateStates } from "./validate.js";
+import { validateHydration, validateStates } from "./validate.js";
 
 const PREVENT_COSTRUCTOR_INSTANCE = Symbol("fiume.prevent-constructor");
 
@@ -19,6 +19,13 @@ export type StateMachineOptions<TContext = unknown, TSharedData = unknown> = {
 export class InvalidTransition extends Error {}
 export class InvalidConstructor extends Error {}
 
+export type MachineSnapshot<TContext> = {
+	snapshotId: string;
+	machineId: string;
+	stateId: string;
+	context: TContext;
+};
+
 export class StateMachine<
 	TContext = unknown,
 	TEvent = unknown,
@@ -26,15 +33,17 @@ export class StateMachine<
 > {
 	public id: string;
 	public context: TContext;
-	#current!: State<TContext, TEvent, TSharedData>;
-	#initial: State<TContext, TEvent, TSharedData>;
-	#states: Map<string, State<TContext, TEvent, TSharedData>>;
+	#finished = false;
+	#current!: State;
+	#initial: State;
+	#states: Map<string, State>;
 	#sharedData: TSharedData;
 
 	private constructor(
-		states: Array<State<TContext, TEvent, TSharedData>>,
+		states: Array<State>,
 		options?: StateMachineOptions<TContext, TSharedData>,
 		symbol?: symbol,
+		currentStateId?: string,
 	) {
 		if (symbol !== PREVENT_COSTRUCTOR_INSTANCE) {
 			throw new InvalidConstructor(
@@ -44,8 +53,10 @@ export class StateMachine<
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || ({} as TContext);
 		this.#sharedData = options?.sharedData || ({} as TSharedData);
-		this.#initial = states.find((s) => s.initial) as State;
 		this.#states = new Map(states.map((s) => [s.id, s]));
+		this.#initial = currentStateId
+			? (this.#states.get(currentStateId) as State)
+			: (states.find((s) => s.initial) as State);
 	}
 
 	public get currentStateId() {
@@ -56,8 +67,41 @@ export class StateMachine<
 		return this.#sharedData;
 	}
 
-	static from<TContext, TEvent, TSharedData>(
-		states: Array<State<TContext, TEvent>>,
+	public get isFinished() {
+		return this.#finished;
+	}
+
+	public createSnapshot(): MachineSnapshot<TContext> {
+		return {
+			snapshotId: randomUUID(),
+			machineId: this.id,
+			stateId: this.#current.id,
+			context: structuredClone(this.context),
+		};
+	}
+
+	public static rehydrate<TContext, TEvent, TSharedData>(
+		snapshot: MachineSnapshot<TContext>,
+		states: Array<State<TContext, TEvent, TSharedData>>,
+		sharedData?: TSharedData,
+	) {
+		const stateId = snapshot.stateId;
+		validateHydration(states, stateId);
+		const stateMachineOptions = {
+			id: snapshot.machineId,
+			context: snapshot.context,
+			sharedData,
+		};
+		return new StateMachine(
+			states,
+			stateMachineOptions,
+			PREVENT_COSTRUCTOR_INSTANCE,
+			stateId,
+		);
+	}
+
+	public static from<TContext, TEvent, TSharedData>(
+		states: Array<State<TContext, TEvent, TSharedData>>,
 		options?: StateMachineOptions<TContext, TSharedData>,
 	) {
 		validateStates(states);
@@ -65,6 +109,12 @@ export class StateMachine<
 	}
 
 	public async send(event: TEvent) {
+		if (this.#finished) {
+			throw new InvalidTransition(
+				"Machine cannot send to a machine in final state",
+			);
+		}
+
 		const hookInput = {
 			context: this.context,
 			sharedData: this.#sharedData,
@@ -134,6 +184,7 @@ export class StateMachine<
 					sharedData: this.#sharedData,
 				});
 			}
+			this.#finished = true;
 			return;
 		}
 
