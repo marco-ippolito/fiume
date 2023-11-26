@@ -6,37 +6,44 @@ import {
 	TransitoryState,
 	State,
 } from "./state.js";
-import { validateStates } from "./validate.js";
+import { validateHydration, validateStates } from "./validate.js";
 
 const PREVENT_COSTRUCTOR_INSTANCE = Symbol("fiume.prevent-constructor");
 
-export type StateMachineOptions<TContext = unknown> = {
+export type StateMachineOptions<TContext = unknown, TSharedData = unknown> = {
 	id?: string;
 	context?: TContext;
+	sharedData?: TSharedData;
 };
 
 export class InvalidTransition extends Error {}
 export class InvalidConstructor extends Error {}
 
-export class StateMachine<TContext = unknown, TEvent = unknown> {
+export type MachineSnapshot<TContext> = {
+	snapshotId: string;
+	machineId: string;
+	stateId: string;
+	context: TContext;
+};
+
+export class StateMachine<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> {
 	public id: string;
 	public context: TContext;
-	#current!: State<TContext, TEvent>;
-	#initial: State<TContext, TEvent>;
-	#states: Map<string, State<TContext, TEvent>>;
-
-	static from<TContext, TEvent>(
-		states: Array<State<TContext, TEvent>>,
-		options?: StateMachineOptions<TContext>,
-	) {
-		validateStates(states);
-		return new StateMachine(states, options, PREVENT_COSTRUCTOR_INSTANCE);
-	}
+	#finished = false;
+	#current!: State;
+	#initial: State;
+	#states: Map<string, State>;
+	#sharedData: TSharedData;
 
 	private constructor(
-		states: Array<State<TContext, TEvent>>,
-		options?: StateMachineOptions<TContext>,
+		states: Array<State>,
+		options?: StateMachineOptions<TContext, TSharedData>,
 		symbol?: symbol,
+		currentStateId?: string,
 	) {
 		if (symbol !== PREVENT_COSTRUCTOR_INSTANCE) {
 			throw new InvalidConstructor(
@@ -45,19 +52,76 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		}
 		this.id = options?.id || randomUUID();
 		this.context = options?.context || ({} as TContext);
-
-		this.#initial = states.find((s) => s.initial) as State;
+		this.#sharedData = options?.sharedData || ({} as TSharedData);
 		this.#states = new Map(states.map((s) => [s.id, s]));
+		this.#initial = currentStateId
+			? (this.#states.get(currentStateId) as State)
+			: (states.find((s) => s.initial) as State);
+	}
+
+	public get currentStateId() {
+		return this.#current.id;
+	}
+
+	public get sharedData() {
+		return this.#sharedData;
+	}
+
+	public get isFinished() {
+		return this.#finished;
+	}
+
+	public createSnapshot(): MachineSnapshot<TContext> {
+		return {
+			snapshotId: randomUUID(),
+			machineId: this.id,
+			stateId: this.#current.id,
+			context: structuredClone(this.context),
+		};
+	}
+
+	public static fromSnapshot<TContext, TEvent, TSharedData>(
+		snapshot: MachineSnapshot<TContext>,
+		states: Array<State<TContext, TEvent, TSharedData>>,
+		sharedData?: TSharedData,
+	) {
+		const stateId = snapshot.stateId;
+		validateHydration(states, stateId);
+		const stateMachineOptions = {
+			id: snapshot.machineId,
+			context: snapshot.context,
+			sharedData,
+		};
+		return new StateMachine(
+			states,
+			stateMachineOptions,
+			PREVENT_COSTRUCTOR_INSTANCE,
+			stateId,
+		);
+	}
+
+	public static from<TContext, TEvent, TSharedData>(
+		states: Array<State<TContext, TEvent, TSharedData>>,
+		options?: StateMachineOptions<TContext, TSharedData>,
+	) {
+		validateStates(states);
+		return new StateMachine(states, options, PREVENT_COSTRUCTOR_INSTANCE);
 	}
 
 	public async send(event: TEvent) {
+		if (this.#finished) {
+			throw new InvalidTransition(
+				"Machine cannot send to a machine in final state",
+			);
+		}
+
 		const hookInput = {
 			context: this.context,
+			sharedData: this.#sharedData,
 			event,
 		};
 
 		const current = this.#current as GuardState;
-
 		if (
 			current.transitionGuard &&
 			!(await current.transitionGuard(hookInput))
@@ -72,26 +136,26 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		await this.enter(this.#initial);
 	}
 
-	public get currentStateId() {
-		return this.#current.id;
-	}
-
-	private async enter(state: State<TContext, TEvent>) {
+	private async enter(state: State<TContext, TEvent, TSharedData>) {
 		this.#current = state;
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
+				sharedData: this.#sharedData,
 			});
 		}
 		if (
 			(state as FinalState).final ||
 			(state as AutoTransitionState).autoTransition
 		) {
-			return this.executeState(this.#current);
+			await this.executeState(this.#current);
 		}
 	}
 
-	private async executeState(state: State<TContext, TEvent>, event?: TEvent) {
+	private async executeState(
+		state: State<TContext, TEvent, TSharedData>,
+		event?: TEvent,
+	) {
 		this.#current = state;
 		let destination;
 
@@ -99,6 +163,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		if (g.transitionTo) {
 			const destinationId = await g.transitionTo({
 				context: this.context,
+				sharedData: this.#sharedData,
 				event,
 			});
 			destination = this.#states.get(destinationId);
@@ -107,6 +172,7 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 		if (state.onExit) {
 			await state.onExit({
 				context: this.context,
+				sharedData: this.#sharedData,
 			});
 		}
 
@@ -115,8 +181,10 @@ export class StateMachine<TContext = unknown, TEvent = unknown> {
 			if (f.onFinal) {
 				await f.onFinal({
 					context: this.context,
+					sharedData: this.#sharedData,
 				});
 			}
+			this.#finished = true;
 			return;
 		}
 

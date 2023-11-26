@@ -106,20 +106,52 @@ machine.currentStateId; // OFF
 
 #### Constructor
 
+- `StateMachine.from`: static function that returns a new instance of the state machine, takes as input:
+  - `states`: An array of `State` objects representing the states of the state machine.
+  - `options` (optional): Configuration options for the state machine:
+    - `id` (string): The id of the machine,
+    - `context`: User defined context.
+    > Don't add in `context` objects that cannot be copied, like database connections, sockets, emitter,    request, use `sharedData` instead!
+    - `sharedData`: User defined object.
+    > Use `sharedData` to store database connection, sockets, request/response, etc ...
+
+Example:
+
 ```typescript
 import { StateMachine } from "fiume";
 const machine = StateMachine.from(states, options);
 
 ```
 
-- `states`: An array of `State` objects representing the states of the state machine.
-- `options` (optional): Configuration options for the state machine, including `id` (string) and `context` (generic).
+- `StateMachine.fromSnapshot`: static function that returns a new instance of the state machine from an existing snapshot, takes as input:
+  - `snapshot`: The snapshot object produced by `machine.createSnapshot()`.
+  - `states`: An array of `State` objects representing the states of the state machine.
+  - `sharedData` (optional): User defined object.
+
+Example:
+
+```typescript
+import { StateMachine } from "fiume";
+const machine = StateMachine.from(states, options);
+await machine.start();
+const snapshot = machine.createSnapshot();
+const refromSnapshot = StateMachine.fromSnapshot(snapshot, states);
+
+```
 
 #### Public Methods
 
-- `start`: Initiates the state machine and triggers the execution of the initial state.
+- `start` (async): Initiates the state machine and triggers the execution of the initial state.
 
-- `send`: Send events to states that are not `autoTransition`. If current state has `autoTransition: false`, calling the `send` function is required to move to next state.
+- `send` (async): Send events to states that are not `autoTransition`. If current state has `autoTransition: false`, calling the `send` function is required to move to next state. If the machine is in a final state and  `isFinished` set to `true`, using `send` will reject.
+
+- `createSnapshot`: Returns a snapshot of the current machine with the following properties:
+  - snapshotId (string): Id of the current snapshot.
+  - machineId: (string): Id of the machine.
+  - stateId: (string): Id of the current state when snapshot is taken.
+  - context: (TContext):  User defined context
+
+  >`sharedData` will not be snapshotted!
 
 #### Public properties
 
@@ -127,15 +159,40 @@ const machine = StateMachine.from(states, options);
 
 - `currentStateId` string: The id of current state of the machine.
 
-- `context` unknown: User defined context, it's always passed inside hooks:
+- `isFinished` boolean: True if the machine has finished in a final state.
+
+- `context` (TContext): User defined context, it's always passed inside hooks:
+
+> Do not add in `context`, objects that cannot be copied, like database connections, `EventEmitter`, `Request`, `Socket`, use `sharedData` instead!
 
 ```typescript
 const states: Array<State> = [
   {
-    id: "state-0", initial: true,
-    autoTransition: true,
+    id: "state-0",
+    initial: true,
     transitionTo: async ({ context }) => {
       if(context.foo === 'bar'){ // use context to pass data to other states
+        return 'state-1'
+      } else {
+        return 'state-2'
+      }
+    },
+  },
+  ///...
+];
+```
+
+- `sharedData` (TSharedData): User defined data shared with the state machine, it's always passed inside hooks:
+
+> `sharedData` will not be snapshotted, use this object to store database connection, sockets, request/response, etc ...
+
+```typescript
+const states: Array<State> = [
+  {
+    id: "state-0",
+    initial: true,
+    transitionTo: async ({ sharedData }) => {
+      if(sharedData.foo === 'bar'){
         return 'state-1'
       } else {
         return 'state-2'
@@ -149,20 +206,6 @@ const states: Array<State> = [
 ### State
 
 Represents a state in the state machine.
-
-```typescript
-interface State<TContext = unknown, TEvent = unknown> {
- id: StateIdentifier;
- autoTransition?: boolean;
- initial?: boolean;
- final?: boolean;
- transitionGuard?: TransitionEvent<TContext, TEvent>;
- transitionTo?: TransitionToHook<TContext, TEvent>;
- onEntry?: OnEntryHook<TContext, TEvent>;
- onExit?: OnExitHook<TContext, TEvent>;
- onFinal?: OnFinalHook<TContext>;
-}
-```
 
 - `id`: (required) Unique identifier for the state.
 - `transitionTo` (optional): Function or AsyncFunction that defines the transition logic to move to another state, must return the id of the next state.

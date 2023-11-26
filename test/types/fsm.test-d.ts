@@ -272,6 +272,6 @@ expectNotAssignable<StateMachineOptions>(null);
 
 expectType<StateMachine>(StateMachine.from(basicStates));
 
-const machine = StateMachine.from<number, number>(basicStates);
+const machine = StateMachine.from(basicStates);
 
 machine.send(1);

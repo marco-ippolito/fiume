@@ -28,8 +28,10 @@ test("without auto transition", () => {
 		const machine = StateMachine.from(fixtures.withoutAutoTransition);
 		await machine.start();
 		assert.deepStrictEqual(machine.currentStateId, "OFF");
+		assert.deepStrictEqual(machine.isFinished, false);
 		await machine.send();
 		assert.deepStrictEqual(machine.currentStateId, "ON");
+		assert.deepStrictEqual(machine.isFinished, true);
 	});
 });
 
@@ -127,4 +129,46 @@ test("check private properties are not enumerable", async () => {
 	await machine.start();
 	const clonedProps = structuredClone(machine);
 	assert.deepStrictEqual(Object.keys(clonedProps), ["id", "context"]);
+});
+
+test("onEntrySharedDataChange", async () => {
+	const machine = StateMachine.from(fixtures.onEntrySharedDataChange, {
+		sharedData: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.sharedData.a, 10);
+});
+
+test("onExitSharedDataChange", async () => {
+	const machine = StateMachine.from(fixtures.onExitSharedDataChange, {
+		sharedData: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.sharedData.a, 10);
+});
+
+test("onFinalSharedDataChange", async () => {
+	const machine = StateMachine.from(fixtures.onFinalSharedDataChange, {
+		sharedData: { a: 1 },
+	});
+	await machine.start();
+	assert.deepStrictEqual(machine.currentStateId, "ON");
+	assert.deepStrictEqual(machine.sharedData.a, 10);
+});
+
+test("send on final state", async () => {
+	const machine = StateMachine.from(fixtures.withoutAutoTransition);
+	await machine.start();
+	await machine.send();
+	assert.deepStrictEqual(machine.currentStateId, "ON");
+	assert.deepStrictEqual(machine.isFinished, true);
+	await assert.rejects(() => machine.send(), InvalidTransition);
+});
+
+test("assign event transitory", async () => {
+	const machine = StateMachine.from(fixtures.transitoryAssignEventToContext);
+	await machine.start();
+	await machine.send("baz");
+	assert.deepStrictEqual(machine.context.foo, "baz");
+	assert.deepStrictEqual(machine.context.bar, "baz");
 });
