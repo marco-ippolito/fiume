@@ -6,7 +6,7 @@ export class InvalidStateIdError extends Error {}
 export class InvalidTransitionCondition extends Error {}
 
 export function validateStates(states: Array<State>) {
-	if (states?.length !== 2)
+	if (!states || !Array.isArray(states) || states?.length < 2)
 		throw new InvalidStatesError(
 			"States must be an array of at least 2 elements",
 		);

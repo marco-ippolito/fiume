@@ -5,6 +5,9 @@ import {
 	GuardState,
 	TransitoryState,
 	State,
+	SubscriptionIdentifier,
+	StateIdentifier,
+	SubscriptionCallback,
 } from "./state.js";
 import { validateHydration, validateStates } from "./validate.js";
 
@@ -36,8 +39,9 @@ export class StateMachine<
 	#finished = false;
 	#current!: State;
 	#initial: State;
-	#states: Map<string, State>;
+	#states: Map<StateIdentifier, State>;
 	#sharedData: TSharedData;
+	#subscriptions: Map<SubscriptionIdentifier, SubscriptionCallback>;
 
 	private constructor(
 		states: Array<State>,
@@ -54,6 +58,7 @@ export class StateMachine<
 		this.context = options?.context || ({} as TContext);
 		this.#sharedData = options?.sharedData || ({} as TSharedData);
 		this.#states = new Map(states.map((s) => [s.id, s]));
+		this.#subscriptions = new Map();
 		this.#initial = currentStateId
 			? (this.#states.get(currentStateId) as State)
 			: (states.find((s) => s.initial) as State);
@@ -144,6 +149,14 @@ export class StateMachine<
 				sharedData: this.#sharedData,
 			});
 		}
+
+		for (const sub of this.#subscriptions.values()) {
+			sub({
+				context: this.context,
+				currentStateId: this.#current.id,
+			});
+		}
+
 		if (
 			(state as FinalState).final ||
 			(state as AutoTransitionState).autoTransition
@@ -191,5 +204,15 @@ export class StateMachine<
 		if (!destination) throw new InvalidTransition("Invalid destination node");
 
 		await this.enter(destination);
+	}
+
+	public subscribe(callback: SubscriptionCallback): SubscriptionIdentifier {
+		const id = randomUUID();
+		this.#subscriptions.set(id, callback);
+		return id;
+	}
+
+	public unsubscribe(id: string): void {
+		this.#subscriptions.delete(id);
 	}
 }

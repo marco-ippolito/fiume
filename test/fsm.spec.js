@@ -172,3 +172,83 @@ test("assign event transitory", async () => {
 	assert.deepStrictEqual(machine.context.foo, "baz");
 	assert.deepStrictEqual(machine.context.bar, "baz");
 });
+
+test("subscribe", async () => {
+	const options = { context: { a: 42 } };
+	const machine = StateMachine.from(fixtures.basicThreeStates, options);
+
+	const outcome = [];
+	machine.subscribe(({ context, currentStateId }) => {
+		outcome.push({ [currentStateId]: context.a });
+	});
+
+	await machine.start();
+	await machine.send(); // ONE -> TWO
+	await machine.send(); // TWO -> THREE
+
+	assert.deepEqual(outcome, [{ ONE: 42 }, { TWO: 42 }, { THREE: 42 }]);
+});
+
+test("unsubscribe", async () => {
+	const options = { context: { a: 42 } };
+	const machine = StateMachine.from(fixtures.basicThreeStates, options);
+
+	const outcome = [];
+	const subId = machine.subscribe(({ context, currentStateId }) => {
+		outcome.push({ [currentStateId]: context.a });
+	});
+
+	await machine.start();
+	await machine.send(); // ONE -> TWO
+	machine.unsubscribe(subId);
+	await machine.send(); // TWO -> THREE
+
+	assert.deepEqual(outcome, [{ ONE: 42 }, { TWO: 42 }]);
+});
+
+test("check context is mutable", async () => {
+	const options = { context: { a: 42 } };
+	const machine = StateMachine.from(fixtures.basicThreeStates, options);
+
+	const outcome = [];
+	machine.subscribe(({ context, currentStateId }) => {
+		if (currentStateId === "TWO") {
+			context.a = 0;
+		}
+		outcome.push({ [currentStateId]: context.a });
+	});
+
+	await machine.start();
+	await machine.send(); // ONE -> TWO
+	await machine.send(); // TWO -> THREE
+
+	assert.deepEqual(outcome, [{ ONE: 42 }, { TWO: 0 }, { THREE: 0 }]);
+});
+
+test("check subscribe call is after onEntry", async () => {
+	const options = { context: { a: 42 } };
+	const machine = StateMachine.from(fixtures.onEntryContextChange, options);
+
+	const outcome = [];
+	machine.subscribe(({ context, currentStateId }) => {
+		outcome.push({ [currentStateId]: context.a });
+	});
+
+	await machine.start();
+
+	assert.deepEqual(outcome, [{ OFF: 10 }, { ON: 10 }]);
+});
+
+test("check subscribe call is before onExit", async () => {
+	const options = { context: { a: 42 } };
+	const machine = StateMachine.from(fixtures.onExitContextChange, options);
+
+	const outcome = [];
+	machine.subscribe(({ context, currentStateId }) => {
+		outcome.push({ [currentStateId]: context.a });
+	});
+
+	await machine.start();
+
+	assert.deepEqual(outcome, [{ OFF: 42 }, { ON: 10 }]);
+});

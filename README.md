@@ -100,6 +100,43 @@ machine.currentStateId; // OFF
 
 ```
 
+You can calso `subscribe` to state changes:
+
+```typescript
+
+const states: Array<State> = [
+  {
+    id: "ONE",
+    initial: true,
+    transitionTo: () => "TWO",
+  },
+  {
+    id: "TWO",
+    transitionTo: () => "THREE",
+  },
+  { id: "THREE", final: true },
+];
+
+const machine = StateMachine.from(states);
+
+// Start the state machine
+await machine.start();
+
+// subscribe to state transitions
+const subId = machine.subscribe(({ context, currentStateId }) => console.log(currentStateId)); // ONE, TWO
+
+machine.currentStateId; // ONE
+await machine.send();
+machine.currentStateId; // TWO
+
+// unsubscribe the previous subscription
+machine.unsubscribe(subId);
+
+await machine.send();
+machine.currentStateId; // THREE
+
+```
+
 ## API
 
 ### StateMachine
@@ -152,6 +189,12 @@ const refromSnapshot = StateMachine.fromSnapshot(snapshot, states);
   - context: (TContext):  User defined context
 
   >`sharedData` will not be snapshotted!
+
+- `subscribe`: Each time that you call this method the machine register the given callback and call it on every state transition between the `onEntry` and `onExit` hooks. The callback returns the `subscriptioId` and receives:
+  - the snapshot of the current `context` (and not the reference to it), so you can mutate it but this updates does not persist outside the scope of the callback.
+  - the `currentStateId`.
+
+- `unsubscribe`: Remove the subscription with the given `subscriptionId`.
 
 #### Public properties
 
