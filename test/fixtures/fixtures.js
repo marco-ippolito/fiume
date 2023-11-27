@@ -8,6 +8,19 @@ export const basicStates = [
 	},
 ];
 
+export const basicThreeStates = [
+	{
+		id: "ONE",
+		initial: true,
+		transitionTo: () => "TWO",
+	},
+	{
+		id: "TWO",
+		transitionTo: () => "THREE",
+	},
+	{ id: "THREE", final: true },
+];
+
 export const withoutAutoTransition = [
 	{ id: "ON", final: true },
 	{
