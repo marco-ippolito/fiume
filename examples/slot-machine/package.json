@@ -1,0 +1,22 @@
+{
+  "name": "fiume-example-slot-machine",
+  "version": "1.0.0",
+  "description": "Example usage of fiume",
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts"
+  },
+  "author": {
+    "name": "Marco Ippolito",
+    "email": "marcoippolito54@gmail.com",
+    "url": "https://github.com/marco-ippolito",
+    "author": true
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "tsx": "^4.5.0"
+  },
+  "dependencies": {
+    "fiume": "^0.2.0"
+  }
+}
