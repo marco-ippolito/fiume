@@ -27,11 +27,10 @@
     "format": "biome format src test --write",
     "lint": "biome check src test",
     "pretest": "pnpm build",
-    "test": "pnpm coverage && pnpm test:typescript",
     "prebuild": "rimraf dist",
     "build": "tsc -d",
-    "coverage": "c8 --100 pnpm test:javascript",
-    "test:javascript": "node --test",
+    "test": "pnpm run \"\/^test:.*/\"",
+    "test:javascript": "c8 --100 node --test",
     "test:typescript": "tsd"
   },
   "devDependencies": {
