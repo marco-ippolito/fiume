@@ -37,14 +37,14 @@ export class StateMachine<
 	public id: string;
 	public context: TContext;
 	#finished = false;
-	#current!: State;
-	#initial: State;
-	#states: Map<StateIdentifier, State>;
+	#current!: State<TContext, TEvent, TSharedData>;
+	#initial: State<TContext, TEvent, TSharedData>;
+	#states: Map<StateIdentifier, State<TContext, TEvent, TSharedData>>;
 	#sharedData: TSharedData;
 	#subscriptions: Map<SubscriptionIdentifier, SubscriptionCallback>;
 
 	private constructor(
-		states: Array<State>,
+		states: Array<State<TContext, TEvent, TSharedData>>,
 		options?: StateMachineOptions<TContext, TSharedData>,
 		symbol?: symbol,
 		currentStateId?: string,
@@ -141,12 +141,16 @@ export class StateMachine<
 		await this.enter(this.#initial);
 	}
 
-	private async enter(state: State<TContext, TEvent, TSharedData>) {
+	private async enter(
+		state: State<TContext, TEvent, TSharedData>,
+		event?: TEvent,
+	) {
 		this.#current = state;
 		if (state.onEntry) {
 			await state.onEntry({
 				context: this.context,
 				sharedData: this.#sharedData,
+				event,
 			});
 		}
 
@@ -187,6 +191,7 @@ export class StateMachine<
 			await state.onExit({
 				context: this.context,
 				sharedData: this.#sharedData,
+				event,
 			});
 		}
 
@@ -196,6 +201,7 @@ export class StateMachine<
 				await f.onFinal({
 					context: this.context,
 					sharedData: this.#sharedData,
+					event,
 				});
 			}
 			this.#finished = true;

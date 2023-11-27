@@ -5,7 +5,9 @@ export class InvalidInitialStateError extends Error {}
 export class InvalidStateIdError extends Error {}
 export class InvalidTransitionCondition extends Error {}
 
-export function validateStates(states: Array<State>) {
+export function validateStates<TContext, TEvent, TSharedData>(
+	states: Array<State<TContext, TEvent, TSharedData>>,
+) {
 	if (!states || !Array.isArray(states) || states?.length < 2)
 		throw new InvalidStatesError(
 			"States must be an array of at least 2 elements",
@@ -56,12 +58,12 @@ export function validateStates(states: Array<State>) {
 	}
 }
 
-export function validateHydration(
-	states: Array<State>,
+export function validateHydration<TContext, TEvent, TSharedData>(
+	states: Array<State<TContext, TEvent, TSharedData>>,
 	currentStateId: string,
 ) {
 	validateStates(states);
-	if (!states.some((s: State) => s.id === currentStateId)) {
+	if (!states.some((s) => s.id === currentStateId)) {
 		throw new InvalidStateIdError(
 			"No state id matches with the state id provided",
 		);

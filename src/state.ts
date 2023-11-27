@@ -14,9 +14,14 @@ export type SubscriptionCallback<TContext = unknown> = (
 	callback: SubscriptionCallbackInput<TContext>,
 ) => void;
 
-export type HookInput<TContext = unknown, TSharedData = unknown> = {
+export type HookInput<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> = {
 	context: TContext;
 	sharedData: TSharedData;
+	event?: TEvent;
 };
 
 export type TransitionToHook<
@@ -24,20 +29,30 @@ export type TransitionToHook<
 	TEvent = unknown,
 	TSharedData = unknown,
 > = (
-	hook: HookInput<TContext, TSharedData> & { event?: TEvent },
+	hook: HookInput<TContext, TEvent, TSharedData>,
 ) => StateIdentifier | Promise<StateIdentifier>;
 
-export type OnFinalHook<TContext = unknown, TSharedData = unknown> = (
-	hook: HookInput<TContext, TSharedData>,
+export type OnFinalHook<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> = (
+	hook: HookInput<TContext, TEvent, TSharedData>,
 ) => unknown | Promise<unknown>;
 export type OnEntryHook<
 	TContext = unknown,
 	TEvent = unknown,
 	TSharedData = unknown,
-> = (hook: HookInput<TContext, TSharedData>) => unknown | Promise<unknown>;
+> = (
+	hook: HookInput<TContext, TEvent, TSharedData>,
+) => unknown | Promise<unknown>;
 
-export type OnExitHook<TContext = unknown, TSharedData = unknown> = (
-	hook: HookInput<TContext, TSharedData>,
+export type OnExitHook<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> = (
+	hook: HookInput<TContext, TEvent, TSharedData>,
 ) => unknown | Promise<unknown>;
 
 export type TransitionEvent<
@@ -45,7 +60,7 @@ export type TransitionEvent<
 	TEvent = unknown,
 	TSharedData = unknown,
 > = (
-	hookInput: HookInput<TContext, TSharedData> & { event?: TEvent },
+	hookInput: HookInput<TContext, TEvent, TSharedData>,
 ) => boolean | Promise<boolean>;
 
 export interface InitialState<
@@ -146,16 +161,24 @@ interface TransitoryAutoTransitionNonFinalState<
 	initial?: boolean;
 }
 
-export interface FinalState<TContext = unknown, TSharedData = unknown> {
+export interface FinalState<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> {
 	id: StateIdentifier;
 	final: true;
 	initial?: false;
-	onFinal?: OnFinalHook<TContext, TSharedData>;
+	onFinal?: OnFinalHook<TContext, TEvent, TSharedData>;
 }
 
-export interface StateHooks<TContext = unknown, TSharedData = unknown> {
-	onEntry?: OnEntryHook<TContext, TSharedData>;
-	onExit?: OnExitHook<TContext, TSharedData>;
+export interface StateHooks<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> {
+	onEntry?: OnEntryHook<TContext, TEvent, TSharedData>;
+	onExit?: OnExitHook<TContext, TEvent, TSharedData>;
 }
 
 export type AutoTransitionState<
@@ -183,15 +206,15 @@ export type State<
 	TContext = unknown,
 	TEvent = unknown,
 	TSharedData = unknown,
-> = StateHooks &
+> = StateHooks<TContext, TEvent, TSharedData> &
 	(
-		| InitialState
-		| InitialNonFinalState
-		| InitialAutoTransitionState
-		| InitialAutoTransitionNonFinalState
-		| TransitoryState
-		| TransitoryNonFinalState
-		| TransitoryAutoTransitionState
-		| TransitoryAutoTransitionNonFinalState
-		| FinalState
+		| InitialState<TContext, TEvent, TSharedData>
+		| InitialNonFinalState<TContext, TEvent, TSharedData>
+		| InitialAutoTransitionState<TContext, TEvent, TSharedData>
+		| InitialAutoTransitionNonFinalState<TContext, TEvent, TSharedData>
+		| TransitoryState<TContext, TEvent, TSharedData>
+		| TransitoryNonFinalState<TContext, TEvent, TSharedData>
+		| TransitoryAutoTransitionState<TContext, TEvent, TSharedData>
+		| TransitoryAutoTransitionNonFinalState<TContext, TEvent, TSharedData>
+		| FinalState<TContext, TSharedData>
 	);
