@@ -8,9 +8,9 @@ export class InvalidTransitionCondition extends Error {}
 export function validateStates<TContext, TEvent, TSharedData>(
 	states: Array<State<TContext, TEvent, TSharedData>>,
 ) {
-	if (!states || !Array.isArray(states) || states?.length < 2)
+	if (!states || !Array.isArray(states) || states?.length < 1)
 		throw new InvalidStatesError(
-			"States must be an array of at least 2 elements",
+			"States must be an array of at least 1 element",
 		);
 
 	const initial = states.filter((s) => (s as InitialState).initial);
