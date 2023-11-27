@@ -1,7 +1,7 @@
 {
   "name": "fiume",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "lightweight javascript/typescript state machine",
   "types": "dist/index.d.ts",
   "main": "./dist/index.js",
@@ -29,7 +29,7 @@
     "pretest": "pnpm build",
     "prebuild": "rimraf dist",
     "build": "tsc -d",
-    "test": "pnpm run \"\/^test:.*/\"",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:javascript": "c8 --100 node --test",
     "test:typescript": "tsd"
   },
