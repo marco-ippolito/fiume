@@ -14,7 +14,7 @@ test("validates states correctly", () => {
 	assert.throws(() => validateStates(undefined), InvalidStatesError);
 	assert.throws(() => validateStates({}), InvalidStatesError);
 	assert.throws(() => validateStates([]), InvalidStatesError);
-	assert.throws(() => validateStates([{}]), InvalidStatesError);
+	assert.throws(() => validateStates([{}]), InvalidInitialStateError);
 	assert.throws(() => validateStates([{}, {}]), InvalidInitialStateError);
 	assert.throws(
 		() => validateStates([{ initial: false }, { initial: false }]),
