@@ -1,7 +1,7 @@
 {
   "name": "fiume",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "lightweight javascript/typescript state machine",
   "types": "dist/index.d.ts",
   "main": "./dist/index.js",
