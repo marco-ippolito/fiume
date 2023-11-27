@@ -154,6 +154,7 @@ export class StateMachine<
 			sub({
 				context: this.context,
 				currentStateId: this.#current.id,
+				sharedData: this.#sharedData,
 			});
 		}
 

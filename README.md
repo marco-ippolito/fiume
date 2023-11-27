@@ -190,9 +190,7 @@ const refromSnapshot = StateMachine.fromSnapshot(snapshot, states);
 
   >`sharedData` will not be snapshotted!
 
-- `subscribe`: Each time that you call this method the machine register the given callback and call it on every state transition between the `onEntry` and `onExit` hooks. The callback returns the `subscriptioId` and receives:
-  - the snapshot of the current `context` (and not the reference to it), so you can mutate it but this updates does not persist outside the scope of the callback.
-  - the `currentStateId`.
+- `subscribe`: You can register a callback that will be invoked on every state transition between the `onEntry` and `onExit` hooks. The callback returns the `subscriptionId` and receives `context` and `currentStateId`.
 
 - `unsubscribe`: Remove the subscription with the given `subscriptionId`.
 

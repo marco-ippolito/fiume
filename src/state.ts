@@ -1,9 +1,13 @@
 export type StateIdentifier = string;
 export type SubscriptionIdentifier = string;
 
-export type SubscriptionCallbackInput<TContext = unknown> = {
+export type SubscriptionCallbackInput<
+	TContext = unknown,
+	TSharedData = unknown,
+> = {
 	context: TContext;
 	currentStateId: StateIdentifier;
+	sharedData: TSharedData;
 };
 
 export type SubscriptionCallback<TContext = unknown> = (
