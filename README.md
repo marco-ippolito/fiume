@@ -175,9 +175,12 @@ new instance of the state machine. It takes the following parameters:
   - `options` (optional): Configuration options for the state machine:
     - `id` (string): The id of the machine,
     - `context`: User-defined object.
+
     > Don't add in `context` objects that cannot be copied,
     like database connections, sockets, emitter, request, etc. Instead use `sharedData`!
+
     - `sharedData`: User-defined object.
+
     > Use `sharedData` to store database connection, sockets, request/response, etc.
 
 Example:
