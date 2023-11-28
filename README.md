@@ -1,7 +1,7 @@
 # Fiume 🏞️
 [![npm version](https://img.shields.io/npm/v/fiume)](https://www.npmjs.com/package/fiume)
 [![build status](https://img.shields.io/github/actions/workflow/status/marco-ippolito/fiume/ci.yml)](https://github.com/marco-ippolito/fiume/actions)
-[![biome](https://img.shields.io/badge/code%20style-biome-brightgreen.svg?style=flat)]([https://biomejs.dev/])
+[![biome](https://img.shields.io/badge/code%20style-biome-brightgreen.svg?style=flat)](https://biomejs.dev/)
 
 A zero-dependencies, simple and flexible state machine library written in Typescript, compatible with all JS runtimes, designed to manage the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
