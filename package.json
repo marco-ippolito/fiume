@@ -41,7 +41,7 @@
     "@types/node": "^20.9.0",
     "c8": "^8.0.1",
     "husky": "^8.0.2",
-    "markdownlint": "^0.32.1",
+    "markdownlint-cli": "^0.37.0",
     "rimraf": "^5.0.5",
     "tsd": "^0.29.0",
     "typescript": "^5.2.2"
