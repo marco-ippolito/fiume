@@ -1,4 +1,4 @@
-# FIUME
+# Fiume 🏞️
 
 A zero-dependencies, simple and flexible state machine library written in Typescript, compatible with all JS runtimes, designed to manage the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
