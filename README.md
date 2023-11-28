@@ -2,6 +2,7 @@
 [![npm version](https://img.shields.io/npm/v/fiume)](https://www.npmjs.com/package/fiume)
 [![build status](https://img.shields.io/github/actions/workflow/status/marco-ippolito/fiume/ci.yml)](https://github.com/marco-ippolito/fiume/actions)
 [![biome](https://img.shields.io/badge/code%20style-biome-brightgreen.svg?style=flat)](https://biomejs.dev/)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/fiume?label=Bundle%20Size&link=https://bundlephobia.com/package/fiume@latest)
 
 **Fiume** is a zero-dependency, simple, and flexible state machine
 library written in TypeScript.
