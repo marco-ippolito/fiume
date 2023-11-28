@@ -21,6 +21,8 @@ jobs:
               args: [--frozen-lockfile, --strict-peer-dependencies]
       - name: Test
         run: pnpm test
+      - name: Lint markdown
+        run: pnpm markdownlint
   automerge:
     needs: test
     runs-on: ubuntu-latest
