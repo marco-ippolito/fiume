@@ -1,4 +1,4 @@
-# FIUME
+# Fiume 🏞️
 
 **Fiume** is a zero-dependency, simple, and flexible state machine
 library written in TypeScript.
