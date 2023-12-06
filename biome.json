@@ -9,13 +9,15 @@
 			"recommended": true
 		},
 		"ignore": [
-			"dist"
+			"dist",
+			"docs"
 		]
 	},
 	"formatter": {
 		"formatWithErrors": true,
 		"ignore": [
-			"dist"
+			"dist",
+			"docs"
 		]
 	}
 }

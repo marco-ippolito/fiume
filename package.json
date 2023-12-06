@@ -24,15 +24,18 @@
   "scripts": {
     "prepublishOnly": "git push origin --follow-tags",
     "prepare": "husky install",
-    "format": "biome format src test --write",
-    "lint": "biome check src test",
+    "format": "biome format src test docs --write",
+    "lint": "biome check src test docs",
     "pretest": "pnpm build",
     "prebuild": "rimraf dist",
     "build": "tsc -d",
     "test": "pnpm run \"/^test:.*/\"",
     "test:javascript": "c8 --100 node --test",
     "test:typescript": "tsd",
-    "markdownlint": "markdownlint '**/*.md' --fix --ignore node_modules"
+    "markdownlint": "markdownlint '**/*.md' --fix --ignore node_modules --ignore docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
@@ -43,7 +46,8 @@
     "markdownlint-cli": "^0.39.0",
     "rimraf": "^5.0.5",
     "tsd": "^0.30.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitepress": "1.0.0-rc.31"
   },
   "author": {
     "name": "Marco Ippolito",
