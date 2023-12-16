@@ -14,9 +14,6 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^18.4.0
     version: 18.4.3
-  '@types/node':
-    specifier: ^20.9.0
-    version: 20.10.4
   c8:
     specifier: ^8.0.1
     version: 8.0.1
@@ -398,12 +395,6 @@ packages:
 
   /@types/node@18.18.13:
     resolution: {integrity: sha512-vXYZGRrSCreZmq1rEjMRLXJhiy8MrIeVasx+PCVlP414N7CJLHnMf+juVvjdprHyH+XRy3zKZLHeNueOpJCn0g==}
-    dependencies:
-      undici-types: 5.26.5
-    dev: true
-
-  /@types/node@20.10.4:
-    resolution: {integrity: sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==}
     dependencies:
       undici-types: 5.26.5
     dev: true

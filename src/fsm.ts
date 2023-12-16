@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import {
 	AutoTransitionState,
 	FinalState,
@@ -54,7 +53,7 @@ export class StateMachine<
 				"StateMachine must be created with `StateMachine.from`",
 			);
 		}
-		this.id = options?.id || randomUUID();
+		this.id = options?.id || crypto.randomUUID();
 		this.context = options?.context || ({} as TContext);
 		this.#sharedData = options?.sharedData || ({} as TSharedData);
 		this.#states = new Map(states.map((s) => [s.id, s]));
@@ -78,7 +77,7 @@ export class StateMachine<
 
 	public createSnapshot(): MachineSnapshot<TContext> {
 		return {
-			snapshotId: randomUUID(),
+			snapshotId: crypto.randomUUID(),
 			machineId: this.id,
 			stateId: this.#current.id,
 			context: structuredClone(this.context),
@@ -214,7 +213,7 @@ export class StateMachine<
 	}
 
 	public subscribe(callback: SubscriptionCallback): SubscriptionIdentifier {
-		const id = randomUUID();
+		const id = crypto.randomUUID();
 		this.#subscriptions.set(id, callback);
 		return id;
 	}

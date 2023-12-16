@@ -38,7 +38,6 @@
     "@biomejs/biome": "1.4.1",
     "@commitlint/cli": "^18.4.0",
     "@commitlint/config-conventional": "^18.4.0",
-    "@types/node": "^20.9.0",
     "c8": "^8.0.1",
     "husky": "^8.0.2",
     "markdownlint-cli": "^0.38.0",
@@ -51,9 +50,6 @@
     "email": "marcoippolito54@gmail.com",
     "url": "https://github.com/marco-ippolito",
     "author": true
-  },
-  "engines": {
-    "node": ">= 20.0.0"
   },
   "license": "Apache-2.0",
   "exports": {
