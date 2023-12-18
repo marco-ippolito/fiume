@@ -7,6 +7,8 @@
 
 **Fiume** is a zero-dependency, simple, and flexible state machine
 library written in TypeScript.
+It supports both _Deterministic_ and _Non-Deterministic_
+state machines.
 It is compatible with all JavaScript runtimes and is designed to manage
 the flow of a system through various states.
 This library provides a lightweight and intuitive way to define states,
