@@ -37,7 +37,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.5.3",
     "@commitlint/cli": "^18.4.0",
-    "@commitlint/config-conventional": "^18.4.0",
+    "@commitlint/config-conventional": "^19.0.3",
     "c8": "^9.0.0",
     "husky": "^9.0.6",
     "markdownlint-cli": "^0.39.0",
