@@ -24,15 +24,18 @@
   "scripts": {
     "prepublishOnly": "git push origin --follow-tags",
     "prepare": "husky install",
-    "format": "biome format src test --write",
-    "lint": "biome check src test",
+    "format": "biome format src test docs --write",
+    "lint": "biome check src test docs",
     "pretest": "pnpm build",
     "prebuild": "rimraf dist",
     "build": "tsc -d",
     "test": "pnpm run \"/^test:.*/\"",
     "test:javascript": "c8 --100 node --test",
     "test:typescript": "tsd",
-    "markdownlint": "markdownlint '**/*.md' --fix --ignore node_modules"
+    "markdownlint": "markdownlint '**/*.md' --fix --ignore node_modules --ignore docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.1",
@@ -41,9 +44,14 @@
     "c8": "^9.0.0",
     "husky": "^9.0.6",
     "markdownlint-cli": "^0.39.0",
+    "@orama/orama": "2.0.0-beta.7",
+    "@orama/plugin-vitepress": "2.0.11",
+    "@orama/searchbox": "1.0.0-beta.13",
+    "@types/node": "^20.9.0",
     "rimraf": "^5.0.5",
     "tsd": "^0.30.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitepress": "1.0.0-rc.45"
   },
   "author": {
     "name": "Marco Ippolito",

@@ -72,6 +72,9 @@ export interface InitialState<
 	initial: true;
 	transitionTo: TransitionToHook<TContext, TEvent, TSharedData>;
 	autoTransition?: false;
+	/**
+	 * If the transition guard returns false, the transition will not be executed.
+	 */
 	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
 }
 
@@ -86,6 +89,9 @@ interface InitialNonFinalState<
 	final: false;
 
 	autoTransition?: false;
+	/**
+	 * If the transition guard returns false, the transition will not be executed.
+	 */
 	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
 }
 
@@ -121,6 +127,9 @@ export interface TransitoryState<
 	transitionTo: TransitionToHook<TContext, TEvent>;
 	initial?: boolean;
 	autoTransition?: false;
+	/**
+	 * If the transition guard returns false, the transition will not be executed.
+	 */
 	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
 }
 
@@ -134,6 +143,9 @@ interface TransitoryNonFinalState<
 	final: false;
 	initial?: boolean;
 	autoTransition?: false;
+	/**
+	 * If the transition guard returns false, the transition will not be executed.
+	 */
 	transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
 }
 
@@ -198,6 +210,9 @@ export type GuardState<
 > = Extract<
 	State<TContext, TEvent, TSharedData>,
 	{
+		/**
+		 * If the transition guard returns false, the transition will not be executed.
+		 */
 		transitionGuard?: TransitionEvent<TContext, TEvent, TSharedData>;
 	}
 >;
