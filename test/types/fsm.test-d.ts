@@ -1,8 +1,8 @@
 import { expectAssignable, expectNotAssignable, expectType } from "tsd";
 import {
-	State,
+	type State,
 	StateMachine,
-	StateMachineOptions,
+	type StateMachineOptions,
 } from "./../../dist/index.js";
 
 const states: Array<State> = [
