@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/marco-ippolito/fiume/issues"
   },
-  "homepage": "https://marcoippolito.dev",
+  "homepage": "https://fiume.marcoippolito.dev",
   "keywords": [
     "fsm",
     "finite state machine",
@@ -56,7 +56,7 @@
   "author": {
     "name": "Marco Ippolito",
     "email": "marcoippolito54@gmail.com",
-    "url": "https://github.com/marco-ippolito",
+    "url": "https://marcoippolito.dev",
     "author": true
   },
   "license": "Apache-2.0",

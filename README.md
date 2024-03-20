@@ -17,6 +17,10 @@ transitions, and hooks for state entry, exit, and transition events.
 Unlike other libraries, **Fiume** does not require hardcoding state transitions.
 Instead, you can write the transition logic inside the `transitionTo` function.
 
+## Docs
+
+You can find documentation and examples at [fiume.dev](https://fiume.marcoippolito.dev).
+
 ## Installation
 
 ```bash

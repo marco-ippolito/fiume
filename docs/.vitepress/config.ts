@@ -27,7 +27,7 @@ export default defineConfig({
       {
         text: 'Documentation',
         items: [
-          { text: 'Documnetation', link: '/documentation' }
+          { text: 'Documentation', link: '/documentation' }
         ]
       }
     ],
