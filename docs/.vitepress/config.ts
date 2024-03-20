@@ -27,12 +27,15 @@ export default defineConfig({
       {
         text: 'Documentation',
         items: [
-          { text: 'Documentation', link: '/documentation' }
+          { text: 'Introduction', link: '/documentation' },
+          { text: 'Api', link: '/api' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/marco-ippolito/fiume' }
+      { icon: 'github', link: 'https://github.com/marco-ippolito/fiume' },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/fiume'
+    }
     ]
   }})

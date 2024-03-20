@@ -120,7 +120,7 @@ type MyEvent = { name: string, value: number }
 
 const machine = StateMachine.from<MyContext, MyEvent>(
   states,
-  { context: { foo: 'foo', bar: 'bar' }
+  { context: { foo: 'foo', bar: 'bar' }}
 );
 
 // Start the state machine
