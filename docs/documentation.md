@@ -1,14 +1,11 @@
 Fiume is a zero-dependency, simple, and flexible state machine library written in TypeScript. It supports Deterministic and partially Non-Deterministic state machines. It is compatible with all JavaScript runtimes and is designed to manage the flow of a system through various states. This library provides a lightweight and intuitive way to define states, transitions, and hooks for state entry, exit, and transition events.
 
-Unlike other libraries, Fiume does not require hardcoding state transitions. Instead, you can write the transition logic inside the transitionTo function.
+Unlike other libraries, Fiume does not require hardcoding state transitions. Instead, you can write the transition logic inside the `transitionTo` function.
 ## Installation
 
 ```bash
 npm install fiume
 ```
-
-install
-
 ## Usage
 
 ```typescript
@@ -151,7 +148,3 @@ console.log(machine.currentStateId); // THREE
 
 ```
 
-
-## More
-
-Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).

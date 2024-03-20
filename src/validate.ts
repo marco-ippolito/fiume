@@ -1,4 +1,4 @@
-import { InitialState, State } from "./state.js";
+import type { InitialState, State } from "./state.js";
 
 export class InvalidStatesError extends Error {}
 export class InvalidInitialStateError extends Error {}
