@@ -25,7 +25,7 @@ npm install fiume
 
 ## Usage
 
-```typescript
+```ts
 import { StateMachine, State } from "fiume";
 
 // Define a simple ON-OFF machine
@@ -67,7 +67,7 @@ console.log(machine.currentStateId); // OFF
 With `autoTransition` set to `true`, the machine does not wait
 for the `send` method to trigger the transition to the next state:
 
-```typescript
+```ts
 import { StateMachine, State } from "fiume";
 
 const states: Array<State> = [
@@ -91,7 +91,7 @@ console.log(machine.currentStateId); // ON
 
 You can define custom hooks `onEntry`, `onExit` and `onFinal`:
 
-```typescript
+```ts
 
 const states: Array<State> = [
   {
@@ -131,7 +131,7 @@ machine.currentStateId; // OFF
 
 You can also `subscribe` to state transitions:
 
-```typescript
+```ts
 
 const states: Array<State> = [
   {
@@ -187,7 +187,7 @@ new instance of the state machine. It takes the following parameters:
 
 Example:
 
-```typescript
+```ts
 import { StateMachine } from "fiume";
 const machine = StateMachine.from(states, options);
 
@@ -201,7 +201,7 @@ of the state machine from an existing snapshot. It takes the following parameter
 
 Example:
 
-```typescript
+```ts
 import { StateMachine } from "fiume";
 const machine = StateMachine.from(states, options);
 await machine.start();
