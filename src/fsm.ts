@@ -1,4 +1,4 @@
-import {
+import type {
 	AutoTransitionState,
 	FinalState,
 	GuardState,
@@ -174,7 +174,7 @@ export class StateMachine<
 		event?: TEvent,
 	) {
 		this.#current = state;
-		let destination;
+		let destination: State<TContext, TEvent, TSharedData> | undefined;
 
 		const g = state as TransitoryState;
 		if (g.transitionTo) {
