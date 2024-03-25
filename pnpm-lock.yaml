@@ -10,7 +10,7 @@ devDependencies:
     version: 1.6.2
   '@commitlint/cli':
     specifier: ^19.0.3
-    version: 19.0.3(@types/node@20.11.30)(typescript@5.4.3)
+    version: 19.2.1(@types/node@20.11.30)(typescript@5.4.3)
   '@commitlint/config-conventional':
     specifier: ^19.0.3
     version: 19.0.3
@@ -329,8 +329,8 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli@19.0.3(@types/node@20.11.30)(typescript@5.4.3):
-    resolution: {integrity: sha512-mGhh/aYPib4Vy4h+AGRloMY+CqkmtdeKPV9poMcZeImF5e3knQ5VYaSeAM0mEzps1dbKsHvABwaDpafLUuM96g==}
+  /@commitlint/cli@19.2.1(@types/node@20.11.30)(typescript@5.4.3):
+    resolution: {integrity: sha512-cbkYUJsLqRomccNxvoJTyv5yn0bSy05BBizVyIcLACkRbVUqYorC351Diw/XFSWC/GtpwiwT2eOvQgFZa374bg==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
