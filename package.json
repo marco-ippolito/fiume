@@ -51,7 +51,7 @@
     "rimraf": "^5.0.5",
     "tsd": "^0.30.0",
     "typescript": "^5.2.2",
-    "vitepress": "1.0.1"
+    "vitepress": "1.0.2"
   },
   "author": {
     "name": "Marco Ippolito",
