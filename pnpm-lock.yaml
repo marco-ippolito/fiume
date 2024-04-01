@@ -10,7 +10,7 @@ devDependencies:
     version: 1.6.3
   '@commitlint/cli':
     specifier: ^19.0.3
-    version: 19.2.1(@types/node@20.11.30)(typescript@5.4.3)
+    version: 19.2.1(@types/node@20.12.2)(typescript@5.4.3)
   '@commitlint/config-conventional':
     specifier: ^19.0.3
     version: 19.0.3
@@ -19,13 +19,13 @@ devDependencies:
     version: 2.0.11
   '@orama/plugin-vitepress':
     specifier: 2.0.12
-    version: 2.0.12(@orama/highlight@0.1.3)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.11.30)(postcss@8.4.37)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.21)
+    version: 2.0.12(@orama/highlight@0.1.3)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.2)(postcss@8.4.37)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.21)
   '@orama/searchbox':
     specifier: 1.0.0-rc1
     version: 1.0.0-rc1(@orama/highlight@0.1.3)(@orama/orama@2.0.11)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/react@18.2.70)(preact-custom-element@4.3.0)(preact@10.20.0)(react@18.2.0)(typescript@5.4.3)
   '@types/node':
     specifier: ^20.9.0
-    version: 20.11.30
+    version: 20.12.2
   c8:
     specifier: ^9.0.0
     version: 9.1.0
@@ -46,7 +46,7 @@ devDependencies:
     version: 5.4.3
   vitepress:
     specifier: 1.0.2
-    version: 1.0.2(@algolia/client-search@4.22.1)(@types/node@20.11.30)(@types/react@18.2.70)(postcss@8.4.37)(react@18.2.0)(search-insights@2.13.0)(typescript@5.4.3)
+    version: 1.0.2(@algolia/client-search@4.22.1)(@types/node@20.12.2)(@types/react@18.2.70)(postcss@8.4.37)(react@18.2.0)(search-insights@2.13.0)(typescript@5.4.3)
 
 packages:
 
@@ -329,14 +329,14 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli@19.2.1(@types/node@20.11.30)(typescript@5.4.3):
+  /@commitlint/cli@19.2.1(@types/node@20.12.2)(typescript@5.4.3):
     resolution: {integrity: sha512-cbkYUJsLqRomccNxvoJTyv5yn0bSy05BBizVyIcLACkRbVUqYorC351Diw/XFSWC/GtpwiwT2eOvQgFZa374bg==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 19.0.3
       '@commitlint/lint': 19.1.0
-      '@commitlint/load': 19.2.0(@types/node@20.11.30)(typescript@5.4.3)
+      '@commitlint/load': 19.2.0(@types/node@20.12.2)(typescript@5.4.3)
       '@commitlint/read': 19.2.1
       '@commitlint/types': 19.0.3
       execa: 8.0.1
@@ -405,7 +405,7 @@ packages:
       '@commitlint/types': 19.0.3
     dev: true
 
-  /@commitlint/load@19.2.0(@types/node@20.11.30)(typescript@5.4.3):
+  /@commitlint/load@19.2.0(@types/node@20.12.2)(typescript@5.4.3):
     resolution: {integrity: sha512-XvxxLJTKqZojCxaBQ7u92qQLFMMZc4+p9qrIq/9kJDy8DOrEa7P1yx7Tjdc2u2JxIalqT4KOGraVgCE7eCYJyQ==}
     engines: {node: '>=v18'}
     dependencies:
@@ -415,7 +415,7 @@ packages:
       '@commitlint/types': 19.0.3
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.4.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.11.30)(cosmiconfig@9.0.0)(typescript@5.4.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.2)(cosmiconfig@9.0.0)(typescript@5.4.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -1051,7 +1051,7 @@ packages:
       - typescript
     dev: true
 
-  /@orama/plugin-vitepress@2.0.12(@orama/highlight@0.1.3)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.11.30)(postcss@8.4.37)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.21):
+  /@orama/plugin-vitepress@2.0.12(@orama/highlight@0.1.3)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.2)(postcss@8.4.37)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.21):
     resolution: {integrity: sha512-cezA43hqI62Gvwjx0UVYtMLilCgOZ/Dy3ZjL3f0L6dOBuTOp95z3t5GxR/sIZmgKft4QeWNpaFgIE71hRrwyHg==}
     peerDependencies:
       vue: ^3.0.0
@@ -1063,7 +1063,7 @@ packages:
       jsdom: 23.2.0
       markdown-it: 13.0.2
       slugify: 1.6.6
-      vite: 4.5.2(@types/node@20.11.30)
+      vite: 4.5.2(@types/node@20.12.2)
       vue: 3.4.21(typescript@5.4.3)
     transitivePeerDependencies:
       - '@orama/highlight'
@@ -1308,7 +1308,7 @@ packages:
   /@types/conventional-commits-parser@5.0.0:
     resolution: {integrity: sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==}
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
     dev: true
 
   /@types/debug@4.1.12:
@@ -1377,8 +1377,8 @@ packages:
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
     dev: true
 
-  /@types/node@20.11.30:
-    resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
+  /@types/node@20.12.2:
+    resolution: {integrity: sha512-zQ0NYO87hyN6Xrclcqp7f8ZbXNbRfoGWNcMvHTPQp9UUrwI0mI7XBz+cu7/W6/VClYo2g63B0cjull/srU7LgQ==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -1426,7 +1426,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.5.2(@types/node@20.11.30)
+      vite: 4.5.2(@types/node@20.12.2)
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -1437,7 +1437,7 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.2.2(@types/node@20.11.30)
+      vite: 5.2.2(@types/node@20.12.2)
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -1967,7 +1967,7 @@ packages:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
     dev: true
 
-  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.11.30)(cosmiconfig@9.0.0)(typescript@5.4.3):
+  /cosmiconfig-typescript-loader@5.0.0(@types/node@20.12.2)(cosmiconfig@9.0.0)(typescript@5.4.3):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
     peerDependencies:
@@ -1975,7 +1975,7 @@ packages:
       cosmiconfig: '>=8.2'
       typescript: '>=4'
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
       cosmiconfig: 9.0.0(typescript@5.4.3)
       jiti: 1.21.0
       typescript: 5.4.3
@@ -4372,7 +4372,7 @@ packages:
       vfile-message: 4.0.2
     dev: true
 
-  /vite@4.5.2(@types/node@20.11.30):
+  /vite@4.5.2(@types/node@20.12.2):
     resolution: {integrity: sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -4400,7 +4400,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
       esbuild: 0.18.20
       postcss: 8.4.37
       rollup: 3.29.4
@@ -4408,7 +4408,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vite@5.2.2(@types/node@20.11.30):
+  /vite@5.2.2(@types/node@20.12.2):
     resolution: {integrity: sha512-FWZbz0oSdLq5snUI0b6sULbz58iXFXdvkZfZWR/F0ZJuKTSPO7v72QPXt6KqYeMFb0yytNp6kZosxJ96Nr/wDQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -4436,7 +4436,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.11.30
+      '@types/node': 20.12.2
       esbuild: 0.20.2
       postcss: 8.4.37
       rollup: 4.13.0
@@ -4444,7 +4444,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitepress@1.0.2(@algolia/client-search@4.22.1)(@types/node@20.11.30)(@types/react@18.2.70)(postcss@8.4.37)(react@18.2.0)(search-insights@2.13.0)(typescript@5.4.3):
+  /vitepress@1.0.2(@algolia/client-search@4.22.1)(@types/node@20.12.2)(@types/react@18.2.70)(postcss@8.4.37)(react@18.2.0)(search-insights@2.13.0)(typescript@5.4.3):
     resolution: {integrity: sha512-bEj9yTEdWyewJFOhEREZF+mXuAgOq27etuJZT6DZSp+J3XpQstXMJc5piSVwhZBtuj8OfA0iXy+jdP1c71KMYQ==}
     hasBin: true
     peerDependencies:
@@ -4470,7 +4470,7 @@ packages:
       minisearch: 6.3.0
       postcss: 8.4.37
       shiki: 1.2.0
-      vite: 5.2.2(@types/node@20.11.30)
+      vite: 5.2.2(@types/node@20.12.2)
       vue: 3.4.21(typescript@5.4.3)
     transitivePeerDependencies:
       - '@algolia/client-search'
