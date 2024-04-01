@@ -49,7 +49,7 @@
     "@orama/searchbox": "1.0.0-rc1",
     "@types/node": "^20.9.0",
     "rimraf": "^5.0.5",
-    "tsd": "^0.30.0",
+    "tsd": "^0.31.0",
     "typescript": "^5.2.2",
     "vitepress": "1.0.2"
   },
