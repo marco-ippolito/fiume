@@ -15,14 +15,14 @@ devDependencies:
     specifier: ^19.0.3
     version: 19.2.2
   '@orama/orama':
-    specifier: 2.0.13
-    version: 2.0.13
+    specifier: 2.0.15
+    version: 2.0.15
   '@orama/plugin-vitepress':
     specifier: 2.0.13
     version: 2.0.13(@orama/highlight@0.1.5)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.5)(postcss@8.4.37)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.21)
   '@orama/searchbox':
     specifier: 1.0.0-rc14
-    version: 1.0.0-rc14(@orama/highlight@0.1.5)(@orama/orama@2.0.13)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.4)
+    version: 1.0.0-rc14(@orama/highlight@0.1.5)(@orama/orama@2.0.15)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.4)
   '@types/node':
     specifier: ^20.9.0
     version: 20.12.5
@@ -1037,6 +1037,11 @@ packages:
     engines: {node: '>= 16.0.0'}
     dev: true
 
+  /@orama/orama@2.0.15:
+    resolution: {integrity: sha512-9C11pL4kE2wdfsngnOwaZ4Hh5x76EI8KUQEf0DoxU4E/ytE8u8utFeisJIbaSMyjVofRvmWUyXeDzxFNnkhvvw==}
+    engines: {node: '>= 16.0.0'}
+    dev: true
+
   /@orama/plugin-analytics@2.0.12:
     resolution: {integrity: sha512-zI1FWdMCgvk7XHdJzDqyNMDfMbNt2fe7WKOFWBMbWvRx+EFUiLGyRZtMlvXVSWeGqMetYjM+fPqamSn4VDi0Ug==}
     dependencies:
@@ -1119,7 +1124,7 @@ packages:
       - postcss
     dev: true
 
-  /@orama/searchbox@1.0.0-rc14(@orama/highlight@0.1.5)(@orama/orama@2.0.13)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.4):
+  /@orama/searchbox@1.0.0-rc14(@orama/highlight@0.1.5)(@orama/orama@2.0.15)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.4):
     resolution: {integrity: sha512-0P3CSWZEyo+Nw9okA/kWp29leln3sY3noTgoMqysfk9wzLoMRdVS27OBxJYdbk6ZoEFJY0oMSSColEmG84hG4g==}
     peerDependencies:
       '@orama/highlight': ^0.1.5
@@ -1133,7 +1138,7 @@ packages:
       react-markdown: ^9.0.1
     dependencies:
       '@orama/highlight': 0.1.5
-      '@orama/orama': 2.0.13
+      '@orama/orama': 2.0.15
       '@orama/plugin-analytics': 2.0.12
       '@orama/plugin-secure-proxy': 2.0.12(typescript@5.4.4)
       '@phosphor-icons/react': 2.1.4(react-dom@18.2.0)(react@18.2.0)
@@ -1156,7 +1161,7 @@ packages:
   /@oramacloud/client@1.0.9(typescript@5.4.4):
     resolution: {integrity: sha512-qBYzppjtFfINYHoBRito8hLKJO5KbYswzZYvldBrLZoxSLrPluqt+vW4Ex8E0VhyvqPaezu8koYc79aqBLLEHA==}
     dependencies:
-      '@orama/orama': 2.0.12
+      '@orama/orama': 2.0.15
       '@paralleldrive/cuid2': 2.2.2
       lodash: 4.17.21
       lodash.debounce: 4.0.8
