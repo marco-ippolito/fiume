@@ -1,8 +1,9 @@
-## API
+# API
 
-### StateMachine
+## StateMachine
+from [example](/examples)
 
-#### Constructor
+## Constructor
 
 - `StateMachine.from`: A static function that returns a
 new instance of the state machine. It takes the following parameters:
@@ -43,7 +44,7 @@ const refromSnapshot = StateMachine.fromSnapshot(snapshot, states);
 
 ```
 
-#### Public Methods
+## Public Methods
 
 - `start` (async): Initiates the state machine and
   triggers the execution of the initial state.
@@ -69,7 +70,7 @@ The callback returns the `subscriptionId` and receives `context` and `currentSta
 
 - `unsubscribe`: Remove the subscription with the given `subscriptionId`.
 
-#### Public properties
+## Public properties
 
 - `id` string: The id of the machine,
 if not supplied in the constructor, will be a randomUUID.
@@ -86,7 +87,7 @@ if not supplied in the constructor, will be a randomUUID.
 like database connections, `EventEmitter`, `Request`,
 `Socket`, use `sharedData` instead!
 
-### State
+## State
 
 Represents a state in the state machine.
 
@@ -104,81 +105,3 @@ there can only be one initial state.
 - `final` (optional): Boolean indicating whether the state is a final state.
 - `transitionGuard` (optional): Function or AsyncFunction takes as input
 a user event and defines whether or not transition to the next state
-
-## Syntax Highlighting
-
-VitePress provides Syntax Highlighting powered by [Shikiji](https://github.com/antfu/shikiji), with additional features like line-highlighting:
-
-**Input**
-
-````md
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-````
-
-**Output**
-
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-
-## Custom Containers
-
-**Input**
-
-```md
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-```
-
-**Output**
-
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
