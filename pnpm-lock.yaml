@@ -18,8 +18,8 @@ devDependencies:
     specifier: 2.0.17
     version: 2.0.17
   '@orama/plugin-vitepress':
-    specifier: 2.0.17
-    version: 2.0.17(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.8)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.26)
+    specifier: 2.0.18
+    version: 2.0.18(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.8)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.26)
   '@orama/searchbox':
     specifier: 1.0.0-rc27
     version: 1.0.0-rc27(@orama/highlight@0.1.6)(@orama/orama@2.0.17)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5)
@@ -1037,17 +1037,22 @@ packages:
     engines: {node: '>= 16.0.0'}
     dev: true
 
+  /@orama/orama@2.0.18:
+    resolution: {integrity: sha512-KSty7+r8JxXv3iCuhLqQfwMvUiSWnXPaTPQPPoVPpwdvynEKcp1JNWKzTMB2tISDggf8jKhQXHEP3QXlGkvvtA==}
+    engines: {node: '>= 16.0.0'}
+    dev: true
+
   /@orama/plugin-analytics@2.0.15:
     resolution: {integrity: sha512-R8ixYIi6vCHwKbu/pW1gy2td3Wg8pHQkrkjiHOiQHta+IwNF8RPTjSKBJPpFlcPtZU7oNEJDrvVp7zpX88Q1bg==}
     dependencies:
       '@orama/orama': 2.0.15
     dev: true
 
-  /@orama/plugin-data-persistence@2.0.17:
-    resolution: {integrity: sha512-gV0XqFLU9Df3OjXxk3dXR3+qFZ7j8wksXjfPTcREwdi2Nde/WkiCPMoXix9S1VSzxLtbEYVNAbpSG22eWWdl/Q==}
+  /@orama/plugin-data-persistence@2.0.18:
+    resolution: {integrity: sha512-pT7I6/FoYx298ghg6Sp8rK1FWf+oe0wcZJ5kPVewtzqkKJ0FwBFZy42Oxv5L/0Ul3foOqe3b5cJXR+9TKebnhg==}
     dependencies:
       '@msgpack/msgpack': 2.8.0
-      '@orama/orama': 2.0.17
+      '@orama/orama': 2.0.18
       dpack: 0.6.22
     dev: true
 
@@ -1059,14 +1064,14 @@ packages:
       - typescript
     dev: true
 
-  /@orama/plugin-vitepress@2.0.17(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.8)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.26):
-    resolution: {integrity: sha512-bi5KdxfzwQEvZHr5bSHS4r/y+qQU7B7eZlllfGRNFV+LHtJDCkxXXRO04fu0W+EWlGHjY8nUgqlE8tWD0VweJw==}
+  /@orama/plugin-vitepress@2.0.18(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.8)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.26):
+    resolution: {integrity: sha512-yZPbQf3N+LMeF+SGA6p6coVeGxKFinVPeuyUqb8cQdbPkX1ek0Ws5qzSt9b/d3ZylmwF/NoNOj9NySNrx8RDZA==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
-      '@orama/orama': 2.0.17
-      '@orama/plugin-data-persistence': 2.0.17
-      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@2.0.17)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)
+      '@orama/orama': 2.0.18
+      '@orama/plugin-data-persistence': 2.0.18
+      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)
       '@vitejs/plugin-vue': 4.6.2(vite@4.5.3)(vue@3.4.26)
       jsdom: 23.2.0
       markdown-it: 13.0.2
@@ -1094,7 +1099,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@2.0.17)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0):
+  /@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0):
     resolution: {integrity: sha512-u1KntN2l1Dg52/UVwh9wZdu8eG/kmk42FjgWZ7ExM+CMZCr6aatAHVPuZnecDZGHV4/t4XV4W9tGgvZ1MxnsJg==}
     peerDependencies:
       '@orama/highlight': ^0.1.2
@@ -1106,7 +1111,7 @@ packages:
       preact-custom-element: ^4.3.0
     dependencies:
       '@orama/highlight': 0.1.6
-      '@orama/orama': 2.0.17
+      '@orama/orama': 2.0.18
       '@orama/plugin-analytics': 2.0.15
       '@preact/signals': 1.2.3(preact@10.20.0)
       '@preact/signals-core': 1.6.0
