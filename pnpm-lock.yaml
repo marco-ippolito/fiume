@@ -21,8 +21,8 @@ devDependencies:
     specifier: 2.0.18
     version: 2.0.18(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.11)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.26)
   '@orama/searchbox':
-    specifier: 1.0.0-rc27
-    version: 1.0.0-rc27(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5)
+    specifier: 1.0.0-rc31
+    version: 1.0.0-rc31(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5)
   '@types/node':
     specifier: ^20.9.0
     version: 20.12.11
@@ -1032,11 +1032,6 @@ packages:
     engines: {node: '>= 16.0.0'}
     dev: true
 
-  /@orama/orama@2.0.17:
-    resolution: {integrity: sha512-RU0oGnV/ieaiLnMhCsVZcJTOT0bo5ne0KndEK7xMHsvA2RDAt8za2XFW57JaMWgBXLDKNX+Q5CHKje72PS6uzw==}
-    engines: {node: '>= 16.0.0'}
-    dev: true
-
   /@orama/orama@2.0.18:
     resolution: {integrity: sha512-KSty7+r8JxXv3iCuhLqQfwMvUiSWnXPaTPQPPoVPpwdvynEKcp1JNWKzTMB2tISDggf8jKhQXHEP3QXlGkvvtA==}
     engines: {node: '>= 16.0.0'}
@@ -1048,6 +1043,12 @@ packages:
       '@orama/orama': 2.0.15
     dev: true
 
+  /@orama/plugin-analytics@2.0.18:
+    resolution: {integrity: sha512-E6C1kLjf7Db3QTeww3L5Iooa2lFL/jp+uNgaGSNBfHR+kUi/pnifmtFAItIQ12ZIa6bv07UvbhWhDMELQcz//A==}
+    dependencies:
+      '@orama/orama': 2.0.18
+    dev: true
+
   /@orama/plugin-data-persistence@2.0.18:
     resolution: {integrity: sha512-pT7I6/FoYx298ghg6Sp8rK1FWf+oe0wcZJ5kPVewtzqkKJ0FwBFZy42Oxv5L/0Ul3foOqe3b5cJXR+9TKebnhg==}
     dependencies:
@@ -1056,8 +1057,8 @@ packages:
       dpack: 0.6.22
     dev: true
 
-  /@orama/plugin-secure-proxy@2.0.15(typescript@5.4.5):
-    resolution: {integrity: sha512-EwPPqMVFr7p2dv1UIINjaQEqQ7BIf71wWG3EjD6Gme7CX0NjV0gs3p4jkOPrnvS5zJ5CPiFbn4bCvYLWe6uhWg==}
+  /@orama/plugin-secure-proxy@2.0.18(typescript@5.4.5):
+    resolution: {integrity: sha512-jGmRuybg03SESMExhdbhuRMUJUrZGpcssOGR0/LpsOqjhmLvB3VheODztodjJzsPSj98LO36pmGB9NtkSelsmg==}
     dependencies:
       '@oramacloud/client': 1.0.9(typescript@5.4.5)
     transitivePeerDependencies:
@@ -1124,8 +1125,8 @@ packages:
       - postcss
     dev: true
 
-  /@orama/searchbox@1.0.0-rc27(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5):
-    resolution: {integrity: sha512-qMHVbQKVLG6pDT8vDu6ctaoAG7NkjzdvpHDUFD+nuxoMXOGPd6A+8em1tkU4YCgZ/l+zZafaQNfsGl+ONO9eHg==}
+  /@orama/searchbox@1.0.0-rc31(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5):
+    resolution: {integrity: sha512-oMdgvff3PZUK5XrOFpt/YeRGVQdgf4xv8JbDjWDoaxa2TDUt+gn7CuGfTEKLtDp/iiw33QVx2nP1K9xxlZz9XQ==}
     peerDependencies:
       '@orama/highlight': ^0.1.6
       '@orama/orama': 2.0.14
@@ -1139,29 +1140,28 @@ packages:
     dependencies:
       '@orama/highlight': 0.1.6
       '@orama/orama': 2.0.18
-      '@orama/plugin-analytics': 2.0.15
-      '@orama/plugin-secure-proxy': 2.0.15(typescript@5.4.5)
-      '@phosphor-icons/react': 2.1.4(react-dom@18.2.0)(react@18.2.0)
+      '@orama/plugin-analytics': 2.0.18
+      '@orama/plugin-secure-proxy': 2.0.18(typescript@5.4.5)
+      '@phosphor-icons/react': 2.1.5(react-dom@18.2.0)(react@18.2.0)
       '@preact/signals-core': 1.6.0
       '@preact/signals-react': 2.0.1(react@18.2.0)
       '@r2wc/react-to-web-component': 2.0.3(react-dom@18.2.0)(react@18.2.0)
       classnames: 2.5.1
-      dedent: 1.5.1
       lodash.debounce: 4.0.8
+      lodash.omit: 4.5.0
       object-to-css-variables: 0.2.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-markdown: 9.0.1(@types/react@18.2.70)(react@18.2.0)
       react-syntax-highlighter: 15.5.0(react@18.2.0)
     transitivePeerDependencies:
-      - babel-plugin-macros
       - typescript
     dev: true
 
   /@oramacloud/client@1.0.9(typescript@5.4.5):
     resolution: {integrity: sha512-qBYzppjtFfINYHoBRito8hLKJO5KbYswzZYvldBrLZoxSLrPluqt+vW4Ex8E0VhyvqPaezu8koYc79aqBLLEHA==}
     dependencies:
-      '@orama/orama': 2.0.17
+      '@orama/orama': 2.0.18
       '@paralleldrive/cuid2': 2.2.2
       lodash: 4.17.21
       lodash.debounce: 4.0.8
@@ -1178,8 +1178,8 @@ packages:
       '@noble/hashes': 1.4.0
     dev: true
 
-  /@phosphor-icons/react@2.1.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-EeNwgcg1aeK5vG/JYVTullnZzk5zjftOrjLb1iYetyhn5ImFFREc+xG0FAB/dAY277DGDSF8pNdNbqG1SUKIxQ==}
+  /@phosphor-icons/react@2.1.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-B7vRm/w+P/+eavWZP5CB5Ul0ffK4Y7fpd/auWKuGvm+8pVgAJzbOK8O0s+DqzR+TwWkh5pHtJTuoAtaSvgCPzg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>= 16.8'
@@ -2151,15 +2151,6 @@ packages:
       character-entities: 2.0.2
     dev: true
 
-  /dedent@1.5.1:
-    resolution: {integrity: sha512-+LxW+KLWxu3HW3M2w2ympwtqPrqYRzU8fqi6Fhd18fBALe15blJPI/I4+UHveMVG6lJqB4JNd4UG0S5cnVHwIg==}
-    peerDependencies:
-      babel-plugin-macros: ^3.1.0
-    peerDependenciesMeta:
-      babel-plugin-macros:
-        optional: true
-    dev: true
-
   /deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
@@ -3026,6 +3017,10 @@ packages:
 
   /lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+    dev: true
+
+  /lodash.omit@4.5.0:
+    resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
     dev: true
 
   /lodash.snakecase@4.1.1:
