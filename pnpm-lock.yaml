@@ -21,8 +21,8 @@ devDependencies:
     specifier: 2.0.19
     version: 2.0.19(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.12)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.27)
   '@orama/searchbox':
-    specifier: 1.0.0-rc33
-    version: 1.0.0-rc33(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5)
+    specifier: 1.0.0-rc37
+    version: 1.0.0-rc37(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5)
   '@types/node':
     specifier: ^20.9.0
     version: 20.12.12
@@ -46,7 +46,7 @@ devDependencies:
     version: 5.4.5
   vitepress:
     specifier: 1.2.2
-    version: 1.2.2(@algolia/client-search@4.22.1)(@types/node@20.12.12)(@types/react@18.2.70)(postcss@8.4.38)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0)(typescript@5.4.5)
+    version: 1.2.2(@algolia/client-search@4.22.1)(@types/node@20.12.12)(@types/react@18.2.70)(postcss@8.4.38)(react-dom@18.3.1)(react@18.3.1)(search-insights@2.13.0)(typescript@5.4.5)
 
 packages:
 
@@ -503,10 +503,10 @@ packages:
     resolution: {integrity: sha512-+sbxb71sWre+PwDK7X2T8+bhS6clcVMLwBPznX45Qu6opJcgRjAp7gYSDzVFp187J+feSj5dNBN1mJoi6ckkUQ==}
     dev: true
 
-  /@docsearch/js@3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0):
+  /@docsearch/js@3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.3.1)(react@18.3.1)(search-insights@2.13.0):
     resolution: {integrity: sha512-QujhqINEElrkIfKwyyyTfbsfMAYCkylInLYMRqHy7PHc8xTBQCow73tlo/Kc7oIwBrCLf0P3YhjlOeV4v8hevQ==}
     dependencies:
-      '@docsearch/react': 3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0)
+      '@docsearch/react': 3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.3.1)(react@18.3.1)(search-insights@2.13.0)
       preact: 10.20.0
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -516,7 +516,7 @@ packages:
       - search-insights
     dev: true
 
-  /@docsearch/react@3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0):
+  /@docsearch/react@3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.3.1)(react@18.3.1)(search-insights@2.13.0):
     resolution: {integrity: sha512-HUFut4ztcVNmqy9gp/wxNbC7pTOHhgVVkHVGCACTuLhUKUhKAF9KYHJtMiLUJxEqiFLQiuri1fWF8zqwM/cu1w==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
@@ -538,8 +538,8 @@ packages:
       '@docsearch/css': 3.6.0
       '@types/react': 18.2.70
       algoliasearch: 4.22.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
       search-insights: 2.13.0
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -1024,7 +1024,7 @@ packages:
   /@orama/highlight@0.1.6:
     resolution: {integrity: sha512-6Va8paStIoVy5algYDQu1hU0NUCkcrBx7FSt+0Lllp4d2VA1aVi6ACQ7xoINYls8sDZqg6vXf2lj4YDlVamBtw==}
     dependencies:
-      '@orama/orama': 2.0.18
+      '@orama/orama': 2.0.19
     dev: true
 
   /@orama/orama@2.0.18:
@@ -1119,35 +1119,37 @@ packages:
       - postcss
     dev: true
 
-  /@orama/searchbox@1.0.0-rc33(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5):
-    resolution: {integrity: sha512-1cKmqXesWdp46gVJw1lccPbEr/+CAvUBCOZMhcQUNreHtY3IOXADTe/oixf3Mxhu6C5gas+WmGt46Lwr2N+INw==}
+  /@orama/searchbox@1.0.0-rc37(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5):
+    resolution: {integrity: sha512-Quy7jX6KLe6fKD1Bxy+dONlaht+mbeXGwuD6gdVhDE09vDjIm7Yj+1FQKTtxXHRdOYvF15BOaquIVTgCpfo1Tw==}
     peerDependencies:
       '@orama/highlight': ^0.1.6
-      '@orama/orama': 2.0.14
-      '@oramacloud/client': 1.0.14
+      '@orama/orama': 2.0.18
+      '@oramacloud/client': 1.1.6
       '@preact/signals-core': ^1.6.0
       '@preact/signals-react': ^2.0.1
       '@r2wc/react-to-web-component': ^2.0.3
-      react: ^18.2.0
-      react-dom: ^18.2.0
+      react: ^18.3.1
+      react-dom: ^18.3.1
       react-markdown: ^9.0.1
+      react-syntax-highlighter: ^15.5.0
     dependencies:
       '@orama/highlight': 0.1.6
       '@orama/orama': 2.0.19
       '@orama/plugin-analytics': 2.0.18
       '@orama/plugin-secure-proxy': 2.0.18(typescript@5.4.5)
-      '@phosphor-icons/react': 2.1.5(react-dom@18.2.0)(react@18.2.0)
+      '@phosphor-icons/react': 2.1.5(react-dom@18.3.1)(react@18.3.1)
       '@preact/signals-core': 1.6.0
-      '@preact/signals-react': 2.0.1(react@18.2.0)
-      '@r2wc/react-to-web-component': 2.0.3(react-dom@18.2.0)(react@18.2.0)
+      '@preact/signals-react': 2.0.1(react@18.3.1)
+      '@r2wc/react-to-web-component': 2.0.3(react-dom@18.3.1)(react@18.3.1)
       classnames: 2.5.1
       lodash.debounce: 4.0.8
       lodash.omit: 4.5.0
+      markdown-to-jsx: 7.4.7(react@18.3.1)
       object-to-css-variables: 0.2.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-markdown: 9.0.1(@types/react@18.2.70)(react@18.2.0)
-      react-syntax-highlighter: 15.5.0(react@18.2.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-markdown: 9.0.1(@types/react@18.2.70)(react@18.3.1)
+      react-syntax-highlighter: 15.5.0(react@18.3.1)
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -1155,7 +1157,7 @@ packages:
   /@oramacloud/client@1.0.9(typescript@5.4.5):
     resolution: {integrity: sha512-qBYzppjtFfINYHoBRito8hLKJO5KbYswzZYvldBrLZoxSLrPluqt+vW4Ex8E0VhyvqPaezu8koYc79aqBLLEHA==}
     dependencies:
-      '@orama/orama': 2.0.18
+      '@orama/orama': 2.0.19
       '@paralleldrive/cuid2': 2.2.2
       lodash: 4.17.21
       lodash.debounce: 4.0.8
@@ -1172,15 +1174,15 @@ packages:
       '@noble/hashes': 1.4.0
     dev: true
 
-  /@phosphor-icons/react@2.1.5(react-dom@18.2.0)(react@18.2.0):
+  /@phosphor-icons/react@2.1.5(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-B7vRm/w+P/+eavWZP5CB5Ul0ffK4Y7fpd/auWKuGvm+8pVgAJzbOK8O0s+DqzR+TwWkh5pHtJTuoAtaSvgCPzg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>= 16.8'
       react-dom: '>= 16.8'
     dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
@@ -1194,14 +1196,14 @@ packages:
     resolution: {integrity: sha512-O/XGxwP85h1F7+ouqTMOIZ3+V1whfaV9ToIVcuyGriD4JkSD00cQo54BKdqjvBJxbenvp7ynfqRHEwI6e+NIhw==}
     dev: true
 
-  /@preact/signals-react@2.0.1(react@18.2.0):
+  /@preact/signals-react@2.0.1(react@18.3.1):
     resolution: {integrity: sha512-QQoxAPiliH6oeZPF5OZHmyala5zyFya0ZCp/A0lR4y6R9wO4lT7GdtYg5UFlmKNWMcFN6PiAjNPMTiNFMmnCpw==}
     peerDependencies:
       react: ^16.14.0 || 17.x || 18.x
     dependencies:
       '@preact/signals-core': 1.6.0
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
+      react: 18.3.1
+      use-sync-external-store: 1.2.0(react@18.3.1)
     dev: true
 
   /@preact/signals@1.2.3(preact@10.20.0):
@@ -1217,15 +1219,15 @@ packages:
     resolution: {integrity: sha512-3Q/IEvGoJ8E+wy8Y6vo+Hot35z89Ei0Ghr7WAhprxz1LhuCAaA2BIYXY8GjaCvJLGhiOLuiPMWb8DKfbrUzEMg==}
     dev: true
 
-  /@r2wc/react-to-web-component@2.0.3(react-dom@18.2.0)(react@18.2.0):
+  /@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-nlDJ0LHiWLG/EFB5tBtA+9KLF2oMBeDSAXL08NUzAuj/ac+V0NkMl/RvCFdDFnyrPQqpzpD9uOvOY2E5IFpdCQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
       '@r2wc/core': 1.0.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: true
 
   /@rollup/rollup-android-arm-eabi@4.13.0:
@@ -3156,6 +3158,15 @@ packages:
       uc.micro: 2.1.0
     dev: true
 
+  /markdown-to-jsx@7.4.7(react@18.3.1):
+    resolution: {integrity: sha512-0+ls1IQZdU6cwM1yu0ZjjiVWYtkbExSyUIFU2ZeDIFuZM1W42Mh4OlJ4nb4apX4H8smxDHRdFaoIVJGwfv5hkg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      react: '>= 0.14.0'
+    dependencies:
+      react: 18.3.1
+    dev: true
+
   /markdownlint-cli@0.41.0:
     resolution: {integrity: sha512-kp29tKrMKdn+xonfefjp3a/MsNzAd9c5ke0ydMEI9PR98bOjzglYN4nfMSaIs69msUf1DNkgevAIAPtK2SeX0Q==}
     engines: {node: '>=18'}
@@ -3931,21 +3942,21 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /react-dom@18.2.0(react@18.2.0):
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+  /react-dom@18.3.1(react@18.3.1):
+    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
-      react: ^18.2.0
+      react: ^18.3.1
     dependencies:
       loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
+      react: 18.3.1
+      scheduler: 0.23.2
     dev: true
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-markdown@9.0.1(@types/react@18.2.70)(react@18.2.0):
+  /react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1):
     resolution: {integrity: sha512-186Gw/vF1uRkydbsOIkcGXw7aHq0sZOCRFFjGrr7b9+nVZg4UfA4enXCaxm4fUzecU38sWfrNDitGhshuU7rdg==}
     peerDependencies:
       '@types/react': '>=18'
@@ -3957,7 +3968,7 @@ packages:
       hast-util-to-jsx-runtime: 2.3.0
       html-url-attributes: 3.0.0
       mdast-util-to-hast: 13.1.0
-      react: 18.2.0
+      react: 18.3.1
       remark-parse: 11.0.0
       remark-rehype: 11.1.0
       unified: 11.0.4
@@ -3967,7 +3978,7 @@ packages:
       - supports-color
     dev: true
 
-  /react-syntax-highlighter@15.5.0(react@18.2.0):
+  /react-syntax-highlighter@15.5.0(react@18.3.1):
     resolution: {integrity: sha512-+zq2myprEnQmH5yw6Gqc8lD55QHnpKaU8TOcFeC/Lg/MQSs8UknEA0JC4nTZGFAXC2J2Hyj/ijJ7NlabyPi2gg==}
     peerDependencies:
       react: '>= 0.14.0'
@@ -3976,12 +3987,19 @@ packages:
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.29.0
-      react: 18.2.0
+      react: 18.3.1
       refractor: 3.6.0
     dev: true
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: true
+
+  /react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
@@ -4159,8 +4177,8 @@ packages:
       xmlchars: 2.2.0
     dev: true
 
-  /scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+  /scheduler@0.23.2:
+    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
     dependencies:
       loose-envify: 1.4.0
     dev: true
@@ -4580,12 +4598,12 @@ packages:
       requires-port: 1.0.0
     dev: true
 
-  /use-sync-external-store@1.2.0(react@18.2.0):
+  /use-sync-external-store@1.2.0(react@18.3.1):
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: 18.2.0
+      react: 18.3.1
     dev: true
 
   /v8-to-istanbul@9.2.0:
@@ -4691,7 +4709,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitepress@1.2.2(@algolia/client-search@4.22.1)(@types/node@20.12.12)(@types/react@18.2.70)(postcss@8.4.38)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0)(typescript@5.4.5):
+  /vitepress@1.2.2(@algolia/client-search@4.22.1)(@types/node@20.12.12)(@types/react@18.2.70)(postcss@8.4.38)(react-dom@18.3.1)(react@18.3.1)(search-insights@2.13.0)(typescript@5.4.5):
     resolution: {integrity: sha512-uZ3nXR5NY4nYj3RJWCo5jev9qlNZAQo5SUXu1U0QSUx84cUm/o7hCTDVjZ4njVSVui+PsV1oAbdQOg8ygbaf4w==}
     hasBin: true
     peerDependencies:
@@ -4704,7 +4722,7 @@ packages:
         optional: true
     dependencies:
       '@docsearch/css': 3.6.0
-      '@docsearch/js': 3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.13.0)
+      '@docsearch/js': 3.6.0(@algolia/client-search@4.22.1)(@types/react@18.2.70)(react-dom@18.3.1)(react@18.3.1)(search-insights@2.13.0)
       '@shikijs/core': 1.6.0
       '@shikijs/transformers': 1.6.0
       '@types/markdown-it': 14.1.1
