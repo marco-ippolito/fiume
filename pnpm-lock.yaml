@@ -15,14 +15,14 @@ devDependencies:
     specifier: ^19.0.3
     version: 19.2.2
   '@orama/orama':
-    specifier: 2.0.18
-    version: 2.0.18
+    specifier: 2.0.19
+    version: 2.0.19
   '@orama/plugin-vitepress':
     specifier: 2.0.19
     version: 2.0.19(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.12.12)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.27)
   '@orama/searchbox':
     specifier: 1.0.0-rc33
-    version: 1.0.0-rc33(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5)
+    version: 1.0.0-rc33(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5)
   '@types/node':
     specifier: ^20.9.0
     version: 20.12.12
@@ -1119,7 +1119,7 @@ packages:
       - postcss
     dev: true
 
-  /@orama/searchbox@1.0.0-rc33(@orama/highlight@0.1.6)(@orama/orama@2.0.18)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5):
+  /@orama/searchbox@1.0.0-rc33(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.2.0)(react-markdown@9.0.1)(react@18.2.0)(typescript@5.4.5):
     resolution: {integrity: sha512-1cKmqXesWdp46gVJw1lccPbEr/+CAvUBCOZMhcQUNreHtY3IOXADTe/oixf3Mxhu6C5gas+WmGt46Lwr2N+INw==}
     peerDependencies:
       '@orama/highlight': ^0.1.6
@@ -1133,7 +1133,7 @@ packages:
       react-markdown: ^9.0.1
     dependencies:
       '@orama/highlight': 0.1.6
-      '@orama/orama': 2.0.18
+      '@orama/orama': 2.0.19
       '@orama/plugin-analytics': 2.0.18
       '@orama/plugin-secure-proxy': 2.0.18(typescript@5.4.5)
       '@phosphor-icons/react': 2.1.5(react-dom@18.2.0)(react@18.2.0)
