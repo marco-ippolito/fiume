@@ -21,8 +21,8 @@ devDependencies:
     specifier: 2.0.19
     version: 2.0.19(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.14.2)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.27)
   '@orama/searchbox':
-    specifier: 1.0.0-rc37
-    version: 1.0.0-rc37(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5)
+    specifier: 1.0.0-rc38
+    version: 1.0.0-rc38(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5)
   '@types/node':
     specifier: ^20.9.0
     version: 20.14.2
@@ -1037,10 +1037,21 @@ packages:
     engines: {node: '>= 16.0.0'}
     dev: true
 
+  /@orama/orama@2.0.20:
+    resolution: {integrity: sha512-7TNNhl5cRbBbGTH2pvw3D4LtA3C2cbM3nas+HMFtl0qvMkuECPtzJElJs7xq8aGCB3rI2KOSb8GwCT9cW9M7ow==}
+    engines: {node: '>= 16.0.0'}
+    dev: true
+
   /@orama/plugin-analytics@2.0.18:
     resolution: {integrity: sha512-E6C1kLjf7Db3QTeww3L5Iooa2lFL/jp+uNgaGSNBfHR+kUi/pnifmtFAItIQ12ZIa6bv07UvbhWhDMELQcz//A==}
     dependencies:
       '@orama/orama': 2.0.18
+    dev: true
+
+  /@orama/plugin-analytics@2.0.20:
+    resolution: {integrity: sha512-pkvN8vf/rEgLwBQhp410toL504aWsvjlECRU0SsAqi3rWX+cf8rq/WnOQhxUR5MEsokK9PISOy1qDmyrcxLu5w==}
+    dependencies:
+      '@orama/orama': 2.0.20
     dev: true
 
   /@orama/plugin-data-persistence@2.0.19:
@@ -1051,8 +1062,8 @@ packages:
       dpack: 0.6.22
     dev: true
 
-  /@orama/plugin-secure-proxy@2.0.18(typescript@5.4.5):
-    resolution: {integrity: sha512-jGmRuybg03SESMExhdbhuRMUJUrZGpcssOGR0/LpsOqjhmLvB3VheODztodjJzsPSj98LO36pmGB9NtkSelsmg==}
+  /@orama/plugin-secure-proxy@2.0.20(typescript@5.4.5):
+    resolution: {integrity: sha512-i90sBn2PPASx0S8aEbDasaFuj9uc0U/Ui1fQX2iTg/9VUAmYPt0DZCfhszQXOr84nCSCEKMd8BkeQmzuj/RmIg==}
     dependencies:
       '@oramacloud/client': 1.0.9(typescript@5.4.5)
     transitivePeerDependencies:
@@ -1119,11 +1130,11 @@ packages:
       - postcss
     dev: true
 
-  /@orama/searchbox@1.0.0-rc37(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5):
-    resolution: {integrity: sha512-Quy7jX6KLe6fKD1Bxy+dONlaht+mbeXGwuD6gdVhDE09vDjIm7Yj+1FQKTtxXHRdOYvF15BOaquIVTgCpfo1Tw==}
+  /@orama/searchbox@1.0.0-rc38(@orama/highlight@0.1.6)(@orama/orama@2.0.19)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5):
+    resolution: {integrity: sha512-SPRRFxYLcEyDA1XvTX0Q9RuDLiB4wXV4e3G4vXQCac1RRM7HuUE32MreaeHoU3zp4hcbsq9U/c7qPxO0T/1Fwg==}
     peerDependencies:
       '@orama/highlight': ^0.1.6
-      '@orama/orama': 2.0.18
+      '@orama/orama': 2.0.19
       '@oramacloud/client': 1.1.6
       '@preact/signals-core': ^1.6.0
       '@preact/signals-react': ^2.0.1
@@ -1135,8 +1146,8 @@ packages:
     dependencies:
       '@orama/highlight': 0.1.6
       '@orama/orama': 2.0.19
-      '@orama/plugin-analytics': 2.0.18
-      '@orama/plugin-secure-proxy': 2.0.18(typescript@5.4.5)
+      '@orama/plugin-analytics': 2.0.20
+      '@orama/plugin-secure-proxy': 2.0.20(typescript@5.4.5)
       '@phosphor-icons/react': 2.1.5(react-dom@18.3.1)(react@18.3.1)
       '@preact/signals-core': 1.6.0
       '@preact/signals-react': 2.0.1(react@18.3.1)
@@ -1162,7 +1173,7 @@ packages:
       lodash: 4.17.21
       lodash.debounce: 4.0.8
       lodash.throttle: 4.1.1
-      react: 18.2.0
+      react: 18.3.1
       vue: 3.4.27(typescript@5.4.5)
     transitivePeerDependencies:
       - typescript
@@ -3989,13 +4000,6 @@ packages:
       prismjs: 1.29.0
       react: 18.3.1
       refractor: 3.6.0
-    dev: true
-
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
     dev: true
 
   /react@18.3.1:
