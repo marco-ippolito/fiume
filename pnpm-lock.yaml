@@ -21,8 +21,8 @@ devDependencies:
     specifier: 2.0.20
     version: 2.0.20(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3)(@types/node@20.14.8)(postcss@8.4.38)(preact-custom-element@4.3.0)(preact@10.20.0)(vue@3.4.27)
   '@orama/searchbox':
-    specifier: 1.0.0-rc38
-    version: 1.0.0-rc38(@orama/highlight@0.1.6)(@orama/orama@2.0.20)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5)
+    specifier: 1.0.0-rc43
+    version: 1.0.0-rc43(@orama/highlight@0.1.6)(@orama/orama@2.0.20)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5)
   '@types/node':
     specifier: ^20.9.0
     version: 20.14.8
@@ -1114,8 +1114,8 @@ packages:
       - postcss
     dev: true
 
-  /@orama/searchbox@1.0.0-rc38(@orama/highlight@0.1.6)(@orama/orama@2.0.20)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5):
-    resolution: {integrity: sha512-SPRRFxYLcEyDA1XvTX0Q9RuDLiB4wXV4e3G4vXQCac1RRM7HuUE32MreaeHoU3zp4hcbsq9U/c7qPxO0T/1Fwg==}
+  /@orama/searchbox@1.0.0-rc43(@orama/highlight@0.1.6)(@orama/orama@2.0.20)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1)(@r2wc/react-to-web-component@2.0.3)(react-dom@18.3.1)(react-markdown@9.0.1)(react-syntax-highlighter@15.5.0)(react@18.3.1)(typescript@5.4.5):
+    resolution: {integrity: sha512-NBUJ7p8wR8SmOJebT6gM0pbwVKDL7wv0hWHGRfyxssvN/B7OOma4UO64R0B3+tE82OcJIKUG1D5dfA9y+9cr8w==}
     peerDependencies:
       '@orama/highlight': ^0.1.6
       '@orama/orama': 2.0.19
