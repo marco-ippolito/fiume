@@ -209,7 +209,7 @@ export class StateMachine<
 
 		if (!destination) throw new InvalidTransition("Invalid destination node");
 
-		await this.enter(destination);
+		await this.enter(destination, event);
 	}
 
 	public subscribe(callback: SubscriptionCallback): SubscriptionIdentifier {
