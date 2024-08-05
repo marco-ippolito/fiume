@@ -216,7 +216,9 @@ export class StateMachine<
 		await this.enter(destination, event);
 	}
 
-	public subscribe(callback: SubscriptionCallback): SubscriptionIdentifier {
+	public subscribe(
+		callback: SubscriptionCallback<TContext, TEvent, TSharedData>,
+	): SubscriptionIdentifier {
 		const id = crypto.randomUUID();
 		this.#subscriptions.set(id, callback);
 		return id;
