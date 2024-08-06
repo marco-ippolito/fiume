@@ -3,15 +3,21 @@ export type SubscriptionIdentifier = string;
 
 export type SubscriptionCallbackInput<
 	TContext = unknown,
+	TEvent = unknown,
 	TSharedData = unknown,
 > = {
 	context: TContext;
 	currentStateId: StateIdentifier;
 	sharedData: TSharedData;
+	event?: TEvent;
 };
 
-export type SubscriptionCallback<TContext = unknown> = (
-	callback: SubscriptionCallbackInput<TContext>,
+export type SubscriptionCallback<
+	TContext = unknown,
+	TEvent = unknown,
+	TSharedData = unknown,
+> = (
+	callback: SubscriptionCallbackInput<TContext, TEvent, TSharedData>,
 ) => void;
 
 export type HookInput<

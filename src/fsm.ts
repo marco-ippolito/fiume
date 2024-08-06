@@ -40,7 +40,10 @@ export class StateMachine<
 	#initial: State<TContext, TEvent, TSharedData>;
 	#states: Map<StateIdentifier, State<TContext, TEvent, TSharedData>>;
 	#sharedData: TSharedData;
-	#subscriptions: Map<SubscriptionIdentifier, SubscriptionCallback>;
+	#subscriptions: Map<
+		SubscriptionIdentifier,
+		SubscriptionCallback<TContext, TEvent, TSharedData>
+	>;
 
 	private constructor(
 		states: Array<State<TContext, TEvent, TSharedData>>,
@@ -158,6 +161,7 @@ export class StateMachine<
 				context: this.context,
 				currentStateId: this.#current.id,
 				sharedData: this.#sharedData,
+				event,
 			});
 		}
 
@@ -212,7 +216,9 @@ export class StateMachine<
 		await this.enter(destination, event);
 	}
 
-	public subscribe(callback: SubscriptionCallback): SubscriptionIdentifier {
+	public subscribe(
+		callback: SubscriptionCallback<TContext, TEvent, TSharedData>,
+	): SubscriptionIdentifier {
 		const id = crypto.randomUUID();
 		this.#subscriptions.set(id, callback);
 		return id;

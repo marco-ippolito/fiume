@@ -236,7 +236,8 @@ using `send` will reject.
 
 - `subscribe`: You can register a callback that will be invoked
 on every state transition between the `onEntry` and `onExit` hooks.
-The callback returns the `subscriptionId` and receives `context` and `currentStateId`.
+The callback returns the `subscriptionId` and receives `context`,
+`event`, `sharedData`, and `currentStateId`.
 
 - `unsubscribe`: Remove the subscription with the given `subscriptionId`.
 
