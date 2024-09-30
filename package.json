@@ -43,7 +43,7 @@
     "@commitlint/config-conventional": "^19.0.3",
     "c8": "^10.1.2",
     "husky": "^9.0.6",
-    "markdownlint-cli": "^0.41.0",
+    "markdownlint-cli": "^0.42.0",
     "@orama/orama": "2.1.1",
     "@orama/plugin-vitepress": "2.1.1",
     "@orama/searchbox": "1.0.0-rc53",
