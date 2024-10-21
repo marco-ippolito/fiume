@@ -21,8 +21,8 @@ importers:
         specifier: 2.1.1
         version: 2.1.1
       '@orama/plugin-vitepress':
-        specifier: 2.1.1
-        version: 2.1.1(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(@types/node@22.7.5)(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)(vue@3.5.12(typescript@5.6.3))
+        specifier: 3.0.1
+        version: 3.0.1(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(@types/node@22.7.5)(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)(vue@3.5.12(typescript@5.6.3))
       '@orama/searchbox':
         specifier: 1.0.0-rc53
         version: 1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@2.1.1)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
@@ -630,17 +630,21 @@ packages:
     resolution: {integrity: sha512-euTV/2kya290SNkl5m8e/H1na8iDygk74nNtl4E0YZNyYIrEMwE1JwamoroMKGZw2Uz+in/8gH3m1+2YfP0j1w==}
     engines: {node: '>= 16.0.0'}
 
+  '@orama/orama@3.0.1':
+    resolution: {integrity: sha512-18hl0MiCLmumODHjrLzSdTb1Ny3Dh8tn44jwgx0LksCdvVAsr3jQvfr+hwrE7bVkap0wPELb/dnuJjvupKxheQ==}
+    engines: {node: '>= 16.0.0'}
+
   '@orama/plugin-analytics@2.0.20':
     resolution: {integrity: sha512-pkvN8vf/rEgLwBQhp410toL504aWsvjlECRU0SsAqi3rWX+cf8rq/WnOQhxUR5MEsokK9PISOy1qDmyrcxLu5w==}
 
-  '@orama/plugin-data-persistence@2.1.1':
-    resolution: {integrity: sha512-JocJ7Q9mv/2+1jr6194mSiQUvbJ3/7WRZipzg5z8LI6kKcbCFMcYQgJ5RP65bIrXS8EeR36mt5hsRTJdEo+ZbA==}
+  '@orama/plugin-data-persistence@3.0.1':
+    resolution: {integrity: sha512-9STra2Aw4Fln/FRJQN/XfTNa1oFvfftMHYpZFBo9yfBlxbqSKCCnbsnRq981lglyvy6EJklD9Z/KtG9VVq1m4w==}
 
   '@orama/plugin-secure-proxy@2.0.20':
     resolution: {integrity: sha512-i90sBn2PPASx0S8aEbDasaFuj9uc0U/Ui1fQX2iTg/9VUAmYPt0DZCfhszQXOr84nCSCEKMd8BkeQmzuj/RmIg==}
 
-  '@orama/plugin-vitepress@2.1.1':
-    resolution: {integrity: sha512-n9t7AiNoQ2yJj4T5mDwAOuQGbQD1q0h7Pk0xnVetuhYkJXTPjj1DPJSxUAR4qxVNT26zoU5T8Kv4wb5n3njVfQ==}
+  '@orama/plugin-vitepress@3.0.1':
+    resolution: {integrity: sha512-3in/VDJBpRWwvZea3if0hyxXJB+EYSUaH/kw//qCDwges5ip9q80deP35/cHM2Q78/h1Zt0lOHMCE8g+prIFqw==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -2111,10 +2115,6 @@ packages:
     resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.4.41:
-    resolution: {integrity: sha512-TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.4.47:
     resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3219,14 +3219,16 @@ snapshots:
 
   '@orama/orama@2.1.1': {}
 
+  '@orama/orama@3.0.1': {}
+
   '@orama/plugin-analytics@2.0.20':
     dependencies:
       '@orama/orama': 2.0.20
 
-  '@orama/plugin-data-persistence@2.1.1':
+  '@orama/plugin-data-persistence@3.0.1':
     dependencies:
       '@msgpack/msgpack': 2.8.0
-      '@orama/orama': 2.1.1
+      '@orama/orama': 3.0.1
       dpack: 0.6.22
 
   '@orama/plugin-secure-proxy@2.0.20(typescript@5.6.3)':
@@ -3235,11 +3237,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@orama/plugin-vitepress@2.1.1(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(@types/node@22.7.5)(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)(vue@3.5.12(typescript@5.6.3))':
+  '@orama/plugin-vitepress@3.0.1(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(@types/node@22.7.5)(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)(vue@3.5.12(typescript@5.6.3))':
     dependencies:
-      '@orama/orama': 2.1.1
-      '@orama/plugin-data-persistence': 2.1.1
-      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@2.1.1)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)
+      '@orama/orama': 3.0.1
+      '@orama/plugin-data-persistence': 3.0.1
+      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.0.1)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)
       '@vitejs/plugin-vue': 4.6.2(vite@4.5.3(@types/node@22.7.5))(vue@3.5.12(typescript@5.6.3))
       jsdom: 23.2.0
       markdown-it: 13.0.2
@@ -3266,10 +3268,10 @@ snapshots:
       - terser
       - utf-8-validate
 
-  '@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@2.1.1)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)':
+  '@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.0.1)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.20.0))(postcss@8.4.47)(preact-custom-element@4.3.0(preact@10.20.0))(preact@10.20.0)':
     dependencies:
       '@orama/highlight': 0.1.6
-      '@orama/orama': 2.1.1
+      '@orama/orama': 3.0.1
       '@orama/plugin-analytics': 2.0.20
       '@preact/signals': 1.2.3(preact@10.20.0)
       '@preact/signals-core': 1.6.0
@@ -4966,12 +4968,6 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  postcss@8.4.41:
-    dependencies:
-      nanoid: 3.3.7
-      picocolors: 1.0.1
-      source-map-js: 1.2.0
-
   postcss@8.4.47:
     dependencies:
       nanoid: 3.3.7
@@ -5441,7 +5437,7 @@ snapshots:
   vite@4.5.3(@types/node@22.7.5):
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.4.41
+      postcss: 8.4.47
       rollup: 3.29.4
     optionalDependencies:
       '@types/node': 22.7.5
