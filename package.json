@@ -45,7 +45,7 @@
     "husky": "^9.0.6",
     "markdownlint-cli": "^0.43.0",
     "@orama/orama": "3.0.2",
-    "@orama/plugin-vitepress": "3.0.1",
+    "@orama/plugin-vitepress": "3.0.2",
     "@orama/searchbox": "1.0.0-rc53",
     "@types/node": "^22.0.0",
     "rimraf": "^6.0.1",
