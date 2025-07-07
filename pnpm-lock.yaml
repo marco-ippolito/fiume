@@ -18,14 +18,14 @@ importers:
         specifier: ^19.0.3
         version: 19.8.1
       '@orama/orama':
-        specifier: 3.1.9
-        version: 3.1.9
+        specifier: 3.1.10
+        version: 3.1.10
       '@orama/plugin-vitepress':
         specifier: 3.1.9
         version: 3.1.9(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.25.4))(@types/node@24.0.10)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.25.4))(preact@10.25.4)(vue@3.5.13(typescript@5.8.3))
       '@orama/searchbox':
         specifier: 1.0.0-rc53
-        version: 1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@3.1.9)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
+        version: 1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@3.1.10)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.8.3)
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.10
@@ -670,6 +670,10 @@ packages:
   '@orama/orama@2.1.1':
     resolution: {integrity: sha512-euTV/2kya290SNkl5m8e/H1na8iDygk74nNtl4E0YZNyYIrEMwE1JwamoroMKGZw2Uz+in/8gH3m1+2YfP0j1w==}
     engines: {node: '>= 16.0.0'}
+
+  '@orama/orama@3.1.10':
+    resolution: {integrity: sha512-YNou2xlCIgPhMDe1TBEmp1wsAPFCL7Fd11rct7YfXYYiNAVBNL2rWoEydJRDJFVmqgt0l6mzSg35sDQ3i8yfKQ==}
+    engines: {node: '>= 20.0.0'}
 
   '@orama/orama@3.1.9':
     resolution: {integrity: sha512-UXQYvN0DYl5EMOXX3O0Rwke+0R0Pd7PW/hOVwgpPd6KKJPb3RP74m3PEbEFjdTzZVLUW81o7herYXD2h4PVcGQ==}
@@ -3377,6 +3381,8 @@ snapshots:
 
   '@orama/orama@2.1.1': {}
 
+  '@orama/orama@3.1.10': {}
+
   '@orama/orama@3.1.9': {}
 
   '@orama/plugin-analytics@2.0.20':
@@ -3445,10 +3451,10 @@ snapshots:
     transitivePeerDependencies:
       - postcss
 
-  '@orama/searchbox@1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@3.1.9)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.8.3)':
+  '@orama/searchbox@1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@3.1.10)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.8.3)':
     dependencies:
       '@orama/highlight': 0.1.6
-      '@orama/orama': 3.1.9
+      '@orama/orama': 3.1.10
       '@orama/plugin-analytics': 2.0.20
       '@orama/plugin-secure-proxy': 2.0.20(typescript@5.8.3)
       '@phosphor-icons/react': 2.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
