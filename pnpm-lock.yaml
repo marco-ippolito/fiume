@@ -21,8 +21,8 @@ importers:
         specifier: 3.1.13
         version: 3.1.13
       '@orama/plugin-vitepress':
-        specifier: 3.1.11
-        version: 3.1.11(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.3.1)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))
+        specifier: 3.1.13
+        version: 3.1.13(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.3.1)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))
       '@orama/searchbox':
         specifier: 1.0.0-rc53
         version: 1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@3.1.13)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
@@ -282,8 +282,8 @@ packages:
     resolution: {integrity: sha512-/yCrWGCoA1SVKOks25EGadP9Pnj0oAIHGpl2wH2M2Y46dPM2ueb8wyCVOD7O3WCTkaJ0IkKvzhl1JY7+uCT2Dw==}
     engines: {node: '>=v18'}
 
-  '@csstools/color-helpers@5.0.2':
-    resolution: {integrity: sha512-JqWH1vsgdGcw2RR6VliXXdA0/59LttzlU8UlRT/iUUsEeWfYq8I+K0yhihEUTTHLRm1EXvpsCx3083EU15ecsA==}
+  '@csstools/color-helpers@5.1.0':
+    resolution: {integrity: sha512-S11EXWJyy0Mz5SYvRmY8nJYTFFd1LCNV+7cXyAgQtOOuzb4EsgfqDufL+9esx72/eLhsRdGZwaldu/h+E4t4BA==}
     engines: {node: '>=18'}
 
   '@csstools/css-calc@2.1.4':
@@ -293,8 +293,8 @@ packages:
       '@csstools/css-parser-algorithms': ^3.0.5
       '@csstools/css-tokenizer': ^3.0.4
 
-  '@csstools/css-color-parser@3.0.10':
-    resolution: {integrity: sha512-TiJ5Ajr6WRd1r8HSiwJvZBiJOqtH86aHpUjq5aEKWHiII2Qfjqd/HCWKPOW8EP4vcspXbHnXrwIDlu5savQipg==}
+  '@csstools/css-color-parser@3.1.0':
+    resolution: {integrity: sha512-nbtKwh3a6xNVIp/VRuXV64yTKnb1IjTAEEh3irzS+HkKjAOYLTGNb9pmVNntZ8iVBHcWDA2Dof0QtPgFI1BaTA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@csstools/css-parser-algorithms': ^3.0.5
@@ -643,9 +643,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@msgpack/msgpack@2.8.0':
-    resolution: {integrity: sha512-h9u4u/jiIRKbq25PM+zymTyW6bhTzELvOoUd+AvYriWOAKpLGnIamaET3pnHYoI5iYphAHBI4ayx0MehR+VVPQ==}
-    engines: {node: '>= 10'}
+  '@msgpack/msgpack@3.1.2':
+    resolution: {integrity: sha512-JEW4DEtBzfe8HvUYecLU9e6+XJnKDlUAIve8FvPzF3Kzs6Xo/KuZkZJsDH0wJXl/qEZbeeE7edxDNY3kMs39hQ==}
+    engines: {node: '>= 18'}
 
   '@noble/hashes@1.4.0':
     resolution: {integrity: sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==}
@@ -674,10 +674,6 @@ packages:
     resolution: {integrity: sha512-euTV/2kya290SNkl5m8e/H1na8iDygk74nNtl4E0YZNyYIrEMwE1JwamoroMKGZw2Uz+in/8gH3m1+2YfP0j1w==}
     engines: {node: '>= 16.0.0'}
 
-  '@orama/orama@3.1.11':
-    resolution: {integrity: sha512-Szki0cgFiXE5F9RLx2lUyEtJllnuCSQ4B8RLDwIjXkVit6qZjoDAxH+xhJs29MjKLDz0tbPLdKFa6QrQ/qoGGA==}
-    engines: {node: '>= 20.0.0'}
-
   '@orama/orama@3.1.13':
     resolution: {integrity: sha512-O0hdKt4K31i8fpq8Bw5RfdPVAqm0EdduBUcluPo2MRcfCOwUEf5JlnvRhf/J0ezOYOD8jQ/LumYZxOVi/XK/BA==}
     engines: {node: '>= 20.0.0'}
@@ -688,14 +684,14 @@ packages:
   '@orama/plugin-analytics@2.1.1':
     resolution: {integrity: sha512-t7wS4crQCbfnDuHsvNyA3z4Q44DUca7hgZV8KVpRpz2jgKK4qlPEQig+NOL3rp2lHAAjFwxXegCIaeoW9dChQA==}
 
-  '@orama/plugin-data-persistence@3.1.11':
-    resolution: {integrity: sha512-jmSOBDP1YPmTvJobU7sPNDBXAvLuxPb6IT4Ot3pUNcynLNCs11ztN0x/TmAo5CgcDn4jOR4zV7AN36nHTXyEaw==}
+  '@orama/plugin-data-persistence@3.1.13':
+    resolution: {integrity: sha512-0MGU8zFlsAGWIFOlHm9PvMxRM14nib8Jfm3acQ6vqd6vuNR/2UyPjv/0DEfaJ6sUJoUQMNVJbWfIR5j/bRKl8w==}
 
   '@orama/plugin-secure-proxy@2.0.20':
     resolution: {integrity: sha512-i90sBn2PPASx0S8aEbDasaFuj9uc0U/Ui1fQX2iTg/9VUAmYPt0DZCfhszQXOr84nCSCEKMd8BkeQmzuj/RmIg==}
 
-  '@orama/plugin-vitepress@3.1.11':
-    resolution: {integrity: sha512-Jsokl7qoRvtQUuoN/BfLC1cYP1Ze4mls7KGwb5l6zx6s8XjB2jImxhX4yKubzW3CCjVwM/gEfCodIQqs9HVbnQ==}
+  '@orama/plugin-vitepress@3.1.13':
+    resolution: {integrity: sha512-p79DEnRgqhmSrcZyXZi54F76bXdLn7CPTKdRhhDIhdf4RCixNKRGBSpH2NcDU6r0e0KMIRRS0Yzj1aW6tsjJQQ==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -1498,8 +1494,8 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
-  form-data@4.0.3:
-    resolution: {integrity: sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==}
+  form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
   fsevents@2.3.3:
@@ -2424,6 +2420,10 @@ packages:
   sentence-case@3.0.4:
     resolution: {integrity: sha512-8LS0JInaQMCRoQ7YUytAo/xUu5W2XnQxV2HI/6uM6U7CITS1RqPElr30V6uIqyMKM9lJGRVFy5/4CuzcixNYSg==}
 
+  seqproto@0.2.3:
+    resolution: {integrity: sha512-HpNyPYl7DJa2a6XQJ+MJAc6ft6Y9ZU+zRiuvTHFpLPeqvapcTAGFJyhMEIN7Y7VXhWT6NEdNVhbXFHwtaCOfCw==}
+    engines: {node: '>= 20.0.0'}
+
   shallowequal@1.1.0:
     resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
 
@@ -2958,7 +2958,7 @@ snapshots:
   '@asamuzakjp/css-color@3.2.0':
     dependencies:
       '@csstools/css-calc': 2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
-      '@csstools/css-color-parser': 3.0.10(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
+      '@csstools/css-color-parser': 3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
@@ -3135,16 +3135,16 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.1
       chalk: 5.4.1
 
-  '@csstools/color-helpers@5.0.2': {}
+  '@csstools/color-helpers@5.1.0': {}
 
   '@csstools/css-calc@2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
 
-  '@csstools/css-color-parser@3.0.10(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
+  '@csstools/css-color-parser@3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
     dependencies:
-      '@csstools/color-helpers': 5.0.2
+      '@csstools/color-helpers': 5.1.0
       '@csstools/css-calc': 2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
@@ -3357,7 +3357,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@msgpack/msgpack@2.8.0': {}
+  '@msgpack/msgpack@3.1.2': {}
 
   '@noble/hashes@1.4.0': {}
 
@@ -3381,8 +3381,6 @@ snapshots:
 
   '@orama/orama@2.1.1': {}
 
-  '@orama/orama@3.1.11': {}
-
   '@orama/orama@3.1.13': {}
 
   '@orama/plugin-analytics@2.0.20':
@@ -3393,11 +3391,12 @@ snapshots:
     dependencies:
       '@orama/orama': 2.1.1
 
-  '@orama/plugin-data-persistence@3.1.11':
+  '@orama/plugin-data-persistence@3.1.13':
     dependencies:
-      '@msgpack/msgpack': 2.8.0
-      '@orama/orama': 3.1.11
+      '@msgpack/msgpack': 3.1.2
+      '@orama/orama': 3.1.13
       dpack: 0.6.22
+      seqproto: 0.2.3
 
   '@orama/plugin-secure-proxy@2.0.20(typescript@5.9.2)':
     dependencies:
@@ -3405,11 +3404,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@orama/plugin-vitepress@3.1.11(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.3.1)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))':
+  '@orama/plugin-vitepress@3.1.13(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.3.1)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))':
     dependencies:
-      '@orama/orama': 3.1.11
-      '@orama/plugin-data-persistence': 3.1.11
-      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.11)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)
+      '@orama/orama': 3.1.13
+      '@orama/plugin-data-persistence': 3.1.13
+      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.13)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)
       '@vitejs/plugin-vue': 4.6.2(vite@4.5.14(@types/node@24.3.1))(vue@3.5.18(typescript@5.9.2))
       jsdom: 23.2.0
       markdown-it: 13.0.2
@@ -3436,10 +3435,10 @@ snapshots:
       - terser
       - utf-8-validate
 
-  '@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.11)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)':
+  '@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.13)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)':
     dependencies:
       '@orama/highlight': 0.1.6
-      '@orama/orama': 3.1.11
+      '@orama/orama': 3.1.13
       '@orama/plugin-analytics': 2.1.1
       '@preact/signals': 1.2.3(preact@10.27.0)
       '@preact/signals-core': 1.6.0
@@ -4279,7 +4278,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  form-data@4.0.3:
+  form-data@4.0.4:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -4579,7 +4578,7 @@ snapshots:
       cssstyle: 4.6.0
       data-urls: 5.0.0
       decimal.js: 10.6.0
-      form-data: 4.0.3
+      form-data: 4.0.4
       html-encoding-sniffer: 4.0.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
@@ -5440,6 +5439,8 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.6.2
       upper-case-first: 2.0.2
+
+  seqproto@0.2.3: {}
 
   shallowequal@1.1.0: {}
 
