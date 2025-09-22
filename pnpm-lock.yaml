@@ -21,8 +21,8 @@ importers:
         specifier: 3.1.13
         version: 3.1.13
       '@orama/plugin-vitepress':
-        specifier: 3.1.13
-        version: 3.1.13(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.4.0)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))
+        specifier: 3.1.14
+        version: 3.1.14(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.4.0)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))
       '@orama/searchbox':
         specifier: 1.0.0-rc53
         version: 1.0.0-rc53(@orama/highlight@0.1.6)(@orama/orama@3.1.13)(@preact/signals-core@1.6.0)(@preact/signals-react@2.0.1(react@18.3.1))(@r2wc/react-to-web-component@2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-markdown@9.0.1(@types/react@18.2.70)(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
@@ -678,20 +678,24 @@ packages:
     resolution: {integrity: sha512-O0hdKt4K31i8fpq8Bw5RfdPVAqm0EdduBUcluPo2MRcfCOwUEf5JlnvRhf/J0ezOYOD8jQ/LumYZxOVi/XK/BA==}
     engines: {node: '>= 20.0.0'}
 
+  '@orama/orama@3.1.14':
+    resolution: {integrity: sha512-Iq4RxYC7y0pA/hLgcUGpYYs5Vze4qNmJk0Qi1uIrg2bHGpm6A06nbjWcH9h4HQsddkDFFlanLj/zYBH3Sxdb4w==}
+    engines: {node: '>= 20.0.0'}
+
   '@orama/plugin-analytics@2.0.20':
     resolution: {integrity: sha512-pkvN8vf/rEgLwBQhp410toL504aWsvjlECRU0SsAqi3rWX+cf8rq/WnOQhxUR5MEsokK9PISOy1qDmyrcxLu5w==}
 
   '@orama/plugin-analytics@2.1.1':
     resolution: {integrity: sha512-t7wS4crQCbfnDuHsvNyA3z4Q44DUca7hgZV8KVpRpz2jgKK4qlPEQig+NOL3rp2lHAAjFwxXegCIaeoW9dChQA==}
 
-  '@orama/plugin-data-persistence@3.1.13':
-    resolution: {integrity: sha512-0MGU8zFlsAGWIFOlHm9PvMxRM14nib8Jfm3acQ6vqd6vuNR/2UyPjv/0DEfaJ6sUJoUQMNVJbWfIR5j/bRKl8w==}
+  '@orama/plugin-data-persistence@3.1.14':
+    resolution: {integrity: sha512-cNtIWJrg95n4G5GphQkMmV68qS9KFCkQ0AlZoBiIiCTRt9+98+1imrUBQbPqpTTR0xN8PhvAMObRn661WF5D0Q==}
 
   '@orama/plugin-secure-proxy@2.0.20':
     resolution: {integrity: sha512-i90sBn2PPASx0S8aEbDasaFuj9uc0U/Ui1fQX2iTg/9VUAmYPt0DZCfhszQXOr84nCSCEKMd8BkeQmzuj/RmIg==}
 
-  '@orama/plugin-vitepress@3.1.13':
-    resolution: {integrity: sha512-p79DEnRgqhmSrcZyXZi54F76bXdLn7CPTKdRhhDIhdf4RCixNKRGBSpH2NcDU6r0e0KMIRRS0Yzj1aW6tsjJQQ==}
+  '@orama/plugin-vitepress@3.1.14':
+    resolution: {integrity: sha512-c57sh0Q4ha10vCHZ31HQgCSJ6w4TkmgG4LPgZA6QEjLqz+o7/fY9LO4XiFIMdJ6xnHqXobpbT8hE6ra+iVMTJw==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -1316,6 +1320,15 @@ packages:
 
   debug@4.4.1:
     resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@4.4.3:
+    resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -3383,6 +3396,8 @@ snapshots:
 
   '@orama/orama@3.1.13': {}
 
+  '@orama/orama@3.1.14': {}
+
   '@orama/plugin-analytics@2.0.20':
     dependencies:
       '@orama/orama': 2.0.20
@@ -3391,10 +3406,10 @@ snapshots:
     dependencies:
       '@orama/orama': 2.1.1
 
-  '@orama/plugin-data-persistence@3.1.13':
+  '@orama/plugin-data-persistence@3.1.14':
     dependencies:
       '@msgpack/msgpack': 3.1.2
-      '@orama/orama': 3.1.13
+      '@orama/orama': 3.1.14
       dpack: 0.6.22
       seqproto: 0.2.3
 
@@ -3404,11 +3419,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@orama/plugin-vitepress@3.1.13(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.4.0)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))':
+  '@orama/plugin-vitepress@3.1.14(@orama/highlight@0.1.6)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(@types/node@24.4.0)(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)(vue@3.5.18(typescript@5.9.2))':
     dependencies:
-      '@orama/orama': 3.1.13
-      '@orama/plugin-data-persistence': 3.1.13
-      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.13)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)
+      '@orama/orama': 3.1.14
+      '@orama/plugin-data-persistence': 3.1.14
+      '@orama/searchbox': 1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.14)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)
       '@vitejs/plugin-vue': 4.6.2(vite@4.5.14(@types/node@24.4.0))(vue@3.5.18(typescript@5.9.2))
       jsdom: 23.2.0
       markdown-it: 13.0.2
@@ -3435,10 +3450,10 @@ snapshots:
       - terser
       - utf-8-validate
 
-  '@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.13)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)':
+  '@orama/searchbox@1.0.0-beta.13(@orama/highlight@0.1.6)(@orama/orama@3.1.14)(@preact/signals-core@1.6.0)(@preact/signals@1.2.3(preact@10.27.0))(postcss@8.5.6)(preact-custom-element@4.3.0(preact@10.27.0))(preact@10.27.0)':
     dependencies:
       '@orama/highlight': 0.1.6
-      '@orama/orama': 3.1.13
+      '@orama/orama': 3.1.14
       '@orama/plugin-analytics': 2.1.1
       '@preact/signals': 1.2.3(preact@10.27.0)
       '@preact/signals-core': 1.6.0
@@ -4071,6 +4086,10 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
+  debug@4.4.3:
+    dependencies:
+      ms: 2.1.3
+
   decamelize-keys@1.1.1:
     dependencies:
       decamelize: 1.2.0
@@ -4443,14 +4462,14 @@ snapshots:
   http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.6:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
