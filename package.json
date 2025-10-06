@@ -38,7 +38,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.4",
+    "@biomejs/biome": "2.2.5",
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^20.0.0",
     "c8": "^10.1.2",
